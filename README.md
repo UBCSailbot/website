@@ -1,3 +1,12 @@
+# Website
+
+In the website development timeline, we are currently evaluating the folllowing software stack:
+[Next.js](https://nextjs.org/) website (this repository), [MongoDB](https://www.mongodb.com/) database, and
+[Grafana](https://grafana.com/) dashboards.
+The easiest way to evaluate these potential solutions for our purposes is in [sailbot_workspace](https://github.com/UBCSailbot/sailbot_workspace).
+This repository starts from the [Next.js with-mongodb example](https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/)
+to connect to the MongoDB database in sailbot_workspace.
+
 ## Example app using MongoDB
 
 [MongoDB](https://www.mongodb.com/) is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. This example will show you how to connect to and use MongoDB as your backend for your Next.js app.
