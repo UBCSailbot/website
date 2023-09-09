@@ -38,7 +38,7 @@ const GoogleMaps: React.FunctionComponent<GoogleMapsProps> = ({}) => {
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
     })
-    const boatCoordinates = useSelector((state) => state.boatCoordinates)
+    const boatCoordinates = useSelector((state) => state.gps)
     const marker: any = boatCoordinates?.at(-1);
 
     if (!isLoaded) return (
