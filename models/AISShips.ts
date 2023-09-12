@@ -12,10 +12,10 @@ export interface AISShips extends mongoose.Document {
   ships: AISShip[]
 }
 
-/* AISShipsSchema corresponds to a collection in the MongoDB database. */
 const AISShipsSchema = new mongoose.Schema<AISShips>({
     ships: {
       type: AISShip[],
+      required: [true, "Missing array of objects in AISShips interface"]
     },
 });
 
