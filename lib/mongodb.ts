@@ -18,6 +18,9 @@ if (!cached) {
   cached = global.mongoose = { conn: null, promise: null }
 }
 
+/* Use the statement below when we need to refresh Models */
+// delete mongoose.connection.models['<Model Name>']; //
+
 async function ConnectMongoDB() {
   if (cached.conn) {
     return cached.conn
