@@ -1,5 +1,6 @@
 /* Core */
-import React from "react";
+import {React, useRef, useEffect} from "react";
+import ReactDom from 'react-dom';
 
 /* Instruments */
 import {
@@ -7,12 +8,33 @@ import {
 } from '@/lib/redux'
 
 /* Components */
-import {GoogleMap, useLoadScript, Marker, Polyline} from '@react-google-maps/api';
+import {GoogleMap, useLoadScript, Marker, Polyline, useGoogleMap} from '@react-google-maps/api';
 
-/* Types */
+interface MapControlProps {
+    position: keyof typeof google.maps.ControlPosition;
+  }
 
+const MapControl = (props: React.PropsWithChildren<MapControlProps>) => {
+    const map = useGoogleMap();
+    const ref = useRef();
+    useEffect(() => {
+        if (map && ref) {
+        map.controls[window.google.maps.ControlPosition[props.position]].push(
+            ref.current
+        );
+        }
+    }, [map, ref]);
+    return <div ref={ref}>{props.children}</div>;
+};
 
-const GoogleMaps = () => {
+type GoogleMapsProps = {}
+
+const GoogleMaps: React.FunctionComponent<GoogleMapsProps> = ({}) => {
+    const defaultMapOptions = {
+        fullscreenControl: false,
+        streetViewControl: false,
+        keyboardShortcuts: false
+    };
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
     })
@@ -24,10 +46,26 @@ const GoogleMaps = () => {
     )
 
     return (
-    <GoogleMap zoom={13} center={{lat: marker["lat"], lng: marker["lng"]}} mapContainerStyle={{position: "absolute", width: "100%", height: "100%"}}>
-        <Polyline path={boatCoordinates}/>
-        <Marker position={marker}></Marker>
-    </GoogleMap>
+        <>
+            <GoogleMap
+                options={defaultMapOptions}
+                zoom={13}
+                center={{lat: marker["lat"], lng: marker["lng"]}}
+                mapContainerStyle={
+                    {
+                        position: "absolute",
+                        height: "100%",
+                        width: "100%"
+                    }
+                }
+                >
+                <MapControl position="LEFT_BOTTOM">
+                    {/* INSERT COMPONENT HERE */}
+                </MapControl>
+                <Polyline path={boatCoordinates}/>
+                <Marker position={marker}></Marker>
+            </GoogleMap>
+        </>
     );
 };
 
