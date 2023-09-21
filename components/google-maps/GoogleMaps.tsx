@@ -60,7 +60,7 @@ const GoogleMaps: React.FunctionComponent<GoogleMapsProps> = ({}) => {
                 }
                 >
                 <MapControl position="LEFT_BOTTOM">
-                    {/* INSERT COMPONENT HERE */}
+                    {/* INSERT COMPONENT HERE hi asdf */}
                 </MapControl>
                 <Polyline path={gps}/>
                 <Marker position={marker}></Marker>
