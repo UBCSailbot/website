@@ -19,16 +19,6 @@ export default async function handler(
         res.status(400).json({ success: false, message: error.message })
       }
       break
-    case 'POST':
-      try {
-        const gps = await GPS.create(
-          req.body
-        ) /* create a new model in the database */
-        res.status(201).json({ success: true, data: gps })
-      } catch (error) {
-        res.status(400).json({ success: false, message: error.message })
-      }
-      break
     default:
       res.status(400).json({ success: false })
       break
