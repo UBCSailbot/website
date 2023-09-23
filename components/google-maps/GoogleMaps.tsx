@@ -9,6 +9,7 @@ import {
 
 /* Components */
 import {GoogleMap, useLoadScript, Marker, Polyline, useGoogleMap} from '@react-google-maps/api';
+import Checkboxes from '@/components/checkbox/Checkbox';
 
 interface MapControlProps {
     position: keyof typeof google.maps.ControlPosition;
@@ -60,7 +61,7 @@ const GoogleMaps: React.FunctionComponent<GoogleMapsProps> = ({}) => {
                 }
                 >
                 <MapControl position="LEFT_BOTTOM">
-                    {/* INSERT COMPONENT HERE hi asdf */}
+                    <Checkboxes />
                 </MapControl>
                 <Polyline path={gps}/>
                 <Marker position={marker}></Marker>
