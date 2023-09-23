@@ -11,10 +11,10 @@ The tests for the website use [Cucumber.js](https://github.com/cucumber/cucumber
 
 ## Scripts
 
-| Command                   | Description                                                      |
-|---------------------------|------------------------------------------------------------------|
-| npm test                  | Runs all tests                                                   |
-| npm test-tag @{tag-name}  | Runs tests for TAGNAME                                           |
+| Command                       | Description                                                      |
+|-------------------------------|------------------------------------------------------------------|
+| npm test                      | Runs all tests                                                   |
+| npm run test-tag @{tag-name}  | Runs tests for TAGNAME                                           |
 
 ### Writing Tests Help/Tips
 
