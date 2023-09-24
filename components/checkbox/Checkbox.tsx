@@ -1,17 +1,34 @@
 import React from "react";
-import ReactDom from 'react-dom';
+import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
 
-function Checkboxes() {
-    return (
-      <FormGroup>
-        <FormControlLabel control={<Checkbox defaultChecked />} label="Checkbox 1" />
-        <FormControlLabel control={<Checkbox />} label="Checkbox 2" />
-        <FormControlLabel control={<Checkbox />} label="Checkbox 3" />
+function checkboxes() {
+  return (
+    <FormControl component="fieldset">
+      <FormGroup aria-label="position" row>
+      <FormControlLabel
+          value="bottom"
+          control={<Checkbox defaultChecked/>}
+          label="Layer 1"
+          labelPlacement="bottom"
+        />
+        <FormControlLabel
+          value="bottom"
+          control={<Checkbox defaultChecked/>}
+          label="Layer 2"
+          labelPlacement="bottom"
+        />
+        <FormControlLabel
+          value="bottom"
+          control={<Checkbox defaultChecked/>}
+          label="Layer 3"
+          labelPlacement="bottom"
+        />
       </FormGroup>
-    );
-  }
+    </FormControl>
+  );
+}
 
-export default Checkboxes;
+export default checkboxes;
