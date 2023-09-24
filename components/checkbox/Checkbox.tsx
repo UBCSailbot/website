@@ -3,9 +3,11 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import Paper from '@mui/material/Paper';
 
 function checkboxes() {
   return (
+    <Paper elevation={0}>
     <FormControl component="fieldset">
       <FormGroup aria-label="position" row>
       <FormControlLabel
@@ -28,6 +30,7 @@ function checkboxes() {
         />
       </FormGroup>
     </FormControl>
+    </Paper>
   );
 }
 
