@@ -4,7 +4,7 @@ The tests for the website use [Cucumber.js](https://github.com/cucumber/cucumber
 [Typescript](https://www.typescriptlang.org/).
 
 ## Prerequisites
-hello
+
 - website is running as written in the README.md
 - test config is set appropriately `.../tests/shared/config.ts`
 - execute `npm install` from this directory to install dependencies.
