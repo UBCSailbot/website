@@ -9,7 +9,7 @@ function* pollGPSSaga(): Generator<any, any, any> {
     while (true) {
         let res = yield fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}:${process.env.NEXT_PUBLIC_SERVER_PORT}/api/gps`)
         res = yield res.json()
-        if (res.success) {
+        if (res.success && res.data.length > 0) {
             /* Process data to make it fit the requirements of the Google Maps API */
             const data = yield res.data.map( (data) => {
                 return {
