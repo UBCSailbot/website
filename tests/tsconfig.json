@@ -4,6 +4,11 @@
       "module": "commonjs",
       "esModuleInterop": true,
       "experimentalDecorators": true,
-      "forceConsistentCasingInFileNames": true
+      "forceConsistentCasingInFileNames": true,
+      "paths": {
+        "@/*": [
+          "../*"
+        ]
+      }
     }
 }
