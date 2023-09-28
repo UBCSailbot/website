@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 
+const dotenv = require('dotenv');
+const path = require('path')
+dotenv.config({ path: '/website/.env.local' });
+
 declare global {
   var mongoose: any // This must be a `var` and not a `let / const`
 }
