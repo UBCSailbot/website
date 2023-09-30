@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Cucumber component tests for Sailbot Website",
     "scripts": {
-        "test": "cucumber-js",
+        "test": "cucumber-js --exit",
         "test-tag": "./node_modules/.bin/cucumber-js -p default --tags "
     },
     "dependencies": {
