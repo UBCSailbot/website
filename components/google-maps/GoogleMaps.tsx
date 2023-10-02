@@ -1,6 +1,8 @@
 /* Core */
 import {React, useRef, useEffect} from "react";
 import ReactDom from 'react-dom';
+import { Button } from "primereact/button"
+
 
 /* Instruments */
 import {
@@ -60,7 +62,7 @@ const GoogleMaps: React.FunctionComponent<GoogleMapsProps> = ({}) => {
                 }
                 >
                 <MapControl position="LEFT_BOTTOM">
-                    {/* INSERT COMPONENT HERE */}
+                    <Button>Button</Button>
                 </MapControl>
                 <Polyline path={gps}/>
                 <Marker position={marker}></Marker>
