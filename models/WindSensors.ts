@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 interface WindSensor extends mongoose.Document {
-    speed: mongoose.Decimal128,
+    speed: mongoose.Types.Decimal128,
     direction: Number
 }
 
@@ -12,12 +12,12 @@ export interface WindSensors extends mongoose.Document {
 const WindSensorsSchema = new mongoose.Schema<WindSensors>({
     windSensors: {
         type: WindSensor[],
-        required: [true, "Missing array of objects in WindSensors interface"]
+        required: [true, "Missing array of objects in WindSensors interface"],
         validate: [validateArrayLimit, 'The array length of {PATH} should equal to 2.']
     }
 });
 
-function validateArrayLimit(val) {
+function validateArrayLimit(val: any) {
     return val.length == 2;
   }
 
