@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 interface AISShip extends mongoose.Document {
   id: number,
-  latitude: mongoose.Decimal128,
-  longitude: mongoose.Decimal128,
-  speed: mongoose.Decimal128,
-  heading: mongoose.Decimal128
+  latitude: mongoose.Types.Decimal128,
+  longitude: mongoose.Types.Decimal128,
+  speed: mongoose.Types.Decimal128,
+  heading: mongoose.Types.Decimal128
 }
 
 export interface AISShips extends mongoose.Document {
