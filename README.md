@@ -12,15 +12,10 @@ developers and for the cloud era. If you want to learn more about MongoDB, visit
 
 ## Set Up
 
-1. Set each variable in `.env.local`:
-    - `MONGODB_URI` - Your MongoDB connection string: `mongodb://<ip-address-of-workspace-container>:27017/testdb`
-        - To find the ip address of the workspace container:
-            - `docker network ls`
-            - `docker network inspect <NETWORK ID OF WORKSPACE CONTAINER>`
-            - Take the ip address from the field `IPv4Address` under `Containers`
-                - For example, if it's `000.00.0.0/00`, then take `000.00.0.0` and ignore the slash
-    - `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` - The API key to access the Google Maps API
-        - To create an API key, please take a look at the following [documentation](https://ubcsailbot.atlassian.net/wiki/spaces/prjt22/pages/1875279895/Google+Maps+API+Key)
+1. Set each variable in `.env.local`
+    - `MONGODB_URI`: Your MongoDB connection string. Use `mongodb://localhost:27017/<DB_NAME>` to connect to the local database.
+    - `NEXT_PUBLIC_SERVER_HOST`: The host URL of the website. Use `http://localhost` to connect locally.
+    - `NEXT_PUBLIC_SERVER_PORT`: The port number of the website. Use `3005` to connect locally.
 
 ## Run
 
@@ -33,3 +28,14 @@ Otherwise, you execute the following commands to run it in development mode:
 npm install
 npm run dev
 ```
+
+## Adding Dependencies
+
+1. Go into the terminal of the website container on Docker.
+
+2. Run the command `npm install <dependency>`. If you run into errors resolving peer dependencies, e.g.
+`ERESOLVE overriding peer dependency`, please rerun the command using `npm install <dependency> --legacy-peer-deps`.
+Please DO NOT use `--force` unless you know what you're doing.
+
+3. After the installation completes, please ensure to commit the files `package.json` and `package-lock.json`. These
+files are used to version control the dependencies added.
