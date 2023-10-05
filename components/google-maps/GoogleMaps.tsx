@@ -1,6 +1,6 @@
 /* Core */
-import {React, useRef, useEffect} from "react";
-import ReactDom from 'react-dom';
+import React from "react"
+import { useRef, useEffect } from "react";
 
 /* Instruments */
 import {
@@ -28,9 +28,7 @@ const MapControl = (props: React.PropsWithChildren<MapControlProps>) => {
     return <div ref={ref}>{props.children}</div>;
 };
 
-type GoogleMapsProps = {}
-
-const GoogleMaps: React.FunctionComponent<GoogleMapsProps> = ({}) => {
+const GoogleMaps = () => {
     const defaultMapOptions = {
         fullscreenControl: false,
         streetViewControl: false,
@@ -39,7 +37,7 @@ const GoogleMaps: React.FunctionComponent<GoogleMapsProps> = ({}) => {
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
     })
-    let gps = useSelector((state) => state.gps)
+    const { gps } = useSelector((state) => state.gps);
     const marker: any = gps?.at(-1);
 
     if (!isLoaded) return (
@@ -59,7 +57,7 @@ const GoogleMaps: React.FunctionComponent<GoogleMapsProps> = ({}) => {
                         width: "100%"
                     }
                 }
-                >
+            >
                 <MapControl position="LEFT_BOTTOM">
                     <Checkboxes />
                 </MapControl>
