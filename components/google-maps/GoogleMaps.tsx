@@ -9,7 +9,7 @@ import {
 
 /* Components */
 import {GoogleMap, useLoadScript, Marker, Polyline, useGoogleMap} from '@react-google-maps/api';
-import Checkboxes from '@/components/checkbox/Checkbox';
+import Checkboxes from '@/components/checkbox/Checkboxes';
 
 interface MapControlProps {
     position: keyof typeof google.maps.ControlPosition;
