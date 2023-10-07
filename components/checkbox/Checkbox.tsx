@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import Paper from '@mui/material/Paper';
 
-function checkboxes() {
+function Checkboxes() {
   function checkChecked(status, checkboxNumber){
     if(!status){
       console.log("hello, i am layer " + checkboxNumber + "!");
@@ -60,4 +60,4 @@ function checkboxes() {
   );
 }
 
-export default checkboxes;
+export default Checkboxes;
