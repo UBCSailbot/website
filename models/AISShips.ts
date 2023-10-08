@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 interface AISShip extends mongoose.Document {
-  id: number,
+  id: Number,
   latitude: mongoose.Types.Decimal128,
   longitude: mongoose.Types.Decimal128,
   speed: mongoose.Types.Decimal128,
@@ -14,7 +14,15 @@ export interface AISShips extends mongoose.Document {
 
 const AISShipsSchema = new mongoose.Schema<AISShips>({
     ships: {
-      type: AISShip[],
+      type: [
+        {
+          id: Number,
+          latitude: mongoose.Types.Decimal128,
+          longitude: mongoose.Types.Decimal128,
+          speed: mongoose.Types.Decimal128,
+          heading: mongoose.Types.Decimal128
+        }
+      ],
       required: [true, "Missing array of objects in AISShips interface"]
     },
 });
