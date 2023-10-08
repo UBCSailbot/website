@@ -6,4 +6,4 @@ Feature: Testing AISShips interface
     And I insert AISShips data into the database
     When I get all AISShip interface data
     Then the service success response is 200
-    And the response data matches the data in the database
+    And the response data matches the aisship data in the database

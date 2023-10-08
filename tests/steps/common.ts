@@ -10,7 +10,6 @@ Then('the service error response is {int}', async function (status: number) {
     expect(api.error.response.status).to.equal(status, 'Error status is not as expected')
 })
 
-
 Then('the service success response is {int}', async function (status: number) {
     expect(api.response.status).to.equal(status, 'Success status is not as expected')
 })

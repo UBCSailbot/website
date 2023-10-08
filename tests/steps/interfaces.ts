@@ -1,7 +1,7 @@
-import { When, Then } from "@cucumber/cucumber";
+import { When } from "@cucumber/cucumber";
 import { api } from '../shared/classes/api';
 import { GPS } from '../shared/endpoints'
-import AISShips from '@/models/AISShips';
+import { AISShips } from '../shared/endpoints';
 
 When("I get all GPS interface data", async function () {
   this.lastResponse = await api.get(GPS, this.config)

@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 
+import {
+  decimal2JSON,
+} from './helper/parser';
+
 interface AISShip extends mongoose.Document {
   id: Number,
   latitude: mongoose.Types.Decimal128,
@@ -25,6 +29,14 @@ const AISShipsSchema = new mongoose.Schema<AISShips>({
       ],
       required: [true, "Missing array of objects in AISShips interface"]
     },
+});
+
+AISShipsSchema.set('toJSON', {
+  transform: (doc, ret) => {
+     // @ts-ignore: Expected 3 arguments, but got 1
+    decimal2JSON(ret);
+    return ret;
+  }
 });
 
 export default mongoose.models.AISShips || mongoose.model<AISShips>("AISShips", AISShipsSchema);
