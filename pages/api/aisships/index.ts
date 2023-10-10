@@ -14,13 +14,11 @@ export default async function handler(
     case 'GET':
       try {
         const aisships = await AISShips.find({});
-
         res.status(200).json({ success: true, data: aisships });
       } catch (error) {
         res.status(400).json({ success: false, message: error.message });
       }
       break;
-
     default:
       res.status(400).json({ success: false });
       break;

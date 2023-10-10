@@ -8,11 +8,11 @@ When("I get all GPS interface data", async function () {
 });
 
 When("I try to get all GPS interface data", async function () {
-  this.lastResponse = await api.get(GPS, this.config, false)
+  this.lastResponse = await api.get(GPS, this.config)
 });
 
 When("I get all AISShip interface data", async function () {
-  this.lastResponse = await api.get(AISShips, this.config, false)
+  this.lastResponse = await api.get(AISShips, this.config)
 });
 
 export {}
