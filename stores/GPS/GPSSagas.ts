@@ -7,7 +7,7 @@ import { GPSCoordinate, GPSDatabaseCoordinate } from "./GPSTypes";
 import { GPSService } from "./GPSService";
 
 class GPSSagas extends BaseSaga {
-    *[GPSActions.REQUEST_GPS]() {
+    *[GPSActions.POLL_GPS]() {
         while (true) {
             try {
                 const gps: GPSDatabaseCoordinate[] = yield call(GPSService.getGPS);
@@ -34,5 +34,5 @@ class GPSSagas extends BaseSaga {
 const gpsSagas: any = new GPSSagas();
 
 export default {
-    [GPSActions.REQUEST_GPS]: gpsSagas[GPSActions.REQUEST_GPS].bind(gpsSagas)
+    [GPSActions.POLL_GPS]: gpsSagas[GPSActions.POLL_GPS].bind(gpsSagas)
 };
