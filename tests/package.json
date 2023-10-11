@@ -4,7 +4,7 @@
     "description": "Cucumber component tests for Sailbot Website",
     "scripts": {
         "test": "cucumber-js --exit",
-        "test-tag": "./node_modules/.bin/cucumber-js -p default --tags "
+        "test-tag": "./node_modules/.bin/cucumber-js --exit -p default --tags "
     },
     "dependencies": {
         "@cucumber/cucumber": "8.11.1",
