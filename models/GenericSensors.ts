@@ -11,7 +11,12 @@ export interface GenericSensors extends mongoose.Document {
 
 const GenericSensorsSchema = new mongoose.Schema<GenericSensors>({
     genericSensors: {
-        type: GenericSensor[],
+        type: [
+            {
+                id: Number,
+                data: BigInt
+            }
+        ],
         required: [true, "Missing array of objects in GenericSensors interface"]
     }
 });
