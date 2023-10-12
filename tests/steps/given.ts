@@ -4,7 +4,6 @@ import { Given, Then } from "@cucumber/cucumber";
 import GPS from '@/models/GPS';
 import ConnectMongoDB from '@/lib/mongodb';
 import AISShips from '@/models/AISShips';
-import { setMaxIdleHTTPParsers } from 'http';
 
 Given('I clear the database', async function () {
     const db = await ConnectMongoDB();
@@ -64,8 +63,6 @@ Then('the response data matches the data in the database', async function () {
     apiResponseData_GPS = api.response.data.data[0];
 
     const propertiesToCompare = Object.keys(apiResponseData_GPS);
-    propertiesToCompare.shift();
-    propertiesToCompare.pop();
 
     for (const property of propertiesToCompare) {
         expect(apiResponseData_GPS[property]).to.equal(databaseData_GPS[0][property], `Data in the response does not match data in the database for property: ${property}`);
@@ -83,9 +80,9 @@ Then('the response data matches the aisship data in the database', async functio
     });
 
     for (let i = 0; i < 3; i++) {
+
         apiResponseData_AISShips = api.response.data.data[0].ships[i];
         const propertiesToCompare = Object.keys(apiResponseData_AISShips);
-        propertiesToCompare.pop();
 
         for (const property of propertiesToCompare) {
             expect(apiResponseData_AISShips[property]).to.equal(databaseData_AISShips[0].ships[i][property], `Data in the response does not match data in the database for property: ${property}`);
