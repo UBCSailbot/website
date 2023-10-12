@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import ConnectMongoDB from '@/lib/mongodb';
-import GPS from '@/models/GPS';
+import AISShips from '@/models/AISShips';
 
 export default async function handler (
   req: NextApiRequest,
@@ -15,8 +15,8 @@ export default async function handler (
   switch (method) {
     case 'GET':
       try {
-        const gps = await GPS.find({}).select('-_id -__v');
-        res.status(200).json({ success: true, data: gps });
+        const aisships = await AISShips.find({}).select({ 'ships._id': 0, '_id': 0, '__v': 0 });
+        res.status(200).json({ success: true, data: aisships });
       } catch (error) {
         res.status(400).json({ success: false, message: error.message });
       }
