@@ -82,6 +82,7 @@ Then('the response data matches the aisship data in the database', async functio
     for (let i = 0; i < 3; i++) {
 
         apiResponseData_AISShips = api.response.data.data[0].ships[i];
+
         const propertiesToCompare = Object.keys(apiResponseData_AISShips);
 
         for (const property of propertiesToCompare) {

@@ -15,7 +15,7 @@ export default async function handler (
   switch (method) {
     case 'GET':
       try {
-        const aisships = await AISShips.find({}, { 'ships._id': 0 });
+        const aisships = await AISShips.find({}).select({ 'ships._id': 0, '_id': 0, '__v': 0 });
         res.status(200).json({ success: true, data: aisships });
       } catch (error) {
         res.status(400).json({ success: false, message: error.message });
