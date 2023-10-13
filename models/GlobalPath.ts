@@ -28,4 +28,12 @@ const GlobalPathSchema = new mongoose.Schema<GlobalPath>({
     }
 });
 
+GlobalPathSchema.set('toJSON', {
+    transform: (doc, ret) => {
+       // @ts-ignore: Expected 3 arguments, but got 1
+      decimal2JSON(ret);
+      return ret;
+    }
+  });
+
 export default mongoose.models.GlobalPath || mongoose.model<GlobalPath>("GlobalPath", GlobalPathSchema);
