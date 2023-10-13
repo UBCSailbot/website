@@ -1,12 +1,10 @@
 import mongoose from "mongoose";
 
-interface WayPoint extends mongoose.Document {
-    latitude: mongoose.Types.Decimal128,
-    longitude: mongoose.Types.Decimal128
-}
+import {
+    decimal2JSON,
+  } from './helper/parser';
 
-interface GlobalPath extends mongoose.Document{
-    id: Number,
+interface WayPoint extends mongoose.Document {
     latitude: mongoose.Types.Decimal128,
     longitude: mongoose.Types.Decimal128
 }

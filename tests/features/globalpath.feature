@@ -6,4 +6,4 @@ Feature: Testing the GlobalPath PI
         And I insert GlobalPath data into the database
         When I get all the GlobalPath interface data
         Then the service success response is 200
-        And the reponse data matches the data in the database
+        And the response data matches the GlobalPath data in the database
