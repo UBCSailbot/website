@@ -10,6 +10,7 @@ Given('I clear the database', async function () {
     const db = await ConnectMongoDB();
     await GPS.deleteMany();
     await AISShips.deleteMany();
+    await GlobalPath.deleteMany();
 });
 
 Given('I insert GPS data into the database', async function () {
@@ -52,7 +53,7 @@ Given('I insert AISShips data into the database', async function () {
 });
 
 Given('I insert GlobalPath data into the database', async function () {
-    const globalpathData = {
+    const globalPathData = {
         waypoints: [
             {
                 id: 1,
@@ -71,7 +72,7 @@ Given('I insert GlobalPath data into the database', async function () {
             },
         ],
     };
-    await GlobalPath.create(globalpathData);
+    await GlobalPath.create(globalPathData);
 });
 
 Then('the response data matches the data in the database', async function () {

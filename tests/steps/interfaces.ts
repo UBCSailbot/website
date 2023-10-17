@@ -16,7 +16,7 @@ When("I get all AISShip interface data", async function () {
   this.lastResponse = await api.get(AISShips, this.config)
 });
 
-When("I get all the GlobalPath interface data", async function () {
+When("I get all GlobalPath interface data", async function () {
   this.lastResponse = await api.get(GlobalPath, this.config)
 });
 
