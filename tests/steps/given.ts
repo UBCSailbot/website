@@ -56,17 +56,14 @@ Given('I insert GlobalPath data into the database', async function () {
     const globalPathData = {
         waypoints: [
             {
-                id: 1,
                 latitude: 49.335473,
                 longitude: -123.335702
             },
             {
-                id: 2,
                 latitude: 49.32865,
                 longitude: -123.358187
             },
             {
-                id: 3,
                 latitude: 49.321690,
                 longitude: -123.400929
             },

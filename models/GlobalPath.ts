@@ -17,7 +17,6 @@ const GlobalPathSchema = new mongoose.Schema<GlobalPath>({
     waypoints: {
         type: [
             {
-                id:Number,
                 latitude: mongoose.Types.Decimal128,
                 longitude: mongoose.Types.Decimal128
             }
