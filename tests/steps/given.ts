@@ -4,11 +4,13 @@ import { Given, Then } from "@cucumber/cucumber";
 import GPS from '@/models/GPS';
 import ConnectMongoDB from '@/lib/mongodb';
 import AISShips from '@/models/AISShips';
+import GlobalPath from '@/models/GlobalPath';
 
 Given('I clear the database', async function () {
     const db = await ConnectMongoDB();
     await GPS.deleteMany();
     await AISShips.deleteMany();
+    await GlobalPath.deleteMany();
 });
 
 Given('I insert GPS data into the database', async function () {
@@ -48,6 +50,26 @@ Given('I insert AISShips data into the database', async function () {
         ],
       };
     await AISShips.create(aisshipData);
+});
+
+Given('I insert GlobalPath data into the database', async function () {
+    const globalPathData = {
+        waypoints: [
+            {
+                latitude: 49.335473,
+                longitude: -123.335702
+            },
+            {
+                latitude: 49.32865,
+                longitude: -123.358187
+            },
+            {
+                latitude: 49.321690,
+                longitude: -123.400929
+            },
+        ],
+    };
+    await GlobalPath.create(globalPathData);
 });
 
 Then('the response data matches the data in the database', async function () {
@@ -90,3 +112,25 @@ Then('the response data matches the aisship data in the database', async functio
         }
     }
 });
+
+Then('the response data matches the GlobalPath data in the database', async function () {
+
+    let apiResponseData_GlobalPath;
+    let databaseData_GlobalPath;
+
+    databaseData_GlobalPath = await GlobalPath.find({}).then(function(globalpath){
+        let transformedGlobalPath = globalpath.map((data) => data.toJSON())
+        return transformedGlobalPath;
+    });
+
+    for (let i = 0; i < 3; i++) {
+
+        apiResponseData_GlobalPath = api.response.data.data[0].waypoints[i];
+
+        const propertiesToCompare = Object.keys(apiResponseData_GlobalPath);
+
+        for (const property of propertiesToCompare) {
+            expect(apiResponseData_GlobalPath[property]).to.equal(databaseData_GlobalPath[0].waypoints[i][property], `Data in the response does not match data in the database for property: ${property}`);
+        }
+    }
+})
