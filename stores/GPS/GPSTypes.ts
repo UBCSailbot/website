@@ -1,17 +1,11 @@
 export interface GPSCoordinate {
-    lat: Number,
-    lng: Number,
-    speed: Number,
-    heading: Number
+    latitude: number;
+    longitude: number;
+    speed: number;
+    heading: number;
 }
 export type GPSCoordinates = GPSCoordinate[]
-export interface GPSDatabaseCoordinate {
-    latitude: Number,
-    longitude: Number,
-    speed: Number,
-    heading: Number
-}
 export interface GPSState {
-    gps: GPSCoordinates
-    error: any 
+    data: GPSCoordinates;
+    error?: any;
 }

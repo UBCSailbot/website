@@ -7,14 +7,13 @@ import { AnyAction } from "redux";
 
 export default class GPSReducer extends BaseReducer {
     initialState: GPSState = {
-        gps: [{lat: 49.37614179786771, lng: -123.27376619978901, speed: 0, heading: 0}],
-        error: null
+        data: [{latitude: 49.37614179786771, longitude: -123.27376619978901, speed: 0, heading: 0}],
     };
 
     [GPSActions.REQUEST_GPS_SUCCESS](state: GPSState, action: AnyAction) {
         return {
             ...state,
-            gps: action.payload,
+            data: action.payload,
         };
     }
 
