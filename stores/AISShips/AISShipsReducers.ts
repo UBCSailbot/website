@@ -5,26 +5,26 @@ import { AnyAction } from "redux";
 
 export default class AISShipsReducer extends BaseReducer {
     initialState: AISShipsState = {
-        aisships: {
+        data: {
             ships: [
                 {
                     id: 0,
                     latitude: 42.1232,
-                    longitude: -44.2312,
+                    longitude: -123.3045,
                     speed: 10,
                     heading: 275
                 },
                 {
                     id: 1,
-                    latitude: 43.4567,
-                    longitude: -45.6789,
+                    latitude: 49.4567,
+                    longitude: -123.3729,
                     speed: 15,
                     heading: 280
                 },
                 {
                     id: 2,
-                    latitude: 44.7890,
-                    longitude: -46.0123,
+                    latitude: 49.1728,
+                    longitude: -123.4578,
                     speed: 20,
                     heading: 285
                 }

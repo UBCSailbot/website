@@ -9,8 +9,8 @@ export type AISShipCoordinate = {
 export type AISShipsCoordinates = AISShipCoordinate[]
 
 export type AISShipsState = {
-    aisships: {
-        ships: AISShipsCoordinates
+    data: {
+        ships: AISShipsCoordinates;
     };
-    error: any;
+    error?: any;
 };
