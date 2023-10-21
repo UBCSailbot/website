@@ -1,0 +1,5 @@
+export default class GlobalPathActions {
+    static POLL_GLOBALPATH = 'GlobalPath.POLL_GLOBALPATH';
+    static REQUEST_GLOBALPATH_SUCCESS = 'GlobalPath.REQUEST_GLOBALPATH_SUCCESS';
+    static REQUEST_GLOBALPATH_FAILURE = 'GlobalPath.REQUEST_GLOBALPATH_FAILURE';
+}
