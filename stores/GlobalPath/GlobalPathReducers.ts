@@ -7,6 +7,7 @@ import { AnyAction } from "redux";
 
 export default class GlobalPathReducer extends BaseReducer {
     initialState: GlobalPathState = {
+        //initial state set to boat's starting position
         globalpath: [{lat: 49.37614179786771, lng: -123.27376619978901}],
         error: null
     };

@@ -9,5 +9,5 @@ export interface GlobalPathDatabaseCoordinate{
 }
 export interface GlobalPathState {
     globalpath: GlobalPathCoordinates
-    error: any
+    error?: any
 }

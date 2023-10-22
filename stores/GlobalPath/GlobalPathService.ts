@@ -1,11 +1,13 @@
+/**
+ * Defines all saga methods to invoke requests for the GPS interface.
+ */
 export const GlobalPathService = {
     * getGlobalPath(): Generator<any, any, any> {
         let isError = false;
 
-        return yield fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}:${process.env.NEXT_PUBLIC_SERVER_PORT}/api/GlobalPath`, {
+        return yield fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}:${process.env.NEXT_PUBLIC_SERVER_PORT}/api/globalpath`, {
             method: 'GET'
         })
-
             .then(response => {
                 isError = response.status != 200;
                 return response;
