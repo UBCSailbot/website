@@ -1,25 +1,16 @@
 import BaseSaga from "@/utils/BaseSaga";
 import GPSActions from "./GPSActions";
-import { AnyAction } from "redux";
 /* Instruments */
 import { all, call, delay, put } from 'redux-saga/effects'
-import { GPSCoordinate, GPSDatabaseCoordinate } from "./GPSTypes";
+import { GPSCoordinates } from "./GPSTypes";
 import { GPSService } from "./GPSService";
 
 class GPSSagas extends BaseSaga {
     *[GPSActions.POLL_GPS]() {
         while (true) {
             try {
-                const gps: GPSDatabaseCoordinate[] = yield call(GPSService.getGPS);
-                if (gps.length > 0) {
-                    const data: GPSCoordinate[] = yield gps.map( (data) => {
-                        return {
-                            "lat": data["latitude"],
-                            "lng": data["longitude"],
-                            "speed": data["speed"],
-                            "heading": data["heading"]
-                        }
-                    });
+                const data: GPSCoordinates = yield call(GPSService.getGPS);
+                if (data.length > 0) {
                     yield put({type: GPSActions.REQUEST_GPS_SUCCESS, payload: data})
                 }
             } catch (e) {

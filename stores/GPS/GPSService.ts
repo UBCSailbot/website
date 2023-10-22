@@ -1,5 +1,5 @@
 /**
- * Defines all saga methods to invoke requests for the GPS interface.
+ * Defines all saga methods to make requests to the GPS interface.
  */
 export const GPSService = {
     * getGPS(): Generator<any, any, any> {

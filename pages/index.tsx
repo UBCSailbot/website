@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import clientPromise from '../lib/mongodb';
 import { InferGetServerSidePropsType } from 'next';
+import dynamic from "next/dynamic"
 
 /* Components */
-import MainView from "../components/MainView";
 import { Providers } from '@/lib/providers'
+import { CircularProgress } from '@mui/material';
 
 export async function getServerSideProps(context: any) {
   try {
@@ -29,13 +30,21 @@ export async function getServerSideProps(context: any) {
   }
 }
 
+const MapsContainer = dynamic(
+    () => import('@/views/MapsContainer'),
+    {
+        loading: () => <CircularProgress style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, margin: 'auto', height: "100px", width: "100px" }}/>,
+        ssr:false
+    }
+)
+
 export default function Home({
   isConnected,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <Providers>
       {/* <Banner /> */}
-      <MainView />
+      <MapsContainer />
     </Providers>
   )
 }
