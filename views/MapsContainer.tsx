@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { GPSCoordinate, GPSState } from "@/stores/GPS/GPSTypes";
-import Maps from "./components/Maps/Maps";
+import Maps, { convertToLatLng } from "./components/Maps/Maps";
 
 export interface MapsContainerProps extends GPSState {}
 
@@ -12,10 +12,7 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
             <Maps
                 gpsLocation={this.props.gps.data.at(-1) || {}}
                 gpsPath={this.props.gps.data.map(
-                    (coordinate: GPSCoordinate) => [
-                        coordinate.latitude,
-                        coordinate.longitude
-                    ]
+                    (gpsCoordinate: GPSCoordinate) => convertToLatLng(gpsCoordinate)
                 )}
             />
         );

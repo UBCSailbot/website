@@ -22,40 +22,41 @@ export interface IMapsProps {
 
 export interface IMapsState {}
 
-export default class Maps extends React.Component<IMapsProps, IMapsState> {
-    /**
-     * Converts an object with latitude and longitude fields into an array.
-     * This is conversion is necessary for Leaflet.
-     *
-     * @param gps
-     * @returns an array containing [latitude, longitude]
-     */
-    convertToLatLng(gps: GPSCoordinate): LatLngExpression {
-        return latLng(gps.latitude, gps.longitude)
-    }
+/**
+ * Converts an object's properties into digestible text.
+ * For example, given an object {a: 1, b: 2}, the function will output the text:
+ * """
+ *  a: 1
+ *  b: 1
+ * """
+ *
+ * @param obj - the object
+ * @returns an array of the pretty printed objects
+ */
+export const printObjectInfo = (obj: any): any[] => {
+    let ele: any[] = [];
+    Object.keys(obj).forEach((key, i) => {
+        ele.push(`${key}: ${obj[key]}`, <br key={i}/>)
+    })
+    return ele;
+}
 
-    /**
-     * Converts an object's properities into digestible text.
-     * For example, given an object {a: 1, b: 2}, the function will output the text:
-     * """
-     *  a: 1
-     *  b: 1
-     * """
-     *
-     * @param obj - the object
-     * @returns an array of the pretty printed objects
-     */
-    printObjectInfo(obj: any): any[] {
-        let ele: any[] = [];
-        Object.keys(obj).forEach((key, i) => {
-            ele.push(`${key}: ${obj[key]}`, <br key={i}/>)
-        })
-        return ele;
-    }
+/**
+ * Converts an object with latitude and longitude fields into an array.
+ * This is conversion is necessary for Leaflet.
+ *
+ * @param obj - object with fields latitude and longitude
+ * @returns an array containing [latitude, longitude]
+ */
+export const convertToLatLng = (obj: any): LatLngExpression => {
+    return latLng(obj.latitude, obj.longitude)
+}
+
+export default class Maps extends React.Component<IMapsProps, IMapsState> {
 
     render() {
         return (
-            <MapContainer center={this.convertToLatLng(this.props.gpsLocation)} zoom={13} scrollWheelZoom={true} style={{height: "100vh", width: "100wh"}}>
+            <MapContainer center={convertToLatLng(this.props.gpsLocation)} zoom={13} scrollWheelZoom={true} style={{height: "100vh", width: "100wh"}}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -73,13 +74,14 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
                         <Polyline pathOptions={{ color: 'black' }} positions={[/* Add Global Path here */]} />
                     </LayersControl.Overlay>
                 </LayersControl>
-                <Marker position={this.convertToLatLng(this.props.gpsLocation)}>
+                <Marker position={convertToLatLng(this.props.gpsLocation)}>
                     <Popup>
-                        {this.printObjectInfo(this.props.gpsLocation)}
+                        {printObjectInfo(this.props.gpsLocation)}
                     </Popup>
                 </Marker>
                 <Polyline pathOptions={{ color: 'black' }} positions={this.props.gpsPath} />
         </MapContainer>
         )
     }
+
 }
