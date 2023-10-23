@@ -1,4 +1,4 @@
-export type AISShipCoordinate = {
+export type AISShip = {
     id: Number,
     latitude: Number,
     longitude: Number,
@@ -6,11 +6,11 @@ export type AISShipCoordinate = {
     heading: Number
 }
 
-export type AISShipsCoordinates = AISShipCoordinate[]
+export type AISShips = {
+    ships: AISShip[];
+}
 
 export type AISShipsState = {
-    data: {
-        ships: AISShipsCoordinates;
-    };
+    data: AISShips;
     error?: any;
 };

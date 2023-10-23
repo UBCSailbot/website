@@ -1,5 +1,5 @@
 export default class AISShipsActions {
-    static POLL_AISShips = 'AISShipsAction.POLL_AISShips';
-    static REQUEST_AISShips_SUCCESS = 'AISShipsAction.REQUEST_AISShips_SUCCESS';
-    static REQUEST_AISShips_FAILURE = 'AISShipsAction.REQUEST_AISShips_FAILURE';
+    static POLL_AISSHIPS = 'AISShipsAction.POLL_AISSHIPS';
+    static REQUEST_AISSHIPS_SUCCESS = 'AISShipsAction.REQUEST_AISSHIPS_SUCCESS';
+    static REQUEST_AISSHIPS_FAILURE = 'AISShipsAction.REQUEST_AISSHIPS_FAILURE';
 }

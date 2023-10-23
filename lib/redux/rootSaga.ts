@@ -8,6 +8,6 @@ import { all, call } from "redux-saga/effects";
 export function* rootSaga() {
     yield all([
         gpsSaga[GPSActions.POLL_GPS](),
-        aisShipsSaga[AISShipsActions.POLL_AISShips](),
+        aisShipsSaga[AISShipsActions.POLL_AISSHIPS](),
     ]);
 }

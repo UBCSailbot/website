@@ -26,29 +26,29 @@ Given('I insert GPS data into the database', async function () {
 Given('I insert AISShips data into the database', async function () {
     const aisshipData = {
         ships: [
-          {
-            id: 1,
-            latitude: 12.3323,
-            longitude: 40.2313,
-            speed: 24,
-            heading: 42,
-          },
-          {
-            id: 2,
-            latitude: 13.4456,
-            longitude: 41.1122,
-            speed: 18,
-            heading: 120,
-          },
-          {
-            id: 3,
-            latitude: 11.7890,
-            longitude: 39.5678,
-            speed: 30,
-            heading: 275,
-          },
-        ],
-      };
+            {
+                id: 0,
+                latitude: 49.3481,
+                longitude: -123.6096,
+                speed: 10,
+                heading: 275
+            },
+            {
+                id: 1,
+                latitude: 49.4567,
+                longitude: -123.3729,
+                speed: 15,
+                heading: 280
+            },
+            {
+                id: 2,
+                latitude: 49.1728,
+                longitude: -123.4578,
+                speed: 20,
+                heading: 285
+            }
+        ]
+    };
     await AISShips.create(aisshipData);
 });
 
