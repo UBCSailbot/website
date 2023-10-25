@@ -3,11 +3,11 @@ export type WayPoint = {
     longitude: Number
 }
 
-export type WayPoints = {
-    waypoints: WayPoint[];
+export type GlobalPath = {
+    GlobalPath: WayPoint[];
 }
 
 export type GlobalPathState = {
-    data: WayPoints;
+    data: GlobalPath;
     error?: any;
 }
