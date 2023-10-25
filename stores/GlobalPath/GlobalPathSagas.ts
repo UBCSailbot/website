@@ -13,12 +13,11 @@ class GlobalPathSagas extends BaseSaga {
                 if (globalpath.length > 0) {
                     yield put({type: GlobalPathActions.REQUEST_GLOBALPATH_SUCCESS, payload: globalpath});
                 }
-                console.log(globalpath);
             } catch (e) {
                 yield put({type: GlobalPathActions.REQUEST_GLOBALPATH_FAILURE, error: (e as Error).message})
             }
             // poll every minute - can be adjusted accordingly
-            yield delay(6000);
+            yield delay(60000);
         }
     }
 }
