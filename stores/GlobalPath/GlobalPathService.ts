@@ -1,6 +1,3 @@
-/**
- * Defines all saga methods to invoke requests for the GPS interface.
- */
 export const GlobalPathService = {
     * getGlobalPath(): Generator<any, any, any> {
         let isError = false;
