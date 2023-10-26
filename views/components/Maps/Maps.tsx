@@ -14,7 +14,6 @@ import 'leaflet/dist/leaflet.css';
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import { LatLngExpression, latLng } from "leaflet";
-<<<<<<< HEAD
 import { GPS } from "@/stores/GPS/GPSTypes";
 import { AISShip } from "@/stores/AISShips/AISShipsTypes";
 
@@ -24,7 +23,7 @@ export interface IMapsProps {
     globalPath: LatLngExpression[],
     localPath: LatLngExpression[],
     aisShips: AISShip[]
-=======
+
 import { GPSCoordinate } from "@/stores/GPS/GPSTypes";
 import { AISShip } from "@/stores/AISShips/AISShipsTypes";
 
@@ -75,11 +74,10 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
                 <Circle
                     key={index}
                     center={[ship.latitude, ship.longitude]}
-<<<<<<< HEAD
                     radius={50}
-=======
+
                     radius={500}
->>>>>>> 38c7b55 (Visualizing AISShips on Maps)
+
                     pathOptions={{ color: 'red' }}>
                     <Popup>
                         {printObjectInfo(ship)}

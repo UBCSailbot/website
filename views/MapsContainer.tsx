@@ -1,16 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
+<<<<<<< HEAD
 import { GPS, GPSState } from "@/stores/GPS/GPSTypes";
 import { GlobalPath, GlobalPathState } from "@/stores/GlobalPath/GlobalPathTypes";
 import { AISShipsState } from "@/stores/AISShips/AISShipsTypes";
 import { LocalPath, LocalPathState } from "@/stores/LocalPath/LocalPathTypes";
+=======
+import { GPSCoordinate, GPSState } from "@/stores/GPS/GPSTypes";
+import { AISShipsState } from "@/stores/AISShips/AISShipsTypes";
+>>>>>>> a36fab5 (Added export aisShips)
 import Maps, { convertToLatLng } from "./components/Maps/Maps";
 
 export interface MapsContainerProps {
     gps: GPSState,
+<<<<<<< HEAD
     globalPath: GlobalPathState,
     aisShips: AISShipsState,
     localPath: LocalPathState
+=======
+    aisShips: AISShipsState
+>>>>>>> a36fab5 (Added export aisShips)
 }
 
 class MapsContainer extends React.PureComponent<MapsContainerProps> {
