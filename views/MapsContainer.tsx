@@ -29,6 +29,7 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
                 localPath={this.props.localPath.data.waypoints.map(
                     (waypoint: LocalPath) => convertToLatLng(waypoint)
                 )}
+                aisShips={this.props.aisShips.data.ships}
             />
         );
     }
@@ -36,9 +37,13 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
 
 const mapStateToProps = (state: any) => ({
     gps: state.gps,
+<<<<<<< HEAD
     globalPath: state.globalPath,
     aisShips: state.aisShips,
     localPath: state.localPath
+=======
+    aisShips: state.aisShips,
+>>>>>>> 38c7b55 (Visualizing AISShips on Maps)
 });
 const mapDispatchToProps = {}
 

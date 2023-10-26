@@ -9,8 +9,12 @@ export default () => {
     const reducerMap = {
         gps: new GPSReducer().reducer,
         globalPath: new GlobalPathReducer().reducer,
+<<<<<<< HEAD
         aisShips: new AISShipsReducer().reducer,
         localPath: new LocalPathReducer().reducer
+=======
+        aisShips: new AISShipsReducer().reducer
+>>>>>>> 38c7b55 (Visualizing AISShips on Maps)
     };
 
     return combineReducers(reducerMap);
