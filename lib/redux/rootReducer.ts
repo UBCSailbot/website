@@ -7,7 +7,7 @@ import AISShipsReducer from '@/stores/AISShips/AISShipsReducers';
 export default () => {
     const reducerMap = {
         gps: new GPSReducer().reducer,
-        globalpath: new GlobalPathReducer().reducer,
+        globalPath: new GlobalPathReducer().reducer,
         aisships: new AISShipsReducer().reducer
     };
 

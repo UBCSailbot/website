@@ -4,7 +4,7 @@ export type WayPoint = {
 }
 
 export type GlobalPath = {
-    GlobalPath: WayPoint[];
+    waypoints: WayPoint[];
 }
 
 export type GlobalPathState = {

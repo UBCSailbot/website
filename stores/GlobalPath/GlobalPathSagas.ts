@@ -9,9 +9,9 @@ class GlobalPathSagas extends BaseSaga {
     *[GlobalPathActions.POLL_GLOBALPATH]() {
         while (true) {
             try {
-                const globalpath: GlobalPath[] = yield call(GlobalPathService.getGlobalPath);
-                if (globalpath.length > 0) {
-                    yield put({type: GlobalPathActions.REQUEST_GLOBALPATH_SUCCESS, payload: globalpath});
+                const globalPath: GlobalPath[] = yield call(GlobalPathService.getGlobalPath);
+                if (globalPath.length > 0) {
+                    yield put({type: GlobalPathActions.REQUEST_GLOBALPATH_SUCCESS, payload: globalPath[globalPath.length - 1]});
                 }
             } catch (e) {
                 yield put({type: GlobalPathActions.REQUEST_GLOBALPATH_FAILURE, error: (e as Error).message})

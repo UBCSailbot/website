@@ -6,7 +6,7 @@ import { AnyAction } from "redux";
 export default class GlobalPathReducer extends BaseReducer {
     initialState: GlobalPathState = {
         data: {
-            GlobalPath: []
+            waypoints: []
         },
         error: null
     };
