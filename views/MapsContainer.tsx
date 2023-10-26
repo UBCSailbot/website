@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { GPSCoordinate, GPSState } from "@/stores/GPS/GPSTypes";
+import { GPS, GPSState } from "@/stores/GPS/GPSTypes";
+import { GlobalPath, GlobalPathState } from "@/stores/GlobalPath/GlobalPathTypes";
 import Maps, { convertToLatLng } from "./components/Maps/Maps";
 
-export interface MapsContainerProps extends GPSState {}
+export interface MapsContainerProps extends GPSState, GlobalPathState {}
 
 class MapsContainer extends React.PureComponent<MapsContainerProps> {
 
@@ -12,7 +13,11 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
             <Maps
                 gpsLocation={this.props.gps.data.at(-1) || {}}
                 gpsPath={this.props.gps.data.map(
-                    (gpsCoordinate: GPSCoordinate) => convertToLatLng(gpsCoordinate)
+                    (gpsCoordinates: GPS) => convertToLatLng(gpsCoordinates)
+                )}
+                globalPathLocation={this.props.globalPath.data.waypoints.at(-1) || {}}
+                globalPathPath={this.props.globalPath.data.waypoints.map(
+                    (waypoint: GlobalPath) => convertToLatLng(waypoint)
                 )}
             />
         );
@@ -21,6 +26,7 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
 
 const mapStateToProps = (state: any) => ({
     gps: state.gps,
+    globalPath: state.globalPath
 });
 const mapDispatchToProps = {}
 
