@@ -1,9 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { GPSCoordinate, GPSState } from "@/stores/GPS/GPSTypes";
+import { AISShipsState } from "@/stores/AISShips/AISShipsTypes";
 import Maps, { convertToLatLng } from "./components/Maps/Maps";
 
-export interface MapsContainerProps extends GPSState {}
+export interface MapsContainerProps {
+    gps: GPSState,
+    aisShips: AISShipsState
+}
 
 class MapsContainer extends React.PureComponent<MapsContainerProps> {
 
