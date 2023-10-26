@@ -14,6 +14,7 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
                 gpsPath={this.props.gps.data.map(
                     (gpsCoordinate: GPSCoordinate) => convertToLatLng(gpsCoordinate)
                 )}
+                aisShips={this.props.aisShips.data.ships}
             />
         );
     }
@@ -21,6 +22,7 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
 
 const mapStateToProps = (state: any) => ({
     gps: state.gps,
+    aisShips: state.aisShips,
 });
 const mapDispatchToProps = {}
 
