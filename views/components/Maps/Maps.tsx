@@ -8,6 +8,7 @@ import {
     Polyline,
     LayersControl,
     LayerGroup,
+    Circle
 } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import "leaflet-defaulticon-compatibility";
@@ -19,7 +20,8 @@ import { GlobalPath } from "@/stores/GlobalPath/GlobalPathTypes";
 export interface IMapsProps {
     gpsLocation: GPS,
     gpsPath: LatLngExpression[],
-    globalPath: LatLngExpression[]
+    globalPath: LatLngExpression[], 
+    aisShips: AISShip[]
 }
 
 export interface IMapsState {}
@@ -56,6 +58,22 @@ export const convertToLatLng = (obj: any): LatLngExpression => {
 
 export default class Maps extends React.Component<IMapsProps, IMapsState> {
 
+    renderShips = () => {
+        return this.props.aisShips.map((ship, index) => {
+            return (
+                <Circle
+                    key={index}
+                    center={[ship.latitude, ship.longitude]}
+                    radius={500}
+                    pathOptions={{ color: 'red' }}>
+                    <Popup>
+                        {printObjectInfo(ship)}
+                    </Popup>
+                </Circle>
+            );
+        });
+    }
+
     render() {
         return (
             <MapContainer center={convertToLatLng(this.props.gpsLocation)} zoom={13} scrollWheelZoom={true} style={{height: "100vh", width: "100wh"}}>
@@ -64,9 +82,9 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <LayersControl position="bottomleft">
-                    <LayersControl.Overlay name="AIS Ships" >
+                    <LayersControl.Overlay name="AIS Ships" checked>
                         <LayerGroup>
-                            {/* Add components for AIS Ships here */}
+                            {this.renderShips()}
                         </LayerGroup>
                     </LayersControl.Overlay>
                     <LayersControl.Overlay name="Local Path">
@@ -85,5 +103,4 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
         </MapContainer>
         )
     }
-
 }
