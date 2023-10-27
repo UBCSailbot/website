@@ -89,7 +89,7 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
                         </LayerGroup>
                     </LayersControl.Overlay>
                     <LayersControl.Overlay name="Local Path">
-                        <Polyline pathOptions={{ color: 'black' }} positions={[/* Add Local Path here*/]} />
+                        <Polyline pathOptions={{ color: 'black' }} positions={[this.props.localPath]} />
                     </LayersControl.Overlay>
                     <LayersControl.Overlay name="Global Path">
                         <Polyline pathOptions={{ color: 'black' }} positions={[this.props.globalPath]} />

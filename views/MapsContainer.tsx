@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import { GPS, GPSState } from "@/stores/GPS/GPSTypes";
 import { GlobalPath, GlobalPathState } from "@/stores/GlobalPath/GlobalPathTypes";
 import { AISShipsState } from "@/stores/AISShips/AISShipsTypes";
+import { LocalPathState } from "@/stores/LocalPath/LocalPathTypes";
 import Maps, { convertToLatLng } from "./components/Maps/Maps";
 
 export interface MapsContainerProps {
     gps: GPSState,
+    globalPath: GlobalPathState,
     aisShips: AISShipsState,
-    globalPath: GlobalPathState
+    localPath: LocalPathState
 }
 
 class MapsContainer extends React.PureComponent<MapsContainerProps> {
@@ -24,6 +26,9 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
                     (waypoint: GlobalPath) => convertToLatLng(waypoint)
                 )}
                 aisShips={this.props.aisShips.data.ships}
+                localPath={this.props.localPath.data.waypoints.map(
+                    (waypoint: LocalPath) => convertToLatLng(waypoint)
+                )}
             />
         );
     }
@@ -33,6 +38,7 @@ const mapStateToProps = (state: any) => ({
     gps: state.gps,
     globalPath: state.globalPath,
     aisShips: state.aisShips,
+    localPath: state.localPath
 });
 const mapDispatchToProps = {}
 
