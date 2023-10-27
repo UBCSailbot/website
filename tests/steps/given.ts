@@ -94,7 +94,7 @@ Given('I insert GlobalPath data into the database', async function () {
             },
             {
                 latitude: 49.37046373776872,
-                longitude: 123.3022011892728
+                longitude: -123.3022011892728
             },
             {
                 latitude: 49.362482757047864,
