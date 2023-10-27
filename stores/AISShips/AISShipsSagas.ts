@@ -9,10 +9,10 @@ class AISShipsSagas extends BaseSaga {
     *[AISShipsActions.POLL_AISSHIPS]() {
         while (true) {
             try {
-                const aisships: AISShips[] = yield call(AISShipsService.getAISShips);
-                if (aisships.length > 0) {
-                    const latestAISship = aisships[aisships.length - 1];
-                    yield put({type: AISShipsActions.REQUEST_AISSHIPS_SUCCESS, payload: latestAISship});
+                const aisShips: AISShips[] = yield call(AISShipsService.getAISShips);
+                if (aisShips.length > 0) {
+                    const latestAISShip = aisShips[aisShips.length - 1];
+                    yield put({type: AISShipsActions.REQUEST_AISSHIPS_SUCCESS, payload: latestAISShip});
                 }
             } catch (e) {
                 yield put({type: AISShipsActions.REQUEST_AISSHIPS_FAILURE, error: (e as Error).message});
@@ -23,8 +23,8 @@ class AISShipsSagas extends BaseSaga {
     }
 }
 
-const aisshipsSagas: any = new AISShipsSagas();
+const aisShipsSagas: any = new AISShipsSagas();
 
 export default {
-    [AISShipsActions.POLL_AISSHIPS]: aisshipsSagas[AISShipsActions.POLL_AISSHIPS].bind(aisshipsSagas)
+    [AISShipsActions.POLL_AISSHIPS]: aisShipsSagas[AISShipsActions.POLL_AISSHIPS].bind(aisShipsSagas)
 };
