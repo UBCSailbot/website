@@ -19,8 +19,7 @@ import { GlobalPath } from "@/stores/GlobalPath/GlobalPathTypes";
 export interface IMapsProps {
     gpsLocation: GPS,
     gpsPath: LatLngExpression[],
-    globalPathLocation: GlobalPath,
-    globalPathPath: LatLngExpression[]
+    globalPath: LatLngExpression[]
 }
 
 export interface IMapsState {}
@@ -74,7 +73,7 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
                         <Polyline pathOptions={{ color: 'black' }} positions={[/* Add Local Path here*/]} />
                     </LayersControl.Overlay>
                     <LayersControl.Overlay name="Global Path">
-                        <Polyline pathOptions={{ color: 'black' }} positions={[this.props.globalPathPath]} />
+                        <Polyline pathOptions={{ color: 'black' }} positions={[this.props.globalPath]} />
                     </LayersControl.Overlay>
                 </LayersControl>
                 <Marker position={convertToLatLng(this.props.gpsLocation)}>

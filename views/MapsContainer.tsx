@@ -4,7 +4,11 @@ import { GPS, GPSState } from "@/stores/GPS/GPSTypes";
 import { GlobalPath, GlobalPathState } from "@/stores/GlobalPath/GlobalPathTypes";
 import Maps, { convertToLatLng } from "./components/Maps/Maps";
 
-export interface MapsContainerProps extends GPSState, GlobalPathState {}
+export interface MapsContainerProps {
+    gps: GPSState,
+    aisShips: AISShipsState,
+    globalpath: GlobalPathState
+}
 
 class MapsContainer extends React.PureComponent<MapsContainerProps> {
 
@@ -13,10 +17,9 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
             <Maps
                 gpsLocation={this.props.gps.data.at(-1) || {}}
                 gpsPath={this.props.gps.data.map(
-                    (gpsCoordinates: GPS) => convertToLatLng(gpsCoordinates)
+                    (gpsPoint: GPS) => convertToLatLng(gpsPoint)
                 )}
-                globalPathLocation={this.props.globalPath.data.waypoints.at(-1) || {}}
-                globalPathPath={this.props.globalPath.data.waypoints.map(
+                globalPath={this.props.globalPath.data.waypoints.map(
                     (waypoint: GlobalPath) => convertToLatLng(waypoint)
                 )}
             />
