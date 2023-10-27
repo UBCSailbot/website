@@ -16,11 +16,12 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import { LatLngExpression, latLng } from "leaflet";
 import { GPS } from "@/stores/GPS/GPSTypes";
 import { GlobalPath } from "@/stores/GlobalPath/GlobalPathTypes";
+import { AISShip } from "@/stores/AISShips/AISShipsTypes";
 
 export interface IMapsProps {
     gpsLocation: GPS,
     gpsPath: LatLngExpression[],
-    globalPath: LatLngExpression[], 
+    globalPath: LatLngExpression[],
     aisShips: AISShip[]
 }
 
