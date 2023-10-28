@@ -8,7 +8,7 @@ import Maps, { convertToLatLng } from "./components/Maps/Maps";
 export interface MapsContainerProps {
     gps: GPSState,
     aisShips: AISShipsState,
-    globalpath: GlobalPathState
+    globalPath: GlobalPathState
 }
 
 class MapsContainer extends React.PureComponent<MapsContainerProps> {
