@@ -17,7 +17,7 @@ class LocalPathSagas extends BaseSaga {
                 yield put({type: LocalPathActions.REQUEST_LOCALPATH_FAILURE, error: (e as Error).message})
             }
             // poll every minute - can be adjusted accordingly
-            yield delay(60000);
+            yield delay(process.env.NEXT_PUBLIC_POLLING_TIME_MS);
         }
     }
 }

@@ -65,7 +65,7 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
                 <Circle
                     key={index}
                     center={[ship.latitude, ship.longitude]}
-                    radius={500}
+                    radius={50}
                     pathOptions={{ color: 'red' }}>
                     <Popup>
                         {printObjectInfo(ship)}
@@ -89,7 +89,7 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
                         </LayerGroup>
                     </LayersControl.Overlay>
                     <LayersControl.Overlay name="Local Path" checked>
-                        <Polyline pathOptions={{ color: 'black' }} positions={[this.props.localPath]} />
+                        <Polyline pathOptions={{ color: 'red' }} positions={[this.props.localPath]} />
                     </LayersControl.Overlay>
                     <LayersControl.Overlay name="Global Path" checked>
                         <Polyline pathOptions={{ color: 'black', opacity: 0.25  }} positions={[this.props.globalPath]} />

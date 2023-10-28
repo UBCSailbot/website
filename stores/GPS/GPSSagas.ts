@@ -16,8 +16,7 @@ class GPSSagas extends BaseSaga {
             } catch (e) {
                 yield put({type: GPSActions.REQUEST_GPS_FAILURE, error: (e as Error).message})
             }
-            // Poll every minute. Can be adjusted accordingly.
-            yield delay(60000)
+            yield delay(process.env.NEXT_PUBLIC_POLLING_TIME_MS)
         }
     }
 }
