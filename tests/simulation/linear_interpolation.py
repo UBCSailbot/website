@@ -1,3 +1,5 @@
+"""Interpolates points on a line between two waypoints. Used to create a series of GPS points based on the local path."""
+
 import argparse
 import json
 from math import radians, sin, cos, sqrt, atan2
@@ -8,13 +10,8 @@ from geopy.distance import geodesic
 
 def get_points_along_line(start, end):
     line = LineString([start, end])
-    # distance = geodesic(start, end).meters
-    # num_points = int(distance / 100)
-    # interval = distance / (num_points + 1)  # Calculate intervals between points
 
     points = [start]
-    # for i in range(1, num_points + 1):
-    #     point = line.interpolate(interval * i)
     points.append((line.centroid.x, line.centroid.y))
 
     points.append(end)
@@ -30,7 +27,6 @@ def write_json_file(output_file, data):
     for i in range(len(data)):
         start = data[i]["waypoints"][0]
         end = data[i]["waypoints"][1]
-        # waypoints for GPS are separated by 100m
         waypoints = get_points_along_line(
             (start['latitude'], start['longitude']),
             (end['latitude'], end['longitude'])

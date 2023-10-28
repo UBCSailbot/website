@@ -66,8 +66,32 @@
         "heading": 0
     },
     {
-        "latitude": 49.38638338038264,
-        "longitude": -123.27870728489948,
+        "latitude": 49.386785594482504,
+        "longitude": -123.27689028351757,
+        "speed": 0,
+        "heading": 0
+    },
+    {
+        "latitude": 49.387063,
+        "longitude": -123.278139,
+        "speed": 0,
+        "heading": 0
+    },
+    {
+        "latitude": 49.387032000000005,
+        "longitude": -123.279635,
+        "speed": 0,
+        "heading": 0
+    },
+    {
+        "latitude": 49.387001,
+        "longitude": -123.281131,
+        "speed": 0,
+        "heading": 0
+    },
+    {
+        "latitude": 49.386629785900126,
+        "longitude": -123.28145200138191,
         "speed": 0,
         "heading": 0
     },
@@ -176,6 +200,12 @@
     {
         "latitude": 49.34208970298485,
         "longitude": -123.35146495422393,
+        "speed": 0,
+        "heading": 0
+    },
+    {
+        "latitude": 49.34175775635472,
+        "longitude": -123.35453636335373,
         "speed": 0,
         "heading": 0
     },

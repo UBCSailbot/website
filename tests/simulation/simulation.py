@@ -1,72 +1,105 @@
+"""
+Pathfinding simulation for the website, using GPS, local path, global path, and AIS.
+
+Requirements:
+- Ensure the DB is cleared and running.
+- Ensure the env var 'MONGODB_URI' in the file '.env.local' is connected to correct the database name.
+- Ensure the env var 'NEXT_PUBLIC_POLLING_TIME_MS' is set to 500 in the file '.env.local'.
+"""
+
 import pymongo
 import json
 import time
 
-# Function to read data from a JSON file
+CONNECTION_STRING = "mongodb://localhost:27017"
+DATABASE_NAME = "TestDB"
+
+# Load the database
+client = pymongo.MongoClient(CONNECTION_STRING)
+db = client[DATABASE_NAME]
+
 def read_json_file(file_name):
     with open(file_name, 'r') as file:
         data = json.load(file)
     return data
 
-# Function to periodically write data to MongoDB
+# Load all data files
+gps_data = read_json_file("./data/gps.json")
+local_path_data = read_json_file("./data/localpath.json")
+global_path_data = read_json_file("./data/globalpath.json")
+ais_ships_data = read_json_file("./data/aisships.json")
+
+# Load all database collections
+gps = db["gps"]
+local_path = db["localpaths"]
+global_path = db["globalpaths"]
+ais_ships = db["aisships"]
+
 def write_to_mongodb(data, collection):
     collection.insert_one(data)
-    print("Data written to MongoDB")
+    print(f"Data written to MongoDB collection '{collection.name}'")
 
-# Replace these values with your MongoDB connection string and database/collection names
-connection_string = "mongodb://localhost:27017"  # Replace with your MongoDB connection string
-database_name = "TestDB"
-client = pymongo.MongoClient(connection_string)
-db = client[database_name]
-
-# Replace 'data.json' with the name of your JSON file
-json_file_name = 'data.json'
-gpsData = read_json_file("./data/gps.json")
-localPathData = read_json_file("./data/localpath.json")
-globalPathData = read_json_file("./data/globalpath.json")
-aisShipsData = read_json_file("./data/aisships.json")
-
-GPS = db["gps"]
-LocalPath = db["localpaths"]
-GlobalPath = db["globalpaths"]
-AISShips = db["aisships"]
+def clear_mongodb_collection(collection):
+    collection.delete_many({})
+    print(f"Cleared data in MongoDB collection '{collection.name}'")
 
 def preload_data():
-    write_to_mongodb(globalPathData[0], GlobalPath)
-    write_to_mongodb(localPathData[0], LocalPath)
-    write_to_mongodb(aisShipsData[0], AISShips)
+    print("\nPreloading Data...\n")
+    write_to_mongodb(global_path_data[0], global_path)
+    write_to_mongodb(local_path_data[0], local_path)
+    write_to_mongodb(ais_ships_data[0], ais_ships)
+    print("\nDone\n")
+
+def clear():
+    print("\nClearing all collections:\n")
+    clear_mongodb_collection(gps)
+    clear_mongodb_collection(local_path)
+    clear_mongodb_collection(global_path)
+    clear_mongodb_collection(ais_ships)
+    print("\nCleared all collections\n")
+
+def display_help():
+    print("\nAvailable options:")
+    print("clear - Clears the MongoDB database.")
+    print("preload - Writes all local path, global path, and ais ships data into the database to prepare the simulation.")
+    print("start - Starts the simulation on the website by periodically updating the gps.")
+    print("restart - Restarts the simulation on the website. Automatically clears and preloads the data into the database.")
+    print("exit - Exits the script.\n")
 
 while True:
-    user_input = input("Enter 'PRELOAD/START/CLEAR/EXIT: ")
+    user_input = input("Enter your command: ")
 
-    if user_input.upper() == "PRELOAD":
-        print("\nPreloading Data...\n")
-        preload_data()  # Call the function to preload data
-    elif user_input.upper() == "CLEAR":
-        print("\nClearing all collections:\n")
-        GPS.delete_many({})
-        print("...Cleared GPS")
-        LocalPath.delete_many({})
-        print("...Cleared LocalPath")
-        GlobalPath.delete_many({})
-        print("...Cleared GlobalPath")
-        AISShips.delete_many({})
-        print("...Cleared AISShips")
-        print("\nCleared all collections\n")
-    elif user_input.upper() == "START":
+    if user_input.lower() == "preload":
+        preload_data()
+    elif user_input.lower() == "clear":
+        clear()
+    elif user_input.lower() == "restart":
+        clear()
+        preload_data()
         j = 0
-        for i in range(1, len(gpsData)):
-            # Write data to MongoDB
-            write_to_mongodb(gpsData[i], GPS)
-            if localPathData[j]['waypoints'][1]['latitude'] == gpsData[i]['latitude'] and localPathData[j]['waypoints'][1]['longitude'] == gpsData[i]['longitude']:
+        time.sleep(2)
+        for i in range(1, len(gps_data)):
+            write_to_mongodb(gps_data[i], gps)
+            lp_len = len(local_path_data[j]['waypoints']) - 1
+            if local_path_data[j]['waypoints'][lp_len]['latitude'] == gps_data[i]['latitude'] and local_path_data[j]['waypoints'][lp_len]['longitude'] == gps_data[i]['longitude']:
                 time.sleep(1)
                 j += 1
-                write_to_mongodb(localPathData[j], LocalPath)
-            # Adjust the time interval as needed (currently set to 60 seconds)
-            time.sleep(1)  # Sleep for 60 seconds before writing again
-    elif user_input.upper() == "EXIT":
+                if j < len(local_path_data):
+                    write_to_mongodb(local_path_data[j], local_path)
+            time.sleep(1)
+    elif user_input.lower() == "start":
+        j = 0
+        time.sleep(2)
+        for i in range(1, len(gps_data)):
+            write_to_mongodb(gps_data[i], gps)
+            if local_path_data[j]['waypoints'][1]['latitude'] == gps_data[i]['latitude'] and local_path_data[j]['waypoints'][1]['longitude'] == gps_data[i]['longitude']:
+                time.sleep(1)
+                j += 1
+                write_to_mongodb(local_path_data[j], local_path)
+            time.sleep(1)
+    elif user_input.lower() == "exit":
         break
+    elif user_input.lower() == "help":
+        display_help()
     else:
-        print("Invalid input.")
-
-print("\nDONE.")
+        print("\nInvalid input. Type 'help' for assistance.\n")

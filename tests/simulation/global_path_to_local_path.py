@@ -1,3 +1,5 @@
+"""Converts the global path to a series of local path waypoints."""
+
 import argparse
 import json
 
