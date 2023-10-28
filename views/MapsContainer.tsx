@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { GPS, GPSState } from "@/stores/GPS/GPSTypes";
 import { GlobalPath, GlobalPathState } from "@/stores/GlobalPath/GlobalPathTypes";
 import { AISShipsState } from "@/stores/AISShips/AISShipsTypes";
-import { LocalPathState } from "@/stores/LocalPath/LocalPathTypes";
+import { LocalPath, LocalPathState } from "@/stores/LocalPath/LocalPathTypes";
 import Maps, { convertToLatLng } from "./components/Maps/Maps";
 
 export interface MapsContainerProps {

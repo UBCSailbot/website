@@ -12,6 +12,7 @@ Given('I clear the database', async function () {
     await GPS.deleteMany();
     await AISShips.deleteMany();
     await GlobalPath.deleteMany();
+    await LocalPath.deleteMany();
 });
 
 Given('I insert GPS data into the database', async function () {
@@ -57,11 +58,11 @@ Given('I insert GlobalPath data into the database', async function () {
     const globalPathData = {
         waypoints: [
             {
-                latitude: 49.37631471156861,
-                longitude: -123.27158111744428
+                latitude:  49.37614179786771,
+                longitude: -123.27376619978901
             },
             {
-                latitude: 49.37691663428484,
+                latitude: 49.37711663428484,
                 longitude: -123.27156381625609
             },
             {
