@@ -14,13 +14,15 @@ import 'leaflet/dist/leaflet.css';
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import { LatLngExpression, latLng } from "leaflet";
-import { GPSCoordinate } from "@/stores/GPS/GPSTypes";
+import { GPS } from "@/stores/GPS/GPSTypes";
+import { GlobalPath } from "@/stores/GlobalPath/GlobalPathTypes";
 import { AISShip } from "@/stores/AISShips/AISShipsTypes";
 
 export interface IMapsProps {
-    gpsLocation: GPSCoordinate,
-    gpsPath: LatLngExpression[]
-    aisShips: AISShip[];
+    gpsLocation: GPS,
+    gpsPath: LatLngExpression[],
+    globalPath: LatLngExpression[],
+    aisShips: AISShip[]
 }
 
 export interface IMapsState {}
@@ -90,7 +92,7 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
                         <Polyline pathOptions={{ color: 'black' }} positions={[/* Add Local Path here*/]} />
                     </LayersControl.Overlay>
                     <LayersControl.Overlay name="Global Path">
-                        <Polyline pathOptions={{ color: 'black' }} positions={[/* Add Global Path here */]} />
+                        <Polyline pathOptions={{ color: 'black' }} positions={[this.props.globalPath]} />
                     </LayersControl.Overlay>
                 </LayersControl>
                 <Marker position={convertToLatLng(this.props.gpsLocation)}>
