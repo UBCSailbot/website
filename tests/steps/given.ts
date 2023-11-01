@@ -32,22 +32,28 @@ Given('I insert AISShips data into the database', async function () {
                 id: 0,
                 latitude: 49.3481,
                 longitude: -123.6096,
-                speed: 10,
-                heading: 275
+                cog: -120,
+                sog: 12.5,
+                width: 10,
+                length: 80
             },
             {
                 id: 1,
                 latitude: 49.4567,
                 longitude: -123.3729,
-                speed: 15,
-                heading: 280
+                cog: 75,
+                sog: 18.2,
+                width: 20,
+                length: 120
             },
             {
                 id: 2,
                 latitude: 49.1728,
                 longitude: -123.4578,
-                speed: 20,
-                heading: 285
+                cog: 15,
+                sog: 20,
+                width: 30,
+                length: 200
             }
         ]
     };
