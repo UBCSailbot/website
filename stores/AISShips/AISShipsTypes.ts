@@ -2,8 +2,10 @@ export type AISShip = {
     id: Number,
     latitude: Number,
     longitude: Number,
-    speed: Number,
-    heading: Number
+    cog: Number,
+    sog: Number,
+    width: Number,
+    length: Number
 }
 
 export type AISShips = {

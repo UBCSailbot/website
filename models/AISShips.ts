@@ -23,8 +23,10 @@ const AISShipsSchema = new mongoose.Schema<AISShips>({
           id: Number,
           latitude: mongoose.Types.Decimal128,
           longitude: mongoose.Types.Decimal128,
-          speed: mongoose.Types.Decimal128,
-          heading: mongoose.Types.Decimal128
+          cog: mongoose.Types.Decimal128,
+          sog: mongoose.Types.Decimal128,
+          width: mongoose.Types.Decimal128,
+          length: mongoose.Types.Decimal128
         }
       ],
       required: [true, "Missing array of objects in AISShips interface"]
