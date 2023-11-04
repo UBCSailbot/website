@@ -304,10 +304,11 @@ Then('the response data matches the GenericSensors data in the database', async 
     let apiResponseData_GenericSensors;
     let databaseData_GenericSensors;
 
-    databaseData_GenericSensors = await GenericSensors.find({}).then(function(genericsensors){
-        let transformedGenericSensors = genericsensors.map((data) => data.toJSON())
-        return transformedGenericSensors;
-    });
+    databaseData_GenericSensors = await GenericSensors.find({})
+    // .then(function(genericsensors){
+    //     let transformedGenericSensors = genericsensors.map((data) => data.toJSON())
+    //     return transformedGenericSensors;
+    // });
 
     for (let i = 0; i < 3; i++) {
 
