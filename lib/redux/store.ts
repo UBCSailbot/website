@@ -9,14 +9,14 @@ import {
 import createSagaMiddleware from 'redux-saga'
 
 /* Instruments */
-import { rootReducer } from './rootReducer'
+import rootReducer from './rootReducer'
 import { middleware } from './middleware'
 import { rootSaga } from './rootSaga'
 
 const createReduxStore = () => {
   const sagaMiddleWare = createSagaMiddleware()
   const store = configureStore({
-    reducer: rootReducer,
+    reducer: rootReducer(),
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([sagaMiddleWare, ...middleware]),
     enhancers: [applyMiddleware(sagaMiddleWare)]

@@ -1,18 +1,17 @@
 /* Instruments */
-import { createReducer } from '@reduxjs/toolkit'
-import { failureAction, getGPSAction } from './actions'
+import { combineReducers } from 'redux';
+import GPSReducer from '@/stores/GPS/GPSReducers';
+import GlobalPathReducer from '@/stores/GlobalPath/GlobalPathReducers';
+import AISShipsReducer from '@/stores/AISShips/AISShipsReducers';
+import LocalPathReducer from '@/stores/LocalPath/LocalPathReducers';
 
-const initialState = {
-    error: null,
-    gps: [{lat: 49.37614179786771, lng: -123.27376619978901, speed: 0, heading: 0}]
+export default () => {
+    const reducerMap = {
+        gps: new GPSReducer().reducer,
+        globalPath: new GlobalPathReducer().reducer,
+        aisShips: new AISShipsReducer().reducer,
+        localPath: new LocalPathReducer().reducer
+    };
+
+    return combineReducers(reducerMap);
 }
-
-export const rootReducer = createReducer(initialState, (builder) => {
-    builder
-        .addCase(failureAction, (state, action) => {
-            state.error = action.payload
-        })
-        .addCase(getGPSAction, (state, action) => {
-            state.gps = action.payload
-        })
-})

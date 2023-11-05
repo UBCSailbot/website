@@ -4,6 +4,14 @@
       "module": "commonjs",
       "esModuleInterop": true,
       "experimentalDecorators": true,
-      "forceConsistentCasingInFileNames": true
+      "forceConsistentCasingInFileNames": true,
+      "paths": {
+        "@/*": [
+          "../*"
+        ]
+      }
+    },
+    "ts-node": {
+      "require": ["tsconfig-paths/register"]
     }
 }

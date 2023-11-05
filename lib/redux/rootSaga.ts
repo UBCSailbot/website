@@ -1,35 +1,18 @@
-/* Actions */
-import { failureAction, getGPSAction } from './actions'
-
-/* Instruments */
-import { all, call, delay, put } from 'redux-saga/effects'
-
-
-function* pollGPSSaga(): Generator<any, any, any> {
-    while (true) {
-        let res = yield fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}:${process.env.NEXT_PUBLIC_SERVER_PORT}/api/gps`)
-        res = yield res.json()
-        if (res.success) {
-            /* Process data to make it fit the requirements of the Google Maps API */
-            const data = yield res.data.map( (data) => {
-                return {
-                    "lat": data["latitude"],
-                    "lng": data["longitude"],
-                    "speed": data["speed"],
-                    "heading": data["heading"]
-                }
-            });
-            yield put(getGPSAction(data))
-        } else {
-            yield put(failureAction(res.message))
-        }
-        // Poll every minute. Can be adjusted accordingly.
-        yield delay(60000)
-    }
-}
+import GPSActions from "@/stores/GPS/GPSActions";
+import gpsSaga from "@/stores/GPS/GPSSagas";
+import GlobalPathActions from "@/stores/GlobalPath/GlobalPathActions";
+import globalPathSaga from "@/stores/GlobalPath/GlobalPathSagas";
+import AISShipsActions from "@/stores/AISShips/AISShipsActions";
+import aisShipsSaga from "@/stores/AISShips/AISShipsSagas";
+import LocalPathActions from "@/stores/LocalPath/LocalPathActions";
+import localPathSaga from "@/stores/LocalPath/LocalPathSagas"
+import { all, call } from "redux-saga/effects";
 
 export function* rootSaga() {
     yield all([
-        call(pollGPSSaga)
-    ])
+        gpsSaga[GPSActions.POLL_GPS](),
+        globalPathSaga[GlobalPathActions.POLL_GLOBALPATH](),
+        aisShipsSaga[AISShipsActions.POLL_AISSHIPS](),
+        localPathSaga[LocalPathActions.POLL_LOCALPATH]()
+    ]);
 }
