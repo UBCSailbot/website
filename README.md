@@ -1,101 +1,61 @@
 # Website
 
 In the website development timeline, we are currently evaluating the folllowing software stack:
-[Next.js](https://nextjs.org/) website (this repository), [MongoDB](https://www.mongodb.com/) database, and
-[Grafana](https://grafana.com/) dashboards.
+[Next.js](https://nextjs.org/) website (this repository) and the [MongoDB](https://www.mongodb.com/) database.
 The easiest way to evaluate these potential solutions for our purposes is in [sailbot_workspace](https://github.com/UBCSailbot/sailbot_workspace).
-This repository starts from the [Next.js with-mongodb example](https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/)
-to connect to the MongoDB database in sailbot_workspace.
 
-## Example app using MongoDB
+## Database
 
 [MongoDB](https://www.mongodb.com/) is a general purpose, document-based, distributed database built for modern application
-developers and for the cloud era. This example will show you how to connect to and use MongoDB as your backend for your
-Next.js app.
+developers and for the cloud era. If you want to learn more about MongoDB, visit their docs site: [MongoDB Documentation](https://docs.mongodb.com/).
 
-If you want to learn more about MongoDB, visit the following pages:
+## Setup
 
-- [MongoDB Atlas](https://mongodb.com/atlas)
-- [MongoDB Documentation](https://docs.mongodb.com/)
+### Environment variables
 
-## Deploy your own
+This project uses environment variables to manage configuration-specific information. Please look at the file
+`.env.local` and ensure the variables are defined below:
 
-Once you have access to the environment variables you'll need, deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+- `MONGODB_URI`: Your MongoDB connection string. Use `mongodb://localhost:27017/<DB_NAME>` to establish a connection
+with the local database.
+- `NEXT_PUBLIC_SERVER_HOST`: The host URL of the website.
+- `NEXT_PUBLIC_SERVER_PORT`: The port number of the website.
+- `NEXT_PUBLIC_POLLING_TIME_MS`: The time interval for polling the database in milliseconds.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
+### Package installation
 
-## How to use
+The following command installs all required dependencies listed in the `package.json` file:
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with
-[npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io)
-to bootstrap the example:
-
-```bash
-npx create-next-app --example with-mongodb with-mongodb-app
 ```
-
-```bash
-yarn create next-app --example with-mongodb with-mongodb-app
-```
-
-```bash
-pnpm create next-app --example with-mongodb with-mongodb-app
-```
-
-## Configuration
-
-### Set up a MongoDB database
-
-Set up a MongoDB database either locally or with [MongoDB Atlas for free](https://mongodb.com/atlas).
-
-### Set up environment variables
-
-Copy the `env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
-
-```bash
-cp .env.local.example .env.local
-```
-
-Set each variable on `.env.local`:
-
-- `MONGODB_URI` - Your MongoDB connection string. If you are using [MongoDB Atlas](https://mongodb.com/atlas) you can find
-this by clicking the "Connect" button for your cluster.
-
-### Run Next.js in development mode
-
-```bash
 npm install
-npm run dev
-
-# or
-
-yarn install
-yarn dev
 ```
 
-Your app should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on
-[GitHub discussions](https://github.com/vercel/next.js/discussions).
+Once the installation is complete, you should see a `node_modules` directory in the project's root.
+This directory contains all installed packages.
 
-You will either see a message stating "You are connected to MongoDB" or "You are NOT connected to MongoDB".
-Ensure that you have provided the correct `MONGODB_URI` environment variable.
+When installing a new package to the website, please follow the steps below:
 
-When you are successfully connected, you can refer to the [MongoDB Node.js Driver docs](https://mongodb.github.io/node-mongodb-native/3.4/tutorials/collections/)
-for further instructions on how to query your database.
+1. Access the terminal of the website container on Docker.
 
-## Deploy on Vercel
+2. Run the command `npm install <package-name>`.
+Replace `<package-name>` with the actual name of the package you want to add.
+    - Should you encounter errors related to resolving peer dependencies,
+    please re-run the command with the header `--legacy-peer-deps`.
+    Do not to use `--force` unless you're well aware of the potential consequences.
 
-You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example)
-([Documentation](https://nextjs.org/docs/deployment)).
+3. Review the `package.json` file to ensure the new package and its version have been added to the dependencies section.
+    - Confirm that `package-lock.json` has also been updated.
+    This file holds specific version information to ensure consistent installations across different environments.
+4. Once the installation process is finished, please make sure to commit the files `package.json` and `package-lock.json`.
+These files are essential for version controlling the dependencies that have been added.
 
-### Deploy Your Local Project
+## Run
 
-To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example).
+Using [Sailbot Workspace](https://github.com/UBCSailbot/sailbot_workspace),
+the website should be up and running on [http://localhost:3005](http://localhost:3005).
 
-**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match
-your `.env.local` file.
+Otherwise, you execute the following commands to run it in development mode:
 
-### Deploy from Our Template
-
-Alternatively, you can deploy using our template by clicking on the Deploy button below.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
+```bash
+npm run dev
+```
