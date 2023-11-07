@@ -21,8 +21,8 @@ const GenericSensorsSchema = new mongoose.Schema<GenericSensors>({
     }
 });
 
-BigInt.prototype.toJSON = function() {
-    return this.toString();
-}
+/* Convert BigInt to a string */
+(BigInt.prototype as any).toJSON = function() { return this.toString(); };
+(BigInt.prototype as any).toBSON = function() { return this.toString(); };
 
 export default mongoose.models.GenericSensors || mongoose.model<GenericSensors>("GenericSensors", GenericSensorsSchema);
