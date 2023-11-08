@@ -282,7 +282,7 @@ Then('the response data matches the LocalPath data in the database', async funct
         return transformedLocalPath;
     });
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
 
         apiResponseData_LocalPath = api.response.data.data[0].waypoints[i];
 
