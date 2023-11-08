@@ -15,11 +15,7 @@ export default async function handler (
   switch (method) {
     case 'GET':
       try {
-
-        // TODO: change the waypoints
-        // TODO: change to `/generic-sensors
-        
-        const genericSensors = await GenericSensors.find({}).select({ 'waypoints._id': 0, '_id': 0, '__v': 0 });
+        const genericSensors = await GenericSensors.find({}).select({ 'genericSensors._id': 0, '_id': 0, '__v': 0 });
         res.status(200).json({ success: true, data: genericSensors });
       } catch (error) {
         res.status(400).json({ success: false, message: error.message });

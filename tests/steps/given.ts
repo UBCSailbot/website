@@ -305,10 +305,17 @@ Then('the response data matches the GenericSensors data in the database', async 
     let databaseData_GenericSensors;
 
     databaseData_GenericSensors = await GenericSensors.find({})
-    // .then(function(genericsensors){
-    //     let transformedGenericSensors = genericsensors.map((data) => data.toJSON())
-    //     return transformedGenericSensors;
-    // });
+     .then(function(genericsensors){
+         let transformedGenericSensors = genericsensors.map((data) => data.toJSON())
+         return transformedGenericSensors;
+    });
+
+    function bigIntConversion(input: bigint): any {
+        if(typeof input == 'bigint') {
+            return input.toString();
+        }
+        return input;
+      }
 
     for (let i = 0; i < 3; i++) {
 
@@ -317,7 +324,7 @@ Then('the response data matches the GenericSensors data in the database', async 
         const propertiesToCompare = Object.keys(apiResponseData_GenericSensors);
 
         for (const property of propertiesToCompare) {
-            expect(apiResponseData_GenericSensors[property]).to.equal(databaseData_GenericSensors[0].genericSensors[i][property], `Data in the response does not match data in the database for property: ${property}`);
+            expect(apiResponseData_GenericSensors[property]).to.equal(bigIntConversion(databaseData_GenericSensors[0].genericSensors[i][property]), `Data in the response does not match data in the database for property: ${property}`);
         }
     }
 });
