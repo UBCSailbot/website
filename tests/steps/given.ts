@@ -8,6 +8,7 @@ import GlobalPath from '@/models/GlobalPath';
 import LocalPath from '@/models/LocalPath';
 import Batteries from '@/models/Batteries'
 import GenericSensors from '@/models/GenericSensors';
+import { convertBigIntToString } from '../shared/utils/utils';
 
 Given('I clear the database', async function () {
     const db = await ConnectMongoDB();
@@ -310,13 +311,6 @@ Then('the response data matches the GenericSensors data in the database', async 
          return transformedGenericSensors;
     });
 
-    function bigIntConversion(input: bigint): any {
-        if(typeof input == 'bigint') {
-            return input.toString();
-        }
-        return input;
-      }
-
     for (let i = 0; i < 3; i++) {
 
         apiResponseData_GenericSensors = api.response.data.data[0].genericSensors[i];
@@ -324,7 +318,7 @@ Then('the response data matches the GenericSensors data in the database', async 
         const propertiesToCompare = Object.keys(apiResponseData_GenericSensors);
 
         for (const property of propertiesToCompare) {
-            expect(apiResponseData_GenericSensors[property]).to.equal(bigIntConversion(databaseData_GenericSensors[0].genericSensors[i][property]), `Data in the response does not match data in the database for property: ${property}`);
+            expect(apiResponseData_GenericSensors[property]).to.equal(convertBigIntToString(databaseData_GenericSensors[0].genericSensors[i][property]), `Data in the response does not match data in the database for property: ${property}`);
         }
     }
 });

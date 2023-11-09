@@ -12,3 +12,10 @@ export const logger = winston.createLogger({
       }),
     ],
   })
+
+  export function convertBigIntToString(input: bigint): any {
+    if(typeof input == 'bigint') {
+        return input.toString();
+    }
+    return input;
+  }
