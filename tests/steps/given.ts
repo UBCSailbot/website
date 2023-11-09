@@ -6,6 +6,7 @@ import ConnectMongoDB from '@/lib/mongodb';
 import AISShips from '@/models/AISShips';
 import GlobalPath from '@/models/GlobalPath';
 import LocalPath from '@/models/LocalPath';
+import Batteries from '@/models/Batteries'
 
 Given('I clear the database', async function () {
     const db = await ConnectMongoDB();
@@ -13,6 +14,7 @@ Given('I clear the database', async function () {
     await AISShips.deleteMany();
     await GlobalPath.deleteMany();
     await LocalPath.deleteMany();
+    await Batteries.deleteMany();
 });
 
 Given('I insert GPS data into the database', async function () {
@@ -152,6 +154,22 @@ Given('I insert LocalPath data into the database', async function () {
     await LocalPath.create(localPathData);
 });
 
+Given('I insert Batteries data into the database', async function () {
+    const batteriesData = {
+        batteries: [
+            {
+                voltage: -3.33,
+                current: -3.33
+            },
+            {
+                voltage: 3.33,
+                current: 3.33
+            }
+        ]
+    };
+    await Batteries.create(batteriesData);
+})
+
 
 Then('the response data matches the data in the database', async function () {
 
@@ -234,6 +252,28 @@ Then('the response data matches the LocalPath data in the database', async funct
 
         for (const property of propertiesToCompare) {
             expect(apiResponseData_LocalPath[property]).to.equal(databaseData_LocalPath[0].waypoints[i][property], `Data in the response does not match data in the database for property: ${property}`);
+        }
+    }
+})
+
+Then('the response data matches the Batteries data in the database', async function () {
+
+    let apiResponseData_Batteries;
+    let databaseData_Batteries;
+
+    databaseData_Batteries = await Batteries.find({}).then(function(batteries){
+        let transformedBatteries = batteries.map((data) => data.toJSON())
+        return transformedBatteries;
+    });
+
+    for (let i = 0; i < 2; i++) {
+
+        apiResponseData_Batteries = api.response.data.data[0].batteries[i];
+
+        const propertiesToCompare = Object.keys(apiResponseData_Batteries);
+
+        for (const property of propertiesToCompare) {
+            expect(apiResponseData_Batteries[property]).to.equal(databaseData_Batteries[0].batteries[i][property], `Data in the response does not match data in the database for property: ${property}`);
         }
     }
 })
