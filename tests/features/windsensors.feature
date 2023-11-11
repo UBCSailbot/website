@@ -1,4 +1,4 @@
-@windsensors
+@wind-sensors
 Feature: Testing the WindSensors API
 
     Scenario: Fetch WindSensors data from the API
