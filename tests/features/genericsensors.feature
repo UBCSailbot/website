@@ -1,4 +1,4 @@
-@genericsensors
+@generic-sensors
 Feature: Testing the GenericSensors API
 
     Scenario: Fetch GenericSensors data from the API
