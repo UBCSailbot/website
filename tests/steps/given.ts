@@ -173,7 +173,8 @@ Given('I insert Batteries data into the database', async function () {
         ]
     };
     await Batteries.create(batteriesData);
-})
+});
+
 Given('I insert GenericSensors data into the database', async function () {
     const genericSensorsData = {
         genericSensors: [
@@ -192,6 +193,8 @@ Given('I insert GenericSensors data into the database', async function () {
         ]
     };
     await GenericSensors.create(genericSensorsData);
+});
+
 Given('I insert WindSensors data into the database', async function () {
     const windSensorsData = {
         windSensors: [
@@ -327,12 +330,15 @@ Then('the response data matches the WindSensors data in the database', async fun
         return transformedWindSensors;
     });
 
-    apiResponseData_WindSensors = api.response.data.data[0].windSensors[i];
+    for (let i = 0; i < 2; i++) {
 
-    const propertiesToCompare = Object.keys(apiResponseData_WindSensors);
+        apiResponseData_WindSensors = api.response.data.data[0].windSensors[i];
 
-    for (const property of propertiesToCompare) {
-        expect(apiResponseData_WindSensors[property]).to.equal(databaseData_WindSensors[0].windSensors[i][property], `Data in the response does not match data in the database for property: ${property}`);
+        const propertiesToCompare = Object.keys(apiResponseData_WindSensors);
+
+        for (const property of propertiesToCompare) {
+            expect(apiResponseData_WindSensors[property]).to.equal(databaseData_WindSensors[0].windSensors[i][property], `Data in the response does not match data in the database for property: ${property}`);
+        }
     }
 });
 
