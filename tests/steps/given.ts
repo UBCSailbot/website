@@ -9,6 +9,7 @@ import LocalPath from '@/models/LocalPath';
 import Batteries from '@/models/Batteries'
 import GenericSensors from '@/models/GenericSensors';
 import { convertBigIntToString } from '../shared/utils/utils';
+import WindSensors from '@/models/WindSensors';
 
 Given('I clear the database', async function () {
     const db = await ConnectMongoDB();
@@ -18,6 +19,7 @@ Given('I clear the database', async function () {
     await LocalPath.deleteMany();
     await Batteries.deleteMany();
     await GenericSensors.deleteMany();
+    await WindSensors.deleteMany();
 });
 
 Given('I insert GPS data into the database', async function () {
@@ -171,7 +173,8 @@ Given('I insert Batteries data into the database', async function () {
         ]
     };
     await Batteries.create(batteriesData);
-})
+});
+
 Given('I insert GenericSensors data into the database', async function () {
     const genericSensorsData = {
         genericSensors: [
@@ -190,6 +193,22 @@ Given('I insert GenericSensors data into the database', async function () {
         ]
     };
     await GenericSensors.create(genericSensorsData);
+});
+
+Given('I insert WindSensors data into the database', async function () {
+    const windSensorsData = {
+        windSensors: [
+            {
+                speed: 1.11,
+                direction: 1
+            },
+            {
+                speed: 2.22,
+                direction: 2
+            }
+        ]
+    };
+    await WindSensors.create(windSensorsData);
 });
 
 
@@ -296,6 +315,29 @@ Then('the response data matches the Batteries data in the database', async funct
 
         for (const property of propertiesToCompare) {
             expect(apiResponseData_Batteries[property]).to.equal(databaseData_Batteries[0].batteries[i][property], `Data in the response does not match data in the database for property: ${property}`);
+        }
+    }
+});
+
+
+Then('the response data matches the WindSensors data in the database', async function () {
+
+    let apiResponseData_WindSensors;
+    let databaseData_WindSensors;
+
+    databaseData_WindSensors = await WindSensors.find({}).then(function(windsensors){
+        let transformedWindSensors = windsensors.map((data) => data.toJSON())
+        return transformedWindSensors;
+    });
+
+    for (let i = 0; i < 2; i++) {
+
+        apiResponseData_WindSensors = api.response.data.data[0].windSensors[i];
+
+        const propertiesToCompare = Object.keys(apiResponseData_WindSensors);
+
+        for (const property of propertiesToCompare) {
+            expect(apiResponseData_WindSensors[property]).to.equal(databaseData_WindSensors[0].windSensors[i][property], `Data in the response does not match data in the database for property: ${property}`);
         }
     }
 });
