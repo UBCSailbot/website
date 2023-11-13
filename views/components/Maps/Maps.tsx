@@ -1,4 +1,10 @@
-import React from "react";
+import React, {
+  Component,
+  useEffect,
+  useRef,
+  useState,
+  createRef
+} from "react";
 /* Leaflet related imports */
 import {
     MapContainer,
@@ -8,30 +14,24 @@ import {
     Polyline,
     LayersControl,
     LayerGroup,
-    Circle
+    Rectangle,
+    useMap
 } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import { LatLngExpression, latLng } from "leaflet";
-import { GPS } from "@/stores/GPS/GPSTypes";
-import { AISShip } from "@/stores/AISShips/AISShipsTypes";
-
-export interface IMapsProps {
-    gpsLocation: GPS,
-    gpsPath: LatLngExpression[],
-    globalPath: LatLngExpression[],
-    localPath: LatLngExpression[],
-    aisShips: AISShip[]
-
 import { GPSCoordinate } from "@/stores/GPS/GPSTypes";
 import { AISShip } from "@/stores/AISShips/AISShipsTypes";
+
+import L from 'leaflet';
+import "leaflet-geometryutil";
+import AISShips from "@/models/AISShips";
 
 export interface IMapsProps {
     gpsLocation: GPSCoordinate,
     gpsPath: LatLngExpression[]
     aisShips: AISShip[];
->>>>>>> 38c7b55 (Visualizing AISShips on Maps)
 }
 
 export interface IMapsState {}
@@ -68,16 +68,38 @@ export const convertToLatLng = (obj: any): LatLngExpression => {
 
 export default class Maps extends React.Component<IMapsProps, IMapsState> {
 
+    readonly state: any = {
+        map: null,
+    };
+
+
+    setMapRef = (map: any) => {
+        this.setState((state) => ({ ...state, map: map }));
+    }
+
+
+    rotatePoint = (point, angle, axis) => {
+
+        const map = this.state.map;
+        if (map == null) {
+            return point;
+        }
+
+        return L.GeometryUtil.rotatePoint(
+            map,
+            L.latLng(point[0], point[1]),
+            angle,
+            L.latLng(axis[0], axis[1])
+        );
+    };
+
     renderShips = () => {
         return this.props.aisShips.map((ship, index) => {
             return (
                 <Circle
                     key={index}
                     center={[ship.latitude, ship.longitude]}
-                    radius={50}
-
                     radius={500}
-
                     pathOptions={{ color: 'red' }}>
                     <Popup>
                         {printObjectInfo(ship)}
@@ -100,11 +122,11 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
                             {this.renderShips()}
                         </LayerGroup>
                     </LayersControl.Overlay>
-                    <LayersControl.Overlay name="Local Path" checked>
-                        <Polyline pathOptions={{ color: 'red' }} positions={[this.props.localPath]} />
+                    <LayersControl.Overlay name="Local Path">
+                        <Polyline pathOptions={{ color: 'black' }} positions={[/* Add Local Path here*/]} />
                     </LayersControl.Overlay>
-                    <LayersControl.Overlay name="Global Path" checked>
-                        <Polyline pathOptions={{ color: 'black', opacity: 0.25  }} positions={[this.props.globalPath]} />
+                    <LayersControl.Overlay name="Global Path">
+                        <Polyline pathOptions={{ color: 'black' }} positions={[/* Add Global Path here */]} />
                     </LayersControl.Overlay>
                 </LayersControl>
                 <Marker position={convertToLatLng(this.props.gpsLocation)}>
@@ -114,6 +136,8 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
                 </Marker>
                 <Polyline pathOptions={{ color: 'black' }} positions={this.props.gpsPath} />
         </MapContainer>
-        )
-    }
+    );
+}
+
+
 }
