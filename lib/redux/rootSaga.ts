@@ -1,18 +1,20 @@
-import GPSActions from "@/stores/GPS/GPSActions";
-import gpsSaga from "@/stores/GPS/GPSSagas";
-import GlobalPathActions from "@/stores/GlobalPath/GlobalPathActions";
-import globalPathSaga from "@/stores/GlobalPath/GlobalPathSagas";
-import AISShipsActions from "@/stores/AISShips/AISShipsActions";
-import aisShipsSaga from "@/stores/AISShips/AISShipsSagas";
-import LocalPathActions from "@/stores/LocalPath/LocalPathActions";
-import localPathSaga from "@/stores/LocalPath/LocalPathSagas"
-import { all, call } from "redux-saga/effects";
+import { ForkEffect, all } from 'redux-saga/effects';
+import AISShipsSagas from '@/stores/AISShips/AISShipsSagas';
+import GPSSagas from '@/stores/GPS/GPSSagas';
+import LocalPathSagas from '@/stores/LocalPath/LocalPathSagas';
+import GlobalPathSagas from '@/stores/GlobalPath/GlobalPathSagas';
 
 export function* rootSaga() {
-    yield all([
-        gpsSaga[GPSActions.POLL_GPS](),
-        globalPathSaga[GlobalPathActions.POLL_GLOBALPATH](),
-        aisShipsSaga[AISShipsActions.POLL_AISSHIPS](),
-        localPathSaga[LocalPathActions.POLL_LOCALPATH]()
-    ]);
+  const rootSagaMap = {
+    gps: new GPSSagas().forkSagas(),
+    aisShips: new AISShipsSagas().forkSagas(),
+    localPath: new LocalPathSagas().forkSagas(),
+    globalPath: new GlobalPathSagas().forkSagas(),
+  };
+
+  yield all(combineSagas(rootSagaMap));
+}
+
+function combineSagas(sagaMap: { [s: string]: ForkEffect[] }) {
+  return Object.values(sagaMap).reduce((acc, arr) => acc.concat(arr), []);
 }

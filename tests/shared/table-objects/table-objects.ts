@@ -1,6 +1,6 @@
 export interface ResponseErrorObject {
-    detail?: string
-    title?: string
-    status?: string
-    code?: string
-  }
+  detail?: string;
+  title?: string;
+  status?: string;
+  code?: string;
+}

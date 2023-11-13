@@ -1,3 +1,3 @@
-import World from './world'
+import World from './world';
 
-export default { World }
+export default { World };

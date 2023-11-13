@@ -1,41 +1,43 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-import {
-  decimal2JSON,
-} from './helper/parser';
+import { decimal2JSON } from './helper/parser';
 
 interface WindSensor extends mongoose.Document {
-    speed: mongoose.Types.Decimal128,
-    direction: Number
+  speed: mongoose.Types.Decimal128;
+  direction: Number;
 }
 
 export interface WindSensors extends mongoose.Document {
-    windSensors: WindSensor[]
+  windSensors: WindSensor[];
 }
 
 const WindSensorsSchema = new mongoose.Schema<WindSensors>({
-    windSensors: {
-        type: [
-            {
-                speed: mongoose.Types.Decimal128,
-                direction: Number
-            }
-        ],
-        required: [true, "Missing array of objects in WindSensors interface"],
-        validate: [validateArrayLimit, 'The array length of {PATH} should equal to 2.']
-    }
+  windSensors: {
+    type: [
+      {
+        speed: mongoose.Types.Decimal128,
+        direction: Number,
+      },
+    ],
+    required: [true, 'Missing array of objects in WindSensors interface'],
+    validate: [
+      validateArrayLimit,
+      'The array length of {PATH} should equal to 2.',
+    ],
+  },
 });
 
 function validateArrayLimit(val: any) {
-    return val.length == 2;
-  }
+  return val.length == 2;
+}
 
 WindSensorsSchema.set('toJSON', {
-    transform: (doc, ret) => {
-       // @ts-ignore: Expected 3 arguments, but got 1
-      decimal2JSON(ret);
-      return ret;
-    }
-  });
+  transform: (doc, ret) => {
+    // @ts-ignore: Expected 3 arguments, but got 1
+    decimal2JSON(ret);
+    return ret;
+  },
+});
 
-export default mongoose.models.WindSensors || mongoose.model<WindSensors>("WindSensors", WindSensorsSchema);
+export default mongoose.models.WindSensors ||
+  mongoose.model<WindSensors>('WindSensors', WindSensorsSchema);

@@ -1,18 +1,18 @@
 export type AISShip = {
-    id: Number,
-    latitude: Number,
-    longitude: Number,
-    cog: Number,
-    sog: Number,
-    width: Number,
-    length: Number
-}
+  id: number;
+  latitude: number;
+  longitude: number;
+  cog: number;
+  sog: number;
+  width: number;
+  length: number;
+};
 
 export type AISShips = {
-    ships: AISShip[];
-}
+  ships: AISShip[];
+};
 
 export type AISShipsState = {
-    data: AISShips;
-    error?: any;
+  data: AISShips;
+  error?: any;
 };
