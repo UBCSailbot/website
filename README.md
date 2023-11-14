@@ -38,9 +38,9 @@ When installing a new package to the website, please follow the steps below:
 1. Access the terminal of the website container on Docker.
 
 2. Run the command `npm install <package-name>`.
-   Replace `<package-name>` with the actual name of the package you want to add. - Should you encounter errors related to resolving peer dependencies,
-   please re-run the command with the header `--legacy-peer-deps`.
-   Do not to use `--force` unless you're well aware of the potential consequences.
+   Replace `<package-name>` with the actual name of the package you want to add.
+   - Should you encounter errors related to resolving peer dependencies, please re-run the command with
+   the header `--legacy-peer-deps`. Do not to use `--force` unless you're well aware of the potential consequences.
 
 3. Review the `package.json` file to ensure the new package and its version have been added to the dependencies section.
    - Confirm that `package-lock.json` has also been updated.
@@ -67,12 +67,12 @@ Before merging in new changes to the repository, please execute the following co
 npm run format
 ```
 
-This command runs [Prettier](https://prettier.io/docs/en/index.html) to automatically format the code according to the rules defined in the
-configuration file `.prettierrc`.
+This command runs [Prettier](https://prettier.io/docs/en/index.html) to automatically format the code according to
+the rules defined in the configuration file `.prettierrc`.
 
 ```bash
 npm run lint
 ```
 
-This command runs [ESLint](https://eslint.org/docs/latest/use/getting-started) to analyze the code for potential errors and enforce coding style based on the rules defined
-in the configuration file `.eslintrc`.
+This command runs [ESLint](https://eslint.org/docs/latest/use/getting-started) to analyze the code for potential errors
+and enforce coding style based on the rules defined in the configuration file `.eslintrc`.
