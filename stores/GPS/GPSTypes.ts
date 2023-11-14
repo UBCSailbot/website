@@ -1,10 +1,10 @@
 export interface GPS {
-    latitude: number;
-    longitude: number;
-    speed: number;
-    heading: number;
+  latitude: number;
+  longitude: number;
+  speed: number;
+  heading: number;
 }
 export interface GPSState {
-    data: GPS[];
-    error?: any;
+  data: GPS[];
+  error?: any;
 }

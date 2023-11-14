@@ -1,3 +1,4 @@
+/* eslint-disable */
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 
@@ -12,8 +13,6 @@ module.exports = () => {
   }, {});
 
   return {
-    plugins: [
-      new webpack.DefinePlugin(envKeys)
-    ]
+    plugins: [new webpack.DefinePlugin(envKeys)],
   };
 };

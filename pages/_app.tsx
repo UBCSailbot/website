@@ -1,12 +1,11 @@
-import Head from "next/head";
-import React from "react";
-import type { AppProps } from 'next/app'
+import React from 'react';
+import { Providers } from '@/lib/providers';
+import type { AppProps } from 'next/app';
 
-// import "styles.css";
-
-export default function App({
-    Component,
-    pageProps
-}: AppProps) {
-    return <Component {...pageProps} />
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <Providers>
+      <Component {...pageProps} />
+    </Providers>
+  );
 }

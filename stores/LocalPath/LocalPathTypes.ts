@@ -1,13 +1,13 @@
 export type WayPoint = {
-    latitude: Number,
-    longitude: Number
-}
+  latitude: number;
+  longitude: number;
+};
 
 export type LocalPath = {
-    waypoints: WayPoint[];
-}
+  waypoints: WayPoint[];
+};
 
 export type LocalPathState = {
-    data: LocalPath;
-    error?: any;
-}
+  data: LocalPath;
+  error?: any;
+};

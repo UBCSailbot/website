@@ -1,41 +1,39 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-import {
-  decimal2JSON,
-} from './helper/parser';
+import { decimal2JSON } from './helper/parser';
 
 export interface GPS extends mongoose.Document {
-    latitude: mongoose.Types.Decimal128,
-    longitude: mongoose.Types.Decimal128,
-    speed: mongoose.Types.Decimal128,
-    heading: mongoose.Types.Decimal128
+  latitude: mongoose.Types.Decimal128;
+  longitude: mongoose.Types.Decimal128;
+  speed: mongoose.Types.Decimal128;
+  heading: mongoose.Types.Decimal128;
 }
 
 const GPSSchema = new mongoose.Schema<GPS>({
   latitude: {
     type: mongoose.Types.Decimal128,
-    required: [true, "Missing 'latitude' field in GPS interface"]
+    required: [true, "Missing 'latitude' field in GPS interface"],
   },
   longitude: {
     type: mongoose.Types.Decimal128,
-    required: [true, "Missing 'longitude' field in GPS interface"]
+    required: [true, "Missing 'longitude' field in GPS interface"],
   },
   speed: {
     type: mongoose.Types.Decimal128,
-    required: [true, "Missing 'speed' field in GPS interface"]
+    required: [true, "Missing 'speed' field in GPS interface"],
   },
   heading: {
     type: mongoose.Types.Decimal128,
-    required: [true, "Missing 'latitude' field in GPS interface"]
+    required: [true, "Missing 'latitude' field in GPS interface"],
   },
 });
 
 GPSSchema.set('toJSON', {
   transform: (doc, ret) => {
-     // @ts-ignore: Expected 3 arguments, but got 1
+    // @ts-ignore: Expected 3 arguments, but got 1
     decimal2JSON(ret);
     return ret;
-  }
+  },
 });
 
-export default mongoose.models.GPS || mongoose.model<GPS>("GPS", GPSSchema);
+export default mongoose.models.GPS || mongoose.model<GPS>('GPS', GPSSchema);
