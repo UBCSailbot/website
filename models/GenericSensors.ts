@@ -7,6 +7,7 @@ interface GenericSensor extends mongoose.Document {
 
 export interface GenericSensors extends mongoose.Document {
   genericSensors: GenericSensor[];
+  timestamp: string;
 }
 
 const GenericSensorsSchema = new mongoose.Schema<GenericSensors>({
@@ -19,6 +20,10 @@ const GenericSensorsSchema = new mongoose.Schema<GenericSensors>({
     ],
     required: [true, 'Missing array of objects in GenericSensors interface'],
   },
+  timestamp: {
+    type: String,
+    default: () => new Date().toISOString()
+  }
 });
 
 /* Convert BigInt to a string */

@@ -12,6 +12,7 @@ interface AISShip extends mongoose.Document {
 
 export interface AISShips extends mongoose.Document {
   ships: AISShip[];
+  timestamp: string;
 }
 
 const AISShipsSchema = new mongoose.Schema<AISShips>({
@@ -29,6 +30,10 @@ const AISShipsSchema = new mongoose.Schema<AISShips>({
     ],
     required: [true, 'Missing array of objects in AISShips interface'],
   },
+  timestamp: {
+    type: String,
+    default: () => new Date().toISOString()
+  }
 });
 
 AISShipsSchema.set('toJSON', {

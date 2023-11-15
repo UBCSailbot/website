@@ -9,6 +9,7 @@ interface Battery extends mongoose.Document {
 
 export interface Batteries extends mongoose.Document {
   batteries: Battery[];
+  timestamp: string;
 }
 
 const BatteriesSchema = new mongoose.Schema<Batteries>({
@@ -25,6 +26,10 @@ const BatteriesSchema = new mongoose.Schema<Batteries>({
       'The array length of {PATH} should equal to 2.',
     ],
   },
+  timestamp: {
+    type: String,
+    default: () => new Date().toISOString()
+  }
 });
 
 function validateArrayLimit(val: any) {

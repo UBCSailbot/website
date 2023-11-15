@@ -9,6 +9,7 @@ interface WindSensor extends mongoose.Document {
 
 export interface WindSensors extends mongoose.Document {
   windSensors: WindSensor[];
+  timestamp: string;
 }
 
 const WindSensorsSchema = new mongoose.Schema<WindSensors>({
@@ -25,6 +26,10 @@ const WindSensorsSchema = new mongoose.Schema<WindSensors>({
       'The array length of {PATH} should equal to 2.',
     ],
   },
+  timestamp: {
+    type: String,
+    default: () => new Date().toISOString()
+  }
 });
 
 function validateArrayLimit(val: any) {
