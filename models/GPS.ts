@@ -7,6 +7,7 @@ export interface GPS extends mongoose.Document {
   longitude: mongoose.Types.Decimal128;
   speed: mongoose.Types.Decimal128;
   heading: mongoose.Types.Decimal128;
+  timestamp: string;
 }
 
 const GPSSchema = new mongoose.Schema<GPS>({
@@ -24,8 +25,12 @@ const GPSSchema = new mongoose.Schema<GPS>({
   },
   heading: {
     type: mongoose.Types.Decimal128,
-    required: [true, "Missing 'latitude' field in GPS interface"],
+    required: [true, "Missing 'heading' field in GPS interface"],
   },
+  timestamp: {
+    type: String,
+    default: () => new Date().toISOString()
+  }
 });
 
 GPSSchema.set('toJSON', {
