@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 interface GenericSensor extends mongoose.Document {
-  id: Number;
-  data: BigInt;
+  id: number;
+  data: bigint;
 }
 
 export interface GenericSensors extends mongoose.Document {

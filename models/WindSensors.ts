@@ -4,7 +4,7 @@ import { decimal2JSON } from './helper/parser';
 
 interface WindSensor extends mongoose.Document {
   speed: mongoose.Types.Decimal128;
-  direction: Number;
+  direction: number;
 }
 
 export interface WindSensors extends mongoose.Document {

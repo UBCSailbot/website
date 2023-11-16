@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { decimal2JSON } from './helper/parser';
 
 interface AISShip extends mongoose.Document {
-  id: Number;
+  id: number;
   latitude: mongoose.Types.Decimal128;
   longitude: mongoose.Types.Decimal128;
   speed: mongoose.Types.Decimal128;
