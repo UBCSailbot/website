@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: '/website/.env.local' });
 
 declare global {
-  var mongoose: { conn: null; promise: null }; // This must be a `var` and not a `let / const`
+  var mongoose: any;
 }
 
 const MONGODB_URI = process.env.MONGODB_URI!;
