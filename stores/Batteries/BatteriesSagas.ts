@@ -10,10 +10,9 @@ export default class BatteriesSagas extends BaseSaga {
       try {
         const batteries: Battery[] = yield call(BatteriesService.getBatteries);
         if (batteries.length > 0) {
-          const latestBattery = batteries[batteries.length - 1];
           yield put({
             type: BatteriesActions.REQUEST_BATTERIES_SUCCESS,
-            payload: latestBattery,
+            payload: batteries,
           });
         }
       } catch (e) {
