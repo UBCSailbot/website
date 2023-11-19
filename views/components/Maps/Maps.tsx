@@ -8,12 +8,13 @@ import {
     Polyline,
     LayersControl,
     LayerGroup,
-    Rectangle,
+    Polygon,
 } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import L from 'leaflet';
+import 'leaflet-geometryutil';
 import { GPS } from "@/stores/GPS/GPSTypes";
 import { AISShip } from "@/stores/AISShips/AISShipsTypes";
 
@@ -59,25 +60,6 @@ export const convertToLatLng = (obj: any): L.LatLngExpression => {
     return L.latLng(obj.latitude, obj.longitude)
 }
 
-/**
- Returns LatLng of rotated point around specified LatLng center.
- @param {L.LatLng} latlngPoint: point to rotate
- @param {double} angleDeg: angle to rotate in degrees
- @param {L.LatLng} latlngCenter: center of rotation
- @returns {L.LatLng} rotated point
-*/
-export const rotatePointOnMap = (map: L.Map, latlngPoint: L.LatLngExpression, angleDeg: number, latlngCenter: L.LatLngExpression) => {
-    var maxzoom = map.getMaxZoom();
-    if (maxzoom === Infinity)
-        maxzoom = map.getZoom();
-    var angleRad = angleDeg*Math.PI/180,
-        pPoint = map.project(latlngPoint, maxzoom),
-        pCenter = map.project(latlngCenter, maxzoom),
-        x2 = Math.cos(angleRad)*(pPoint.x-pCenter.x) - Math.sin(angleRad)*(pPoint.y-pCenter.y) + pCenter.x,
-        y2 = Math.sin(angleRad)*(pPoint.x-pCenter.x) + Math.cos(angleRad)*(pPoint.y-pCenter.y) + pCenter.y;
-    return map.unproject(new L.Point(x2,y2), maxzoom);
-}
-
 export default class Maps extends React.Component<IMapsProps, IMapsState> {
     readonly state: IMapsState = {
         map: null,
@@ -87,33 +69,30 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
         this.setState((state) => ({ ...state, map: map }));
     }
 
-    rotatePoint = (point: number[], angle: number, axis: number[]) => {
+    rotatePoint = (point: L.LatLngExpression, angle: number, axis: L.LatLngExpression) => {
         const map = this.state.map;
         if (map == null) {
             return point;
         }
-        const p = rotatePointOnMap(
+        return L.GeometryUtil.rotatePoint(
             map,
-            L.latLng(point[0], point[1]),
+            point,
             angle,
-            L.latLng(axis[0], axis[1])
+            axis
         );
-        console.log("Rotated point:");
-        console.log(p);
-        return p;
     };
 
     renderShips = () => {
         const r_earth = 6378000; // radius of the Earth in meters
         const pi = Math.PI;
-        const scaleFactor = 8; // scale up the box size by 8 times (since the original size of the rectangles were very small and hard to see)
+        const scaleFactor = 1; // scale up the box size by 8 times (since the original size of the rectangles were very small and hard to see)
 
         return this.props.aisShips.map((ship, index) => {
-            let { latitude, longitude, width, length, cog } = ship;
+            const { latitude, longitude, width, length, cog } = ship;
 
             // Assuming that length and width are in meters
-            const dy = (length / 2.1) * scaleFactor; // NOTE: The 2.1 and 1.6 are tentative (they were both = 2 at first), but this change made the rectangles look a bit nicer and proportionate
-            const dx = (width / 1.6) * scaleFactor;
+            const dy = (length / 2) * scaleFactor; // NOTE: The 2.1 and 1.6 are tentative (they were both = 2 at first), but this change made the rectangles look a bit nicer and proportionate
+            const dx = (width / 2) * scaleFactor;
 
             // Calculate the top left and bottom right coordinates of the rectangle
             const new_latitude_north = latitude + (dy / r_earth) * (180 / pi);
@@ -121,27 +100,27 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
             const new_latitude_south = latitude - (dy / r_earth) * (180 / pi);
             const new_longitude_east = longitude + (dx / r_earth) * (180 / pi) / Math.cos(latitude * pi / 180);
 
-            const topLeftRotated = this.rotatePoint([new_latitude_north, new_longitude_west], cog, [latitude, longitude]);
-            const topRightRotated = this.rotatePoint([new_latitude_north, new_longitude_east], cog, [latitude, longitude]);
-            const bottomLeftRotated = this.rotatePoint([new_latitude_south, new_longitude_west], cog, [latitude, longitude]);
-            const bottomRightRotated = this.rotatePoint([new_latitude_south, new_longitude_east], cog, [latitude, longitude]);
+            const topLeftRotated = this.rotatePoint(L.latLng(new_latitude_north, new_longitude_west), cog, L.latLng(latitude, longitude));
+            const topRightRotated= this.rotatePoint(L .latLng(new_latitude_north, new_longitude_east), cog, L.latLng(latitude, longitude));
+            const bottomLeftRotated = this.rotatePoint(L.latLng(new_latitude_south, new_longitude_west), cog, L.latLng(latitude, longitude));
+            const bottomRightRotated = this.rotatePoint(L.latLng(new_latitude_south, new_longitude_east), cog, L.latLng(latitude, longitude));
 
-            const bounds: L.LatLng[] = [
+            const bounds: L.LatLngExpression[] = [
                 topLeftRotated,
                 topRightRotated,
                 bottomRightRotated,
                 bottomLeftRotated
-            ].map((coord) => L.latLng(coord[0], coord[1]));
+            ]
 
             // Rectangle options
             const redOptions = { color: 'red' };
 
             return (
-                <Rectangle key={index} bounds={L.latLngBounds(bounds)} pathOptions={redOptions}>
+                <Polygon key={index} positions={bounds} pathOptions={redOptions}>
                     <Popup>
                         {printObjectInfo(ship)}
                     </Popup>
-                </Rectangle>
+                </Polygon>
             );
         });
     };
