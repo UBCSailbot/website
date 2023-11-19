@@ -29,8 +29,8 @@ const GPSSchema = new mongoose.Schema<GPS>({
   },
   timestamp: {
     type: String,
-    default: () => new Date().toISOString()
-  }
+    default: () => new Date().toISOString(),
+  },
 });
 
 GPSSchema.set('toJSON', {

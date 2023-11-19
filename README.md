@@ -39,8 +39,9 @@ When installing a new package to the website, please follow the steps below:
 
 2. Run the command `npm install <package-name>`.
    Replace `<package-name>` with the actual name of the package you want to add.
+
    - Should you encounter errors related to resolving peer dependencies, please re-run the command with
-   the header `--legacy-peer-deps`. Do not to use `--force` unless you're well aware of the potential consequences.
+     the header `--legacy-peer-deps`. Do not to use `--force` unless you're well aware of the potential consequences.
 
 3. Review the `package.json` file to ensure the new package and its version have been added to the dependencies section.
    - Confirm that `package-lock.json` has also been updated.

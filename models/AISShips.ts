@@ -32,8 +32,8 @@ const AISShipsSchema = new mongoose.Schema<AISShips>({
   },
   timestamp: {
     type: String,
-    default: () => new Date().toISOString()
-  }
+    default: () => new Date().toISOString(),
+  },
 });
 
 AISShipsSchema.set('toJSON', {
