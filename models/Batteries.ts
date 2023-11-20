@@ -28,8 +28,8 @@ const BatteriesSchema = new mongoose.Schema<Batteries>({
   },
   timestamp: {
     type: String,
-    default: () => new Date().toISOString()
-  }
+    default: () => new Date().toISOString(),
+  },
 });
 
 function validateArrayLimit(val: any) {

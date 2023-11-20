@@ -24,8 +24,8 @@ const LocalPathSchema = new mongoose.Schema<LocalPath>({
   },
   timestamp: {
     type: String,
-    default: () => new Date().toISOString()
-  }
+    default: () => new Date().toISOString(),
+  },
 });
 
 LocalPathSchema.set('toJSON', {

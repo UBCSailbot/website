@@ -22,8 +22,8 @@ const GenericSensorsSchema = new mongoose.Schema<GenericSensors>({
   },
   timestamp: {
     type: String,
-    default: () => new Date().toISOString()
-  }
+    default: () => new Date().toISOString(),
+  },
 });
 
 /* Convert BigInt to a string */
