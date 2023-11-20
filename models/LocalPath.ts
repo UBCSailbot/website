@@ -9,6 +9,7 @@ interface WayPoint extends mongoose.Document {
 
 export interface LocalPath extends mongoose.Document {
   waypoints: WayPoint[];
+  timestamp: string;
 }
 
 const LocalPathSchema = new mongoose.Schema<LocalPath>({
@@ -21,6 +22,10 @@ const LocalPathSchema = new mongoose.Schema<LocalPath>({
     ],
     required: [true, 'Missing array of objects in LocalPath interface'],
   },
+  timestamp: {
+    type: String,
+    default: () => new Date().toISOString()
+  }
 });
 
 LocalPathSchema.set('toJSON', {

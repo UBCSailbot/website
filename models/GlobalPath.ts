@@ -9,6 +9,7 @@ interface WayPoint extends mongoose.Document {
 
 export interface GlobalPath extends mongoose.Document {
   waypoints: WayPoint[];
+  timestamp: string;
 }
 
 const GlobalPathSchema = new mongoose.Schema<GlobalPath>({
@@ -21,6 +22,10 @@ const GlobalPathSchema = new mongoose.Schema<GlobalPath>({
     ],
     required: [true, 'Missing array of objects in GlobalPath interface'],
   },
+  timestamp: {
+    type: String,
+    default: () => new Date().toISOString()
+  }
 });
 
 GlobalPathSchema.set('toJSON', {
