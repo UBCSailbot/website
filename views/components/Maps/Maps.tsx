@@ -85,14 +85,13 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
     renderShips = () => {
         const r_earth = 6378000; // radius of the Earth in meters
         const pi = Math.PI;
-        const scaleFactor = 1; // scale up the box size by 8 times (since the original size of the rectangles were very small and hard to see)
 
         return this.props.aisShips.map((ship, index) => {
             const { latitude, longitude, width, length, cog } = ship;
 
             // Assuming that length and width are in meters
-            const dy = (length / 2) * scaleFactor; // NOTE: The 2.1 and 1.6 are tentative (they were both = 2 at first), but this change made the rectangles look a bit nicer and proportionate
-            const dx = (width / 2) * scaleFactor;
+            const dy = (length / 2);
+            const dx = (width / 2);
 
             // Calculate the top left and bottom right coordinates of the rectangle
             const new_latitude_north = latitude + (dy / r_earth) * (180 / pi);
@@ -124,7 +123,6 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
             );
         });
     };
-
 
     render() {
         return (
