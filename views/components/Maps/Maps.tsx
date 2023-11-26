@@ -65,10 +65,28 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
         map: null,
     };
 
+    /**
+    * Sets the map reference in the component's state.
+    *
+    * @param map - The Leaflet map instance to be stored in the component's state.
+    *              This instance is used for various map operations within the component.
+    */
     setMapRef = (map: L.Map) => {
         this.setState((state) => ({ ...state, map: map }));
     }
 
+    /**
+    * Rotates a point around a specified axis by a given angle.
+    *
+    * @param point - The point (latitude and longitude) to be rotated. Expects an L.LatLngExpression.
+    * @param angle - The angle of rotation in degrees. Positive values will rotate
+    *                the point in a clockwise direction, while negative values rotate
+    *                counterclockwise.
+    * @param axis  - The axis point (latitude and longitude) around which the rotation
+    *                will occur. Expects an L.LatLngExpression.
+    * @returns     - The rotated point as an L.LatLngExpression. If the map is not
+    *                initialized, the original point is returned without modification.
+    */
     rotatePoint = (point: L.LatLngExpression, angle: number, axis: L.LatLngExpression) => {
         const map = this.state.map;
         if (map == null) {
@@ -82,9 +100,20 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
         );
     };
 
+    /**
+    * Renders ships on a map as rectangles. Each ship is represented by a rectangle
+    * calculated based on its latitude, longitude, width, length, and course over ground (cog).
+    * The method calculates the coordinates for the corners of each rectangle, rotates them
+    * according to the ship's cog, and then renders a Polygon on the map for each ship.
+    *
+    * @returns - An array of React Polygon components. Each Polygon represents a ship and
+    *            is positioned on the map based on the ship's data. The Polygons are styled
+    *            with red borders and contain a Popup that shows the ship's information.
+    *            If the aisShips prop is empty, no Polygons are rendered.
+    */
     renderShips = () => {
-        const r_earth = 6378000; // radius of the Earth in meters
-        const pi = Math.PI;
+        const EARTH_RADIUS_METERS = 6378000;
+        const PI = Math.PI;
 
         return this.props.aisShips.map((ship, index) => {
             const { latitude, longitude, width, length, cog } = ship;
@@ -94,15 +123,15 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
             const dx = (width / 2);
 
             // Calculate the top left and bottom right coordinates of the rectangle
-            const new_latitude_north = latitude + (dy / r_earth) * (180 / pi);
-            const new_longitude_west = longitude - (dx / r_earth) * (180 / pi) / Math.cos(latitude * pi / 180);
-            const new_latitude_south = latitude - (dy / r_earth) * (180 / pi);
-            const new_longitude_east = longitude + (dx / r_earth) * (180 / pi) / Math.cos(latitude * pi / 180);
+            const newLatitudeNorth = latitude + (dy / EARTH_RADIUS_METERS) * (180 / PI);
+            const newLongitudeWest = longitude - (dx / EARTH_RADIUS_METERS) * (180 / PI) / Math.cos(latitude * PI / 180);
+            const newLatitudeSouth = latitude - (dy / EARTH_RADIUS_METERS) * (180 / PI);
+            const newLongitudeEast = longitude + (dx / EARTH_RADIUS_METERS) * (180 / PI) / Math.cos(latitude * PI / 180);
 
-            const topLeftRotated = this.rotatePoint(L.latLng(new_latitude_north, new_longitude_west), cog, L.latLng(latitude, longitude));
-            const topRightRotated= this.rotatePoint(L .latLng(new_latitude_north, new_longitude_east), cog, L.latLng(latitude, longitude));
-            const bottomLeftRotated = this.rotatePoint(L.latLng(new_latitude_south, new_longitude_west), cog, L.latLng(latitude, longitude));
-            const bottomRightRotated = this.rotatePoint(L.latLng(new_latitude_south, new_longitude_east), cog, L.latLng(latitude, longitude));
+            const topLeftRotated = this.rotatePoint(L.latLng(newLatitudeNorth, newLongitudeWest), cog, L.latLng(latitude, longitude));
+            const topRightRotated= this.rotatePoint(L .latLng(newLatitudeNorth, newLongitudeEast), cog, L.latLng(latitude, longitude));
+            const bottomLeftRotated = this.rotatePoint(L.latLng(newLatitudeSouth, newLongitudeWest), cog, L.latLng(latitude, longitude));
+            const bottomRightRotated = this.rotatePoint(L.latLng(newLatitudeSouth, newLongitudeEast), cog, L.latLng(latitude, longitude));
 
             const bounds: L.LatLngExpression[] = [
                 topLeftRotated,
