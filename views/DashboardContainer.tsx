@@ -1,34 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LineChartComponent from './components/LineChart/LineChart';
+import { GPS, GPSState } from '@/stores/GPS/GPSTypes';
 
-export interface DashboardContainerProps {}
+export interface DashboardContainerProps {
+  gpsData: GPS[]
+}
 
 class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
   render() {
 
-    const sampleData = [
-      { exampleXKey: 1, exampleYKey: 200 },
-      { exampleXKey: 2, exampleYKey: 300 },
-    ];
-
-    const xAxisKey = 'exampleXKey';
-    const yAxisKey = 'exampleYKey';
+    const { gpsData } = this.props;
+    const chartData = gpsData.map(gpsPoint => ({
+      timestamp: gpsPoint.timestamp,
+      speed: gpsPoint.speed
+    }));
 
     return (
       <div>
         <h1>Dashboard Page</h1>
         <LineChartComponent
-          data={sampleData}
-          xAxisKey={xAxisKey}
-          yAxisKey={yAxisKey}
+          data={chartData}
+          xAxisKey="timestamp"
+          yAxisKey="speed"
         />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: any) => ({});
+const mapStateToProps = (state: any) => ({
+  gpsData: state.gps.data
+});
 
 const mapDispatchToProps = {};
 
