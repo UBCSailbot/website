@@ -28,3 +28,18 @@ jobs:
       rebuild-docs: true
     secrets:
       PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+  linter:
+    runs-on: ubuntu-latest
+    name: eslint
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          repository: UBCSailbot/${{ github.event.repository.name }}
+      - name: Install node-js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm install
+      - run: npm run format && npm run lint
