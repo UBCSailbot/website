@@ -28,8 +28,8 @@ const WindSensorsSchema = new mongoose.Schema<WindSensors>({
   },
   timestamp: {
     type: String,
-    default: () => new Date().toISOString()
-  }
+    default: () => new Date().toISOString(),
+  },
 });
 
 function validateArrayLimit(val: any) {

@@ -24,8 +24,8 @@ const GlobalPathSchema = new mongoose.Schema<GlobalPath>({
   },
   timestamp: {
     type: String,
-    default: () => new Date().toISOString()
-  }
+    default: () => new Date().toISOString(),
+  },
 });
 
 GlobalPathSchema.set('toJSON', {
