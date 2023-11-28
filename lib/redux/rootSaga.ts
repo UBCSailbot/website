@@ -4,6 +4,7 @@ import GPSSagas from '@/stores/GPS/GPSSagas';
 import LocalPathSagas from '@/stores/LocalPath/LocalPathSagas';
 import GlobalPathSagas from '@/stores/GlobalPath/GlobalPathSagas';
 import BatteriesSagas from '@/stores/Batteries/BatteriesSagas';
+import WindSensorsSagas from '@/stores/WindSensors/WindSensorsSagas';
 
 export function* rootSaga() {
   const rootSagaMap = {
@@ -12,6 +13,7 @@ export function* rootSaga() {
     localPath: new LocalPathSagas().forkSagas(),
     globalPath: new GlobalPathSagas().forkSagas(),
     batteries: new BatteriesSagas().forkSagas(),
+    windSensors: new WindSensorsSagas().forkSagas(),
   };
 
   yield all(combineSagas(rootSagaMap));
