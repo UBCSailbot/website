@@ -1,28 +1,30 @@
-import BaseSaga from "@/utils/BaseSaga";
-import GenericSensorsActions from "./GenericSensorsActions";
+import BaseSaga from '@/utils/BaseSaga';
+import GenericSensorsActions from './GenericSensorsActions';
 import { call, delay, put } from 'redux-saga/effects';
-import { GenericSensor } from "./GenericSensorsTypes";
-import { GenericSensorsService } from "./GenericSensorsService";
+import { GenericSensor } from './GenericSensorsTypes';
+import { GenericSensorsService } from './GenericSensorsService';
 
 export default class GenericSensorsSagas extends BaseSaga {
-    *[GenericSensorsActions.POLL_GENERICSENSORS]() {
-      while (true) {
-        try {
-          const genericSensors: GenericSensor[] = yield call(GenericSensorsService.getGenericSensors);
-          if (genericSensors.length > 0) {
-            yield put({
-              type: GenericSensorsActions.REQUEST_GENERICSENSORS_SUCCESS,
-              payload: genericSensors,
-            });
-          }
-        } catch (e) {
+  *[GenericSensorsActions.POLL_GENERICSENSORS]() {
+    while (true) {
+      try {
+        const genericSensors: GenericSensor[] = yield call(
+          GenericSensorsService.getGenericSensors,
+        );
+        if (genericSensors.length > 0) {
           yield put({
-            type: GenericSensorsActions.REQUEST_GENERICSENSORS_FAILURE,
-            error: (e as Error).message,
+            type: GenericSensorsActions.REQUEST_GENERICSENSORS_SUCCESS,
+            payload: genericSensors,
           });
         }
-        // Poll every minute. Adjust the time as needed.
-        yield delay(process.env.NEXT_PUBLIC_POLLING_TIME_MS);
+      } catch (e) {
+        yield put({
+          type: GenericSensorsActions.REQUEST_GENERICSENSORS_FAILURE,
+          error: (e as Error).message,
+        });
       }
+      // Poll every minute. Adjust the time as needed.
+      yield delay(process.env.NEXT_PUBLIC_POLLING_TIME_MS);
     }
   }
+}

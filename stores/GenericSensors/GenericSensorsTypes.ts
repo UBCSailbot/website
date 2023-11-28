@@ -1,13 +1,13 @@
 export type GenericSensor = {
-    id: number;
-    data: bigint;
+  id: number;
+  data: bigint;
 };
 
 export type GenericSensors = {
-    genericSensors: GenericSensor[];
+  genericSensors: GenericSensor[];
 };
 
 export type GenericSensorsState = {
-    data: GenericSensors;
-    error?: any;
-}
+  data: GenericSensors;
+  error?: any;
+};
