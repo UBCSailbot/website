@@ -1,13 +1,13 @@
 export type WindSensor = {
-    speed: number;
-    direction: number;
+  speed: number;
+  direction: number;
 };
 
 export type WindSensors = {
-    windSensors: WindSensor[];
+  windSensors: WindSensor[];
 };
 
 export type WindSensorsState = {
-    data: WindSensors;
-    error?: any;
-}
+  data: WindSensors;
+  error?: any;
+};
