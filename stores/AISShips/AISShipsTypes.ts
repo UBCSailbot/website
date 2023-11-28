@@ -3,6 +3,7 @@ export type AISShip = {
   latitude: number;
   longitude: number;
   cog: number;
+  rot: number;
   sog: number;
   width: number;
   length: number;
