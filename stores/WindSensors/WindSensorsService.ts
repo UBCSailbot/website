@@ -7,7 +7,7 @@ export const WindSensorsService = {
     let isError = false;
 
     return yield fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_HOST}:${process.env.NEXT_PUBLIC_SERVER_PORT}/api/batteries`,
+      `${process.env.NEXT_PUBLIC_SERVER_HOST}:${process.env.NEXT_PUBLIC_SERVER_PORT}/api/wind-sensors`,
       {
         method: 'GET',
       },
