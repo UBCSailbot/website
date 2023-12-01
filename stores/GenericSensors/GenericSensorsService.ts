@@ -1,3 +1,6 @@
+/**
+ * Defines all saga methods to make requests to the LocalPath interface.
+ */
 export const GenericSensorsService = {
   *getGenericSensors(): Generator<any, any, any> {
     let isError = false;
