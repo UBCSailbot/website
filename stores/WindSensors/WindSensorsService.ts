@@ -1,3 +1,6 @@
+/**
+ * Defines all saga methods to make requests to the LocalPath interface.
+ */
 export const WindSensorsService = {
   *getWindSensors(): Generator<any, any, any> {
     let isError = false;
