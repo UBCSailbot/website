@@ -1,5 +1,5 @@
 /**
- * Defines all saga methods to make requests to the LocalPath interface.
+ * Defines all saga methods to make requests to the GenericSensors interface.
  */
 export const GenericSensorsService = {
   *getGenericSensors(): Generator<any, any, any> {
