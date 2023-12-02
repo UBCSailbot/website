@@ -6,6 +6,7 @@ import AISShipsReducer from '@/stores/AISShips/AISShipsReducers';
 import LocalPathReducer from '@/stores/LocalPath/LocalPathReducers';
 import BatteriesReducer from '@/stores/Batteries/BatteriesReducers';
 import WindSensorsReducer from '@/stores/WindSensors/WindSensorsReducers';
+import GenericSensorsReducer from '@/stores/GenericSensors/GenericSensorsReducers';
 
 export function rootReducer() {
   const reducerMap = {
@@ -15,6 +16,7 @@ export function rootReducer() {
     globalPath: new GlobalPathReducer().reducer,
     batteries: new BatteriesReducer().reducer,
     windSensors: new WindSensorsReducer().reducer,
+    genericSensors: new GenericSensorsReducer().reducer,
   };
 
   return combineReducers(reducerMap);
