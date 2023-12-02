@@ -1,5 +1,5 @@
 /**
- * Defines all saga methods to make requests to the LocalPath interface.
+ * Defines all saga methods to make requests to the WindSensors interface.
  */
 export const WindSensorsService = {
   *getWindSensors(): Generator<any, any, any> {
