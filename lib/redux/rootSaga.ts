@@ -4,6 +4,7 @@ import GPSSagas from '@/stores/GPS/GPSSagas';
 import LocalPathSagas from '@/stores/LocalPath/LocalPathSagas';
 import GlobalPathSagas from '@/stores/GlobalPath/GlobalPathSagas';
 import BatteriesSagas from '@/stores/Batteries/BatteriesSagas';
+import WindSensorsSagas from '@/stores/WindSensors/WindSensorsSagas';
 import GenericSensorsSagas from '@/stores/GenericSensors/GenericSensorsSagas';
 
 export function* rootSaga() {
@@ -13,6 +14,7 @@ export function* rootSaga() {
     localPath: new LocalPathSagas().forkSagas(),
     globalPath: new GlobalPathSagas().forkSagas(),
     batteries: new BatteriesSagas().forkSagas(),
+    windSensors: new WindSensorsSagas().forkSagas(),
     genericSensors: new GenericSensorsSagas().forkSagas(),
   };
 
