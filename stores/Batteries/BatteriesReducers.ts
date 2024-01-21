@@ -5,9 +5,7 @@ import { AnyAction } from 'redux';
 
 export default class BatteriesReducer extends BaseReducer {
   initialState: BatteriesState = {
-    data: {
-      batteries: [],
-    },
+    data: [],
     error: null,
   };
 
