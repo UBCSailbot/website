@@ -9,59 +9,59 @@ import { WindSensors } from '@/stores/WindSensors/WindSensorsTypes';
 export interface DashboardContainerProps {
   gpsData: GPS[]
   batteriesData: Batteries[]
-  // windSensorsData: WindSensors[]
+  windSensorsData: WindSensors[]
 }
 
 class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
   render() {
 
-    const { gpsData, batteriesData, windSensorsData } = this.props;
+    const { gps, batteries, windSensors } = this.props;
 
-    const GPSchartData = gpsData.map(gpsPoint => ({
+    const gpsChartData = gps.data.map(gpsPoint => ({
       timestamp: gpsPoint.timestamp,
       speed: gpsPoint.speed
     }));
 
-   const batteriesChartData_Voltage = batteriesData.map((batteriesPoint) => ({
+   const batteriesChartDataVoltage = batteries.data.map((batteriesPoint) => ({
       timestamp: batteriesPoint.timestamp,
       battery1Voltage: batteriesPoint.batteries[0].voltage,
       battery2Voltage: batteriesPoint.batteries[1].voltage
     }));
 
-    const batteriesChartData_Current = batteriesData.map((batteriesPoint) => ({
+    const batteriesChartDataCurrent = batteries.data.map((batteriesPoint) => ({
       timestamp: batteriesPoint.timestamp,
       battery1Current: batteriesPoint.batteries[0].current,
       Battery2Current: batteriesPoint.batteries[1].current
     }));
-/*
-    const windSensorsChartData = windSensorsData.map((windSensorsPoint) => ({
+
+    const windSensorsChartData = windSensors.data.map((windSensorsPoint) => ({
       timestamp: windSensorsPoint.timestamp,
       windSensor1Speed: windSensorsPoint.windSensors[0].speed,
       windSensor22Speed: windSensorsPoint.windSensors[1].speed,
     }));
-*/
+
     return (
       <div>
         <h1>Dashboard Page</h1>
         <LineChartComponent
-          data={GPSchartData}
+          data={gpsChartData}
           xAxisKey="timestamp"
           yAxisKey="speed"
         />
         <MultiLineChartComponent
-          data={batteriesChartData_Voltage}
+          data={batteriesChartDataVoltage}
           xAxisKey="timestamp"
           yAxisKey1="battery1Voltage"
           yAxisKey2="battery2Voltage"
         />
         <MultiLineChartComponent
-          data={batteriesChartData_Current}
+          data={batteriesChartDataCurrent}
           xAxisKey="timestamp"
           yAxisKey1="battery1Current"
           yAxisKey2="battery2Current"
         />
         <MultiLineChartComponent
-          data={[]}
+          data={windSensorsChartData}
           xAxisKey="timestamp"
           yAxisKey1="windSensor1Speed"
           yAxisKey2="windSensor2Speed"
@@ -72,9 +72,9 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
 }
 
 const mapStateToProps = (state: any) => ({
-  gpsData: state.gps.data,
-  batteriesData: state.batteries.data
-  // windSensorsData: state.windSensors.data
+  gps: state.gps,
+  batteries: state.batteries,
+  windSensors: state.windSensors
 });
 
 const mapDispatchToProps = {};
