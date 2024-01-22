@@ -5,9 +5,7 @@ import { AnyAction } from 'redux';
 
 export default class WindSensorsReducer extends BaseReducer {
   initialState: WindSensorsState = {
-    data: {
-      windSensors: [],
-    },
+    data: [],
     error: null,
   };
 
