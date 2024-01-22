@@ -59,7 +59,7 @@ def preload_data():
     write_to_mongodb(local_path_data[0], local_path)
     write_to_mongodb(ais_ships_data[0], ais_ships)
     write_to_mongodb(batteries_data[0], batteries)
-    write_to_mongodb(wind_sensors[0], wind_sensors)
+    write_to_mongodb(wind_sensors_data[0], wind_sensors)
     print("\nDone\n")
 
 
@@ -101,8 +101,8 @@ while True:
         time.sleep(2)
         for i in range(1, len(gps_data)):
             write_to_mongodb(gps_data[i], gps)
-            write_to_mongodb(batteries[i], batteries)
-            write_to_mongodb(wind_sensors[i], wind_sensors)
+            write_to_mongodb(batteries_data[i], batteries)
+            write_to_mongodb(wind_sensors_data[i], wind_sensors)
             lp_len = len(local_path_data[j]["waypoints"]) - 1
             if (
                 local_path_data[j]["waypoints"][lp_len]["latitude"] == gps_data[i]["latitude"]
@@ -119,8 +119,8 @@ while True:
         time.sleep(2)
         for i in range(1, len(gps_data)):
             write_to_mongodb(gps_data[i], gps)
-            write_to_mongodb(batteries[i], batteries)
-            write_to_mongodb(wind_sensors[i], wind_sensors)
+            write_to_mongodb(batteries_data[i], batteries)
+            write_to_mongodb(wind_sensors_data[i], wind_sensors)
             if (
                 local_path_data[j]["waypoints"][1]["latitude"] == gps_data[i]["latitude"]
                 and local_path_data[j]["waypoints"][1]["longitude"] == gps_data[i]["longitude"]
