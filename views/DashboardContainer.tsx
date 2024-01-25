@@ -13,6 +13,16 @@ export interface DashboardContainerProps {
 }
 
 class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
+
+  state = {
+    showBattery1Voltage: true,
+    showBattery2Voltage: true,
+    showBattery1Current: true,
+    showBattery2Current: true,
+    showWindSensors1Speed: true,
+    showWindSensors2Speed: true
+  }
+
   render() {
 
     const { gps, batteries, windSensors } = this.props;
@@ -43,28 +53,85 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
     return (
       <div>
         <h1>Dashboard Page</h1>
+
         <LineChartComponent
           data={gpsChartData}
           xAxisKey="timestamp"
           yAxisKey="speed"
         />
+
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={this.state.showBattery1Voltage}
+              onChange={() => this.setState({ showBattery1Voltage: !this.state.showBattery1Voltage })}
+            /> Show Battery 1 Voltage
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={this.state.showBattery2Voltage}
+              onChange={() => this.setState({ showBattery2Voltage: !this.state.showBattery2Voltage })}
+            /> Show Battery 2 Voltage
+          </label>
+        </div>
         <MultiLineChartComponent
           data={batteriesChartDataVoltage}
           xAxisKey="timestamp"
           yAxisKey1="battery1Voltage"
           yAxisKey2="battery2Voltage"
+          showYAxisKey1={this.state.showBattery1Voltage}
+          showYAxisKey2={this.state.showBattery2Voltage}
         />
+
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              checked={this.state.showBattery1Current}
+              onChange={() => this.setState({ showBattery1Current: !this.state.showBattery1Current })}
+            /> Show Battery 1 Current
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={this.state.showBattery2Current}
+              onChange={() => this.setState({ showBattery2Current: !this.state.showBattery2Current })}
+            /> Show Battery 2 Current
+          </label>
+        </div>
         <MultiLineChartComponent
           data={batteriesChartDataCurrent}
           xAxisKey="timestamp"
           yAxisKey1="battery1Current"
           yAxisKey2="battery2Current"
+          showYAxisKey1={this.state.showBattery1Current}
+          showYAxisKey2={this.state.showBattery2Current}
         />
+            <div>
+      <label>
+        <input
+          type="checkbox"
+          checked={this.state.showWindSensors1Speed}
+          onChange={() => this.setState({ showWindSensors1Speed: !this.state.showWindSensors1Speed })}
+        /> Show Wind Sensor 1 Speed
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          checked={this.state.showWindSensors2Speed}
+          onChange={() => this.setState({ showWindSensors2Speed: !this.state.showWindSensors2Speed })}
+        /> Show Wind Sensor 2 Speed
+      </label>
+    </div>
         <MultiLineChartComponent
           data={windSensorsChartData}
           xAxisKey="timestamp"
           yAxisKey1="windSensor1Speed"
           yAxisKey2="windSensor2Speed"
+          showYAxisKey1={this.state.showWindSensors1Speed}
+          showYAxisKey2={this.state.showWindSensors2Speed}
         />
       </div>
     );
@@ -72,9 +139,9 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
 }
 
 const mapStateToProps = (state: any) => ({
-  gpsData: state.gps,
-  batteriesData: state.batteries,
-  windSensorsData: state.windSensors
+  gps: state.gps,
+  batteries: state.batteries,
+  windSensors: state.windSensors
 });
 
 const mapDispatchToProps = {};
