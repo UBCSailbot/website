@@ -1,0 +1,290 @@
+[
+  {
+    "batteries": [
+      {
+        "voltage": 3,
+        "current": -5
+      },
+      {
+        "voltage:": 3,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 1,
+        "current": -5
+      },
+      {
+        "voltage:": 5,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 6,
+        "current": -5
+      },
+      {
+        "voltage:": -1,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": -5,
+        "current": -5
+      },
+      {
+        "voltage:": -9,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 10,
+        "current": -5
+      },
+      {
+        "voltage:": 6,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 0,
+        "current": -5
+      },
+      {
+        "voltage:": -6,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": -1,
+        "current": -5
+      },
+      {
+        "voltage:": -4,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 9,
+        "current": -5
+      },
+      {
+        "voltage:": 5,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": -9,
+        "current": -5
+      },
+      {
+        "voltage:": -9,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": -7,
+        "current": -5
+      },
+      {
+        "voltage:": 0,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 2,
+        "current": -5
+      },
+      {
+        "voltage:": 1,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 5,
+        "current": -5
+      },
+      {
+        "voltage:": 9,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 7,
+        "current": -5
+      },
+      {
+        "voltage:": -5,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": -2,
+        "current": -5
+      },
+      {
+        "voltage:": -2,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": -2,
+        "current": -5
+      },
+      {
+        "voltage:": -10,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 7,
+        "current": -5
+      },
+      {
+        "voltage:": 1,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 7,
+        "current": -5
+      },
+      {
+        "voltage:": 1,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": -2,
+        "current": -5
+      },
+      {
+        "voltage:": -6,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 3,
+        "current": -5
+      },
+      {
+        "voltage:": -2,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": -9,
+        "current": -5
+      },
+      {
+        "voltage:": -4,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": -1,
+        "current": -5
+      },
+      {
+        "voltage:": 4,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 1,
+        "current": -5
+      },
+      {
+        "voltage:": 1,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": 9,
+        "current": -5
+      },
+      {
+        "voltage:": -5,
+        "current:": -5
+      }
+    ]
+  },
+  {
+    "batteries": [
+      {
+        "voltage": -10,
+        "current": -5
+      },
+      {
+        "voltage:": -1,
+        "current:": -5
+      }
+    ]
+  }
+]
