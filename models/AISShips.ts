@@ -29,7 +29,7 @@ const AISShipsSchema = new mongoose.Schema<AISShips>({
         rot: mongoose.Types.Decimal128,
         sog: mongoose.Types.Decimal128,
         width: mongoose.Types.Decimal128,
-        length: mongoose.Types.Decimal128
+        length: mongoose.Types.Decimal128,
       },
     ],
     required: [true, 'Missing array of objects in AISShips interface'],
