@@ -2,7 +2,7 @@ import json
 import random
 
 # Constants
-no_of_objects = 24
+no_of_objects = 36
 
 max_voltage = 10
 min_voltage = -10
@@ -24,17 +24,17 @@ def write_battery_json():
                 "batteries": [
                     {
                         "voltage": random.randint(min_voltage, max_voltage),
-                        "current": random.randint(min_current, min_current),
+                        "current": random.randint(min_current, max_current),
                     },
                     {
                         "voltage:": random.randint(min_voltage, max_voltage),
-                        "current:": random.randint(min_current, min_current),
+                        "current:": random.randint(min_current, max_current),
                     },
                 ]
             }
         )
 
-    with open("./tests/simulation/data/batteries.json", "w") as f:
+    with open("./tests/Simulation/data/batteries.json", "w") as f:
         json.dump(battery_data, f, indent=4)
 
 
@@ -57,7 +57,7 @@ def write_wind_sensors_json():
             }
         )
 
-    with open("./tests/simulation/data/wind_sensors.json", "w") as f:
+    with open("./tests/Simulation/data/wind_sensors.json", "w") as f:
         json.dump(wind_sensors_data, f, indent=4)
 
 

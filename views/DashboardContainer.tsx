@@ -7,9 +7,9 @@ import { Batteries } from '@/stores/Batteries/BatteriesTypes';
 import { WindSensors } from '@/stores/WindSensors/WindSensorsTypes';
 
 export interface DashboardContainerProps {
-  gpsData: GPS[];
-  batteriesData: Batteries[];
-  windSensorsData: WindSensors[];
+  gps: GPS[];
+  batteries: Batteries[];
+  windSensors: WindSensors[];
 }
 
 class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
@@ -71,9 +71,9 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
 }
 
 const mapStateToProps = (state: any) => ({
-  gpsData: state.gps,
-  batteriesData: state.batteries,
-  windSensorsData: state.windSensors,
+  gps: state.gps,
+  batteries: state.batteries,
+  windSensors: state.windSensors,
 });
 
 const mapDispatchToProps = {};

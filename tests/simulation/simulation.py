@@ -40,7 +40,7 @@ local_path = db["localpaths"]
 global_path = db["globalpaths"]
 ais_ships = db["aisships"]
 batteries = db["batteries"]
-wind_sensors = db["wind_sensors"]
+wind_sensors = db["windsensors"]
 
 
 def write_to_mongodb(data, collection):
