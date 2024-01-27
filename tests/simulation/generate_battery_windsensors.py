@@ -2,17 +2,23 @@ import json
 import random
 
 # Constants
-no_of_objects = 24
+no_of_objects = 36
 
+# voltage (volts)
 max_voltage = 10
-min_voltage = -10
-max_current = 5
-min_current = -5
+min_voltage = 5
 
-min_speed = 0
-max_speed = 25
-min_direction = -2
-max_direction = 2
+# current (amperes)
+max_current = 5
+min_current = 3
+
+# speed (km/h)
+max_speed = 22
+min_speed = 10
+
+# angle convention (degrees)
+min_direction = -180
+max_direction = 180
 
 
 def write_battery_json():
@@ -24,11 +30,11 @@ def write_battery_json():
                 "batteries": [
                     {
                         "voltage": random.randint(min_voltage, max_voltage),
-                        "current": random.randint(min_current, min_current),
+                        "current": random.randint(min_current, max_current),
                     },
                     {
                         "voltage:": random.randint(min_voltage, max_voltage),
-                        "current:": random.randint(min_current, min_current),
+                        "current:": random.randint(min_current, max_current),
                     },
                 ]
             }
