@@ -4,15 +4,21 @@ import random
 # Constants
 no_of_objects = 36
 
+# voltage (volts)
 max_voltage = 10
-min_voltage = -10
-max_current = 5
-min_current = -5
+min_voltage = 5
 
-min_speed = 0
-max_speed = 25
-min_direction = -2
-max_direction = 2
+# current (amperes)
+max_current = 5
+min_current = 3
+
+# speed (km/h)
+max_speed = 22
+min_speed = 10
+
+# angle convention (degrees)
+min_direction = -180
+max_direction = 180
 
 
 def write_battery_json():
@@ -34,7 +40,7 @@ def write_battery_json():
             }
         )
 
-    with open("./tests/Simulation/data/batteries.json", "w") as f:
+    with open("./tests/simulation/data/batteries.json", "w") as f:
         json.dump(battery_data, f, indent=4)
 
 
@@ -57,7 +63,7 @@ def write_wind_sensors_json():
             }
         )
 
-    with open("./tests/Simulation/data/wind_sensors.json", "w") as f:
+    with open("./tests/simulation/data/wind_sensors.json", "w") as f:
         json.dump(wind_sensors_data, f, indent=4)
 
 
