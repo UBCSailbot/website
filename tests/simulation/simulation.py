@@ -58,8 +58,6 @@ def preload_data():
     write_to_mongodb(global_path_data[0], global_path)
     write_to_mongodb(local_path_data[0], local_path)
     write_to_mongodb(ais_ships_data[0], ais_ships)
-    write_to_mongodb(batteries_data[0], batteries)
-    write_to_mongodb(wind_sensors_data[0], wind_sensors)
     print("\nDone\n")
 
 
