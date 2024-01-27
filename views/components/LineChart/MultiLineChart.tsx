@@ -15,6 +15,7 @@ export interface MultiLineChartProps {
   xAxisKey: string;
   yAxisKey1: string;
   yAxisKey2: string;
+  unit: string;
 }
 
 export interface MultiLineChartState {}
@@ -24,7 +25,7 @@ export default class MultiLineChartComponent extends React.Component<
   MultiLineChartState
 > {
   render() {
-    const { data, xAxisKey, yAxisKey1, yAxisKey2 } = this.props;
+    const { data, xAxisKey, yAxisKey1, yAxisKey2, unit } = this.props;
     return (
       <ResponsiveContainer width='100%' height={250}>
         <LineChart
@@ -33,7 +34,7 @@ export default class MultiLineChartComponent extends React.Component<
         >
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis dataKey={xAxisKey} />
-          <YAxis />
+          <YAxis label={{ value: unit, angle: -90, position: 'left' }}/>
           <Tooltip />
           <Legend />
           <Line type='monotone' dataKey={yAxisKey1} stroke='#8884d8' />

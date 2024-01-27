@@ -46,24 +46,28 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
           data={gpsChartData}
           xAxisKey='timestamp'
           yAxisKey='speed'
+          unit='km/h'
         />
         <MultiLineChartComponent
           data={batteriesChartDataVoltage}
           xAxisKey='timestamp'
           yAxisKey1='battery1Voltage'
           yAxisKey2='battery2Voltage'
+          unit='V'
         />
         <MultiLineChartComponent
           data={batteriesChartDataCurrent}
           xAxisKey='timestamp'
           yAxisKey1='battery1Current'
           yAxisKey2='battery2Current'
+          unit='A'
         />
         <MultiLineChartComponent
           data={windSensorsChartData}
           xAxisKey='timestamp'
           yAxisKey1='windSensor1Speed'
           yAxisKey2='windSensor2Speed'
+          unit='km/h'
         />
       </div>
     );

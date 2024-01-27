@@ -14,6 +14,7 @@ export interface ILineChartProps {
   data: any[];
   xAxisKey: string;
   yAxisKey: string;
+  unit: string;
 }
 
 export interface ILineChartState {}
@@ -23,7 +24,7 @@ export default class LineChartComponent extends React.Component<
   ILineChartState
 > {
   render() {
-    const { data, xAxisKey, yAxisKey } = this.props;
+    const { data, xAxisKey, yAxisKey, unit } = this.props;
     return (
       <ResponsiveContainer width='100%' height={250}>
         <LineChart
@@ -32,7 +33,7 @@ export default class LineChartComponent extends React.Component<
         >
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis dataKey={xAxisKey} />
-          <YAxis />
+          <YAxis label={{ value: unit, angle: -90, position: 'left' }}/>
           <Tooltip />
           <Legend />
           <Line type='monotone' dataKey={yAxisKey} stroke='#8884d8' />
