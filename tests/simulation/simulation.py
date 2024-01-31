@@ -11,6 +11,7 @@ import json
 import time
 
 import pymongo
+from datetime import datetime
 
 CONNECTION_STRING = "mongodb://localhost:27017"
 DATABASE_NAME = "TestDB"
@@ -44,6 +45,7 @@ wind_sensors = db["windsensors"]
 
 
 def write_to_mongodb(data, collection):
+    data['timestamp'] = datetime.now().isoformat()
     collection.insert_one(data)
     print(f"Data written to MongoDB collection '{collection.name}'")
 
@@ -58,8 +60,6 @@ def preload_data():
     write_to_mongodb(global_path_data[0], global_path)
     write_to_mongodb(local_path_data[0], local_path)
     write_to_mongodb(ais_ships_data[0], ais_ships)
-    write_to_mongodb(batteries_data[0], batteries)
-    write_to_mongodb(wind_sensors_data[0], wind_sensors)
     print("\nDone\n")
 
 
