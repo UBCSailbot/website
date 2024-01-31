@@ -41,18 +41,15 @@ export default class UPlotLineChartComponent extends React.Component<
       series: [
           {},
           {
-              // initial toggled state (optional)
-              show: true,
-              spanGaps: false,
-              // in-legend display
-              label: this.props.label,
-              value: (self: any, rawValue: any) => {
-                if (!rawValue) {
-                  return `${this.props.unit} --`;
-                }
-                return `${this.props.unit} ` + rawValue?.toFixed(2);
-              },
-              // series style
+            show: true,
+            spanGaps: false,
+            label: this.props.label,
+            value: (self, rawValue) => {
+              if (!rawValue) {
+                return `-- ${this.props.unit}`;
+              }
+              return rawValue?.toFixed(2) + ` ${this.props.unit}`;
+            },
               stroke: "red",
               width: 1,
               band: true,

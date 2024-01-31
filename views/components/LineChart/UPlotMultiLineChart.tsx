@@ -34,31 +34,28 @@ export default class UPlotMultiLineChartComponent extends React.Component<
         series: [
             {},
             {
-                // initial toggled state (optional)
-                show: true,
-                spanGaps: false,
-                // in-legend display
-                label: this.props.labelOne,
-                value: (self: any, rawValue: any) => {
-                  if (!rawValue) {
-                    return `${this.props.unit} --`;
-                  }
-                  return `${this.props.unit} ` + rawValue?.toFixed(2);
-                },
-                // series style
-                stroke: "red",
-                width: 1,
-                band: true,
+              show: true,
+              spanGaps: false,
+              label: this.props.labelOne,
+              value: (self, rawValue) => {
+                if (!rawValue) {
+                  return `-- ${this.props.unit}`;
+                }
+                return rawValue?.toFixed(2) + ` ${this.props.unit}`;
+              },
+              stroke: "red",
+              width: 1,
+              band: true,
             },
             {
               show: true,
               spanGaps: false,
               label: this.props.labelTwo,
-              value: (self: any, rawValue: any) => {
+              value: (self, rawValue) => {
                 if (!rawValue) {
-                  return `${this.props.unit} --`;
+                  return `-- ${this.props.unit}`;
                 }
-                return `${this.props.unit} ` + rawValue?.toFixed(2);
+                return rawValue?.toFixed(2) + ` ${this.props.unit}`;
               },
               stroke: "green",
               width: 1,

@@ -18,57 +18,54 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
   render() {
     const { gps, batteries, windSensors } = this.props;
 
-    const gpsChartData = gps.data.map((gpsPoint) => ({
-      timestamp: gpsPoint.timestamp,
-      speed: gpsPoint.speed,
-    }));
+    const gpsChartData = [
+      this.props.gps.data.map(data => this._parseISOString(data.timestamp)),
+      this.props.gps.data.map(data => data.speed),
+    ];
 
-    const batteriesChartDataVoltage = batteries.data.map((batteriesPoint) => ({
-      timestamp: batteriesPoint.timestamp,
-      battery1Voltage: batteriesPoint.batteries[0].voltage,
-      battery2Voltage: batteriesPoint.batteries[1].voltage,
-    }));
+    const batteriesVoltageData = [
+      batteries.data.map(data => this._parseISOString(data.timestamp)),
+      batteries.data.map(data => data.batteries[0].voltage),
+      batteries.data.map(data => data.batteries[1].voltage),
+    ];
 
-    const batteriesChartDataCurrent = batteries.data.map((batteriesPoint) => ({
-      timestamp: batteriesPoint.timestamp,
-      battery1Current: batteriesPoint.batteries[0].current,
-      Battery2Current: batteriesPoint.batteries[1].current,
-    }));
+    const batteriesCurrentData = [
+      batteries.data.map(data => this._parseISOString(data.timestamp)),
+      batteries.data.map(data => data.batteries[0].current),
+      batteries.data.map(data => data.batteries[1].current),
+    ];
 
-    const windSensorsChartData = windSensors.data.map((windSensorsPoint) => ({
-      timestamp: windSensorsPoint.timestamp,
-      windSensor1Speed: windSensorsPoint.windSensors[0].speed,
-      windSensor22Speed: windSensorsPoint.windSensors[1].speed,
-    }));
+    const windSensorsSpeedData = [
+      windSensors.data.map(data => this._parseISOString(data.timestamp)),
+      windSensors.data.map(data => data.windSensors[0].speed),
+      windSensors.data.map(data => data.windSensors[1].speed),
+    ];
 
     return (
       <div>
         <h1>Dashboard Page</h1>
-        { /* [[x-axis], [y-axis 1], [y-axis 2] ...] */}
-        <UPlotLineChartComponent data={[this.props.gps.data.map((data: any) => this._parseISOString(data.timestamp)), this.props.gps.data.map((data: any) => data.speed)]} label='GPS' unit='km/hr'/>
-        <UPlotMultiLineChartComponent data={[[1,2,3,4,5], [2,1,2,5,6], [1,2,3,4,5]]} labelOne='label1' labelTwo='label2' unit='km/hr'/>
-        <LineChartComponent
+        <UPlotLineChartComponent
           data={gpsChartData}
-          xAxisKey='timestamp'
-          yAxisKey='speed'
+          label="GPS Speed"
+          unit="km/hr"
         />
-        <MultiLineChartComponent
-          data={batteriesChartDataVoltage}
-          xAxisKey='timestamp'
-          yAxisKey1='battery1Voltage'
-          yAxisKey2='battery2Voltage'
+        <UPlotMultiLineChartComponent
+          data={batteriesVoltageData}
+          labelOne="Battery 1 Voltage"
+          labelTwo="Battery 2 Voltage"
+          unit="V"
         />
-        <MultiLineChartComponent
-          data={batteriesChartDataCurrent}
-          xAxisKey='timestamp'
-          yAxisKey1='battery1Current'
-          yAxisKey2='battery2Current'
+        <UPlotMultiLineChartComponent
+          data={batteriesCurrentData}
+          labelOne="Battery 1 Current"
+          labelTwo="Battery 2 Current"
+          unit="A"
         />
-        <MultiLineChartComponent
-          data={windSensorsChartData}
-          xAxisKey='timestamp'
-          yAxisKey1='windSensor1Speed'
-          yAxisKey2='windSensor2Speed'
+        <UPlotMultiLineChartComponent
+          data={windSensorsSpeedData}
+          labelOne="Wind Sensor 1 Speed"
+          labelTwo="Wind Sensor 2 Speed"
+          unit="m/s"
         />
       </div>
     );
