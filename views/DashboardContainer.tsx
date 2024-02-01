@@ -39,24 +39,6 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
       windSensors.data.map(data => data.windSensors[1].speed),
     ];
 
-   const batteriesChartData_Voltage = batteriesData.map((batteriesPoint) => ({
-      timestamp: batteriesPoint.timestamp,
-      battery1Voltage: batteriesPoint.batteries[0].voltage,
-      battery2Voltage: batteriesPoint.batteries[1].voltage
-    }));
-
-    const batteriesChartData_Current = batteriesData.map((batteriesPoint) => ({
-      timestamp: batteriesPoint.timestamp,
-      battery1Current: batteriesPoint.batteries[0].current,
-      Battery2Current: batteriesPoint.batteries[1].current
-    }));
-/*
-    const windSensorsChartData = windSensorsData.map((windSensorsPoint) => ({
-      timestamp: windSensorsPoint.timestamp,
-      windSensor1Speed: windSensorsPoint.windSensors[0].speed,
-      windSensor22Speed: windSensorsPoint.windSensors[1].speed,
-    }));
-*/
     return (
       <div>
         <h1>Dashboard Page</h1>
@@ -82,24 +64,6 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
           labelOne="Wind Sensor 1 Speed"
           labelTwo="Wind Sensor 2 Speed"
           unit="m/s"
-        />
-        <MultiLineChartComponent
-          data={batteriesChartData_Voltage}
-          xAxisKey="timestamp"
-          yAxisKey1="battery1Voltage"
-          yAxisKey2="battery2Voltage"
-        />
-        <MultiLineChartComponent
-          data={batteriesChartData_Current}
-          xAxisKey="timestamp"
-          yAxisKey1="battery1Current"
-          yAxisKey2="battery2Current"
-        />
-        <MultiLineChartComponent
-          data={[]}
-          xAxisKey="timestamp"
-          yAxisKey1="windSensor1Speed"
-          yAxisKey2="windSensor2Speed"
         />
       </div>
     );
