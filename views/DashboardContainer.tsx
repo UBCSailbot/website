@@ -19,8 +19,8 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
     const { gps, batteries, windSensors } = this.props;
 
     const gpsChartData = [
-      this.props.gps.data.map(data => this._parseISOString(data.timestamp)),
-      this.props.gps.data.map(data => data.speed),
+      gps.data.map(data => this._parseISOString(data.timestamp)),
+      gps.data.map(data => data.speed),
     ];
 
     const batteriesVoltageData = [
@@ -46,7 +46,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
         <h1>Dashboard Page</h1>
         <UPlotLineChartComponent
           data={gpsChartData}
-          label="GPS Speed"
+          label="Boat Speed"
           unit="km/hr"
         />
         <UPlotMultiLineChartComponent
