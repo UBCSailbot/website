@@ -22,48 +22,48 @@ export default class UPlotMultiLineChartComponent extends React.Component<
   readonly state: IUPlotMultiLineChartState = {
     chart: null,
     options: {
-        width: 800,
-        height: 250,
-        scales: {
-            x: {
-                time: true,
-            },
-            y: {},
+      width: 800,
+      height: 250,
+      scales: {
+        x: {
+          time: true,
         },
-        axes: [{}],
-        series: [
-            {},
-            {
-              show: true,
-              spanGaps: false,
-              label: this.props.labelOne,
-              value: (self, rawValue) => {
-                if (!rawValue) {
-                  return `-- ${this.props.unit}`;
-                }
-                return rawValue?.toFixed(2) + ` ${this.props.unit}`;
-              },
-              stroke: "red",
-              width: 1,
-              band: true,
-            },
-            {
-              show: true,
-              spanGaps: false,
-              label: this.props.labelTwo,
-              value: (self, rawValue) => {
-                if (!rawValue) {
-                  return `-- ${this.props.unit}`;
-                }
-                return rawValue?.toFixed(2) + ` ${this.props.unit}`;
-              },
-              stroke: "green",
-              width: 1,
-              band: true,
-            },
-        ],
-    }
-  }
+        y: {},
+      },
+      axes: [{}],
+      series: [
+        {},
+        {
+          show: true,
+          spanGaps: false,
+          label: this.props.labelOne,
+          value: (self, rawValue) => {
+            if (!rawValue) {
+              return `-- ${this.props.unit}`;
+            }
+            return rawValue?.toFixed(2) + ` ${this.props.unit}`;
+          },
+          stroke: 'red',
+          width: 1,
+          band: true,
+        },
+        {
+          show: true,
+          spanGaps: false,
+          label: this.props.labelTwo,
+          value: (self, rawValue) => {
+            if (!rawValue) {
+              return `-- ${this.props.unit}`;
+            }
+            return rawValue?.toFixed(2) + ` ${this.props.unit}`;
+          },
+          stroke: 'green',
+          width: 1,
+          band: true,
+        },
+      ],
+    },
+  };
 
   /**
    * Sets the chart reference in the component's state.

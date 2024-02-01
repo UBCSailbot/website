@@ -24,30 +24,30 @@ export default class UPlotLineChartComponent extends React.Component<
       width: 800,
       height: 250,
       scales: {
-          x: {
-              time: true,
-          },
-          y: {},
+        x: {
+          time: true,
+        },
+        y: {},
       },
       axes: [{}],
       series: [
-          {},
-          {
-            show: true,
-            spanGaps: false,
-            label: this.props.label,
-            value: (self, rawValue) => {
-              if (!rawValue) {
-                return `-- ${this.props.unit}`;
-              }
-              return rawValue?.toFixed(2) + ` ${this.props.unit}`;
-            },
-              stroke: "red",
-              width: 1,
-              band: true,
-          }
+        {},
+        {
+          show: true,
+          spanGaps: false,
+          label: this.props.label,
+          value: (self, rawValue) => {
+            if (!rawValue) {
+              return `-- ${this.props.unit}`;
+            }
+            return rawValue?.toFixed(2) + ` ${this.props.unit}`;
+          },
+          stroke: 'red',
+          width: 1,
+          band: true,
+        },
       ],
-    }
+    },
   };
 
   /**
@@ -62,11 +62,11 @@ export default class UPlotLineChartComponent extends React.Component<
 
   render() {
     return (
-        <UplotReact
-          options={this.state.options}
-          data={this.props.data}
-          onCreate={this.setChartRef}
-        />
+      <UplotReact
+        options={this.state.options}
+        data={this.props.data}
+        onCreate={this.setChartRef}
+      />
     );
   }
 }
