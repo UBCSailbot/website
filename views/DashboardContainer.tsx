@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import LineChartComponent from './components/LineChart/LineChart';
-import MultiLineChartComponent from './components/LineChart/MultiLineChart';
 import UPlotLineChartComponent from './components/LineChart/UPlotLineChart';
 import { GPS } from '@/stores/GPS/GPSTypes';
 import { Batteries } from '@/stores/Batteries/BatteriesTypes';

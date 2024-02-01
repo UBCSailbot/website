@@ -23,14 +23,6 @@ export default class UPlotLineChartComponent extends React.Component<
     options: {
       width: 800,
       height: 250,
-      cursor: {
-        drag: {
-          setScale: false
-        }
-      },
-      select: {
-        show: false
-      },
       scales: {
           x: {
               time: true,
