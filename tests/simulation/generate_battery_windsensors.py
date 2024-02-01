@@ -33,8 +33,8 @@ def write_battery_json():
                         "current": random.randint(min_current, max_current),
                     },
                     {
-                        "voltage:": random.randint(min_voltage, max_voltage),
-                        "current:": random.randint(min_current, max_current),
+                        "voltage": random.randint(min_voltage, max_voltage),
+                        "current": random.randint(min_current, max_current),
                     },
                 ]
             }

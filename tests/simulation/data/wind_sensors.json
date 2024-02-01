@@ -2,36 +2,60 @@
   {
     "windSensors": [
       {
-        "speed": 10,
-        "direction": -96
-      },
-      {
-        "speed": 21,
-        "direction": 170
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 16,
-        "direction": 49
-      },
-      {
         "speed": 15,
-        "direction": 172
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 21,
-        "direction": -174
+        "direction": -57
       },
       {
         "speed": 11,
-        "direction": 110
+        "direction": -34
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 18,
+        "direction": -1
+      },
+      {
+        "speed": 10,
+        "direction": -143
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 13,
+        "direction": 2
+      },
+      {
+        "speed": 19,
+        "direction": -136
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 22,
+        "direction": 23
+      },
+      {
+        "speed": 17,
+        "direction": 174
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 13,
+        "direction": 74
+      },
+      {
+        "speed": 22,
+        "direction": 15
       }
     ]
   },
@@ -39,11 +63,23 @@
     "windSensors": [
       {
         "speed": 12,
-        "direction": -100
+        "direction": -136
       },
       {
+        "speed": 16,
+        "direction": -169
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
         "speed": 21,
-        "direction": -5
+        "direction": -29
+      },
+      {
+        "speed": 15,
+        "direction": -123
       }
     ]
   },
@@ -51,11 +87,23 @@
     "windSensors": [
       {
         "speed": 11,
-        "direction": 19
+        "direction": 68
       },
       {
-        "speed": 18,
-        "direction": -26
+        "speed": 14,
+        "direction": 85
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 14,
+        "direction": 142
+      },
+      {
+        "speed": 20,
+        "direction": -139
       }
     ]
   },
@@ -63,23 +111,23 @@
     "windSensors": [
       {
         "speed": 10,
-        "direction": -165
+        "direction": 117
       },
       {
-        "speed": 11,
-        "direction": 53
+        "speed": 13,
+        "direction": 12
       }
     ]
   },
   {
     "windSensors": [
       {
-        "speed": 18,
-        "direction": 71
+        "speed": 22,
+        "direction": -175
       },
       {
         "speed": 21,
-        "direction": -27
+        "direction": -161
       }
     ]
   },
@@ -87,95 +135,23 @@
     "windSensors": [
       {
         "speed": 20,
-        "direction": -132
+        "direction": -140
       },
-      {
-        "speed": 18,
-        "direction": 75
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 18,
-        "direction": 9
-      },
-      {
-        "speed": 12,
-        "direction": 40
-      }
-    ]
-  },
-  {
-    "windSensors": [
       {
         "speed": 19,
-        "direction": 18
-      },
-      {
-        "speed": 13,
-        "direction": -73
+        "direction": -29
       }
     ]
   },
   {
     "windSensors": [
-      {
-        "speed": 19,
-        "direction": -26
-      },
       {
         "speed": 12,
-        "direction": 166
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 15,
-        "direction": -153
-      },
-      {
-        "speed": 11,
-        "direction": 44
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 15,
-        "direction": 33
+        "direction": -34
       },
       {
         "speed": 14,
-        "direction": 150
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 15,
-        "direction": 124
-      },
-      {
-        "speed": 18,
-        "direction": 111
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 10,
-        "direction": 173
-      },
-      {
-        "speed": 19,
-        "direction": 73
+        "direction": 31
       }
     ]
   },
@@ -183,58 +159,22 @@
     "windSensors": [
       {
         "speed": 11,
-        "direction": 131
+        "direction": 149
       },
       {
         "speed": 13,
-        "direction": -19
+        "direction": 106
       }
     ]
   },
   {
     "windSensors": [
       {
-        "speed": 19,
-        "direction": 45
+        "speed": 20,
+        "direction": -30
       },
       {
         "speed": 11,
-        "direction": 60
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 11,
-        "direction": 31
-      },
-      {
-        "speed": 17,
-        "direction": -146
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 18,
-        "direction": 178
-      },
-      {
-        "speed": 10,
-        "direction": 80
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 11,
-        "direction": 164
-      },
-      {
-        "speed": 21,
         "direction": 125
       }
     ]
@@ -242,36 +182,12 @@
   {
     "windSensors": [
       {
-        "speed": 14,
-        "direction": 169
-      },
-      {
         "speed": 17,
-        "direction": 124
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 17,
-        "direction": 96
+        "direction": -168
       },
       {
-        "speed": 10,
-        "direction": -40
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 14,
-        "direction": 159
-      },
-      {
-        "speed": 14,
-        "direction": 48
+        "speed": 19,
+        "direction": -160
       }
     ]
   },
@@ -279,155 +195,239 @@
     "windSensors": [
       {
         "speed": 16,
-        "direction": 41
+        "direction": 3
+      },
+      {
+        "speed": 13,
+        "direction": 138
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 14,
+        "direction": -125
+      },
+      {
+        "speed": 21,
+        "direction": -108
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 18,
+        "direction": -126
+      },
+      {
+        "speed": 16,
+        "direction": -123
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 10,
+        "direction": 21
       },
       {
         "speed": 22,
-        "direction": 118
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 17,
-        "direction": 130
-      },
-      {
-        "speed": 14,
-        "direction": -180
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 10,
-        "direction": 178
-      },
-      {
-        "speed": 21,
-        "direction": 170
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 18,
-        "direction": 6
-      },
-      {
-        "speed": 10,
-        "direction": 115
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 14,
-        "direction": 40
-      },
-      {
-        "speed": 18,
-        "direction": -84
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 20,
         "direction": -178
-      },
-      {
-        "speed": 17,
-        "direction": 161
       }
     ]
   },
   {
     "windSensors": [
       {
-        "speed": 10,
-        "direction": 37
-      },
-      {
-        "speed": 12,
-        "direction": -22
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 17,
-        "direction": 15
-      },
-      {
-        "speed": 10,
-        "direction": 87
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 14,
-        "direction": 158
-      },
-      {
-        "speed": 12,
-        "direction": 87
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 11,
-        "direction": -103
-      },
-      {
-        "speed": 18,
-        "direction": -81
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 17,
-        "direction": 15
-      },
-      {
-        "speed": 14,
-        "direction": 36
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 10,
-        "direction": -109
-      },
-      {
-        "speed": 20,
-        "direction": 71
-      }
-    ]
-  },
-  {
-    "windSensors": [
-      {
-        "speed": 11,
-        "direction": -156
+        "speed": 16,
+        "direction": -5
       },
       {
         "speed": 21,
-        "direction": -50
+        "direction": -111
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 19,
+        "direction": -36
+      },
+      {
+        "speed": 19,
+        "direction": 111
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 13,
+        "direction": 1
+      },
+      {
+        "speed": 18,
+        "direction": 7
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 17,
+        "direction": 69
+      },
+      {
+        "speed": 15,
+        "direction": -49
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 10,
+        "direction": 163
+      },
+      {
+        "speed": 10,
+        "direction": -96
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 16,
+        "direction": -157
+      },
+      {
+        "speed": 18,
+        "direction": 73
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 19,
+        "direction": 67
+      },
+      {
+        "speed": 15,
+        "direction": -39
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 14,
+        "direction": -104
+      },
+      {
+        "speed": 14,
+        "direction": 164
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 22,
+        "direction": 167
+      },
+      {
+        "speed": 15,
+        "direction": 2
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 19,
+        "direction": 179
+      },
+      {
+        "speed": 21,
+        "direction": 29
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 19,
+        "direction": -34
+      },
+      {
+        "speed": 16,
+        "direction": -115
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 11,
+        "direction": 175
+      },
+      {
+        "speed": 12,
+        "direction": -51
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 15,
+        "direction": -159
+      },
+      {
+        "speed": 15,
+        "direction": -102
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 21,
+        "direction": 67
+      },
+      {
+        "speed": 17,
+        "direction": -129
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 17,
+        "direction": 133
+      },
+      {
+        "speed": 17,
+        "direction": 81
+      }
+    ]
+  },
+  {
+    "windSensors": [
+      {
+        "speed": 13,
+        "direction": -172
+      },
+      {
+        "speed": 12,
+        "direction": -138
       }
     ]
   }
