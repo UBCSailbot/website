@@ -41,7 +41,6 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
 
     return (
       <div>
-        <h1>Dashboard Page</h1>
         <UPlotLineChartComponent
           data={gpsChartData}
           label='Boat Speed'

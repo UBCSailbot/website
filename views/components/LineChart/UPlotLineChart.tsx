@@ -19,19 +19,9 @@ export default class UPlotLineChartComponent extends React.Component<
   IUPlotLineChartState
 > {
   readonly state: IUPlotLineChartState = {
-
-    componentDidMount() {
-      window.addEventListener('resize', function() {
-         this.state.chart.setSize({
-              width: window.innerWidth - 100,
-              height: window.innerHeight - 200,
-         });
-      });
-    },
-
     chart: null,
     options: {
-      width: window.innerWidth,
+      width: 0,
       height: 250,
       scales: {
         x: {
@@ -59,6 +49,36 @@ export default class UPlotLineChartComponent extends React.Component<
       ],
     },
   };
+
+  componentDidMount() {
+    // Set the chart's width dynamically; the height is set manually above within 'options' in state.
+    this.setState((state) => ({...state, options: {...state.options, width: (this.getWindowSize().width / 2) - 40}}));
+
+    window.addEventListener('resize', this.setChartSize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setChartSize);
+  }
+
+  /**
+   * Dynamically changes the chart's dimensions whenever the user resizes their window size.
+   *
+   * @param e the event called whenever a user resizes their window.
+   */
+  setChartSize = (e: any) => {
+      this.state.chart.setSize({width: (this.getWindowSize().width / 2) - 40, height: this.state.options.height});
+  }
+
+  /**
+   * @returns the current window size (width, height) of the user's device.
+   */
+  getWindowSize = () => {
+    return {
+            width: window.innerWidth,
+            height: window.innerHeight
+    };
+  }
 
   /**
    * Sets the chart reference in the component's state.

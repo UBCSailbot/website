@@ -100,9 +100,9 @@ while True:
         j = 0
         time.sleep(2)
         for i in range(1, len(gps_data)):
-            write_to_mongodb(gps_data[i], gps)
             write_to_mongodb(batteries_data[i], batteries)
             write_to_mongodb(wind_sensors_data[i], wind_sensors)
+            write_to_mongodb(gps_data[i], gps)
             lp_len = len(local_path_data[j]["waypoints"]) - 1
             if (
                 local_path_data[j]["waypoints"][lp_len]["latitude"] == gps_data[i]["latitude"]
@@ -118,9 +118,9 @@ while True:
         j = 0
         time.sleep(2)
         for i in range(1, len(gps_data)):
-            write_to_mongodb(gps_data[i], gps)
             write_to_mongodb(batteries_data[i], batteries)
             write_to_mongodb(wind_sensors_data[i], wind_sensors)
+            write_to_mongodb(gps_data[i], gps)
             if (
                 local_path_data[j]["waypoints"][1]["latitude"] == gps_data[i]["latitude"]
                 and local_path_data[j]["waypoints"][1]["longitude"] == gps_data[i]["longitude"]
