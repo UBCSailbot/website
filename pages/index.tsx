@@ -1,5 +1,8 @@
 import dynamic from 'next/dynamic';
+import { Box } from '@mui/material';
+import { Grid } from '@mui/material'
 import { CircularProgress } from '@mui/material';
+import DashboardContainer from '@/views/DashboardContainer';
 
 const MapsContainer = dynamic(() => import('@/views/MapsContainer'), {
   loading: () => (
@@ -19,6 +22,28 @@ const MapsContainer = dynamic(() => import('@/views/MapsContainer'), {
   ssr: false,
 });
 
+// export default function Home() {
+//   return (
+//     <Box display="flex">
+//       <MapsContainer />
+//       <DashboardContainer />
+//     </Box>
+//   );
+// }
+
 export default function Home() {
-  return <MapsContainer />;
+  return (
+    <Grid container spacing={0}>
+      <Grid item xs={6}>
+        <DashboardContainer />
+      </Grid>
+      <Grid item xs={0}>
+        <MapsContainer />
+      </Grid>
+    </Grid>
+  );
 }
+
+// export default function Home() {
+//   return <MapsContainer />;
+// }

@@ -19,9 +19,19 @@ export default class UPlotLineChartComponent extends React.Component<
   IUPlotLineChartState
 > {
   readonly state: IUPlotLineChartState = {
+
+    componentDidMount() {
+      window.addEventListener('resize', function() {
+         this.state.chart.setSize({
+              width: window.innerWidth - 100,
+              height: window.innerHeight - 200,
+         });
+      });
+    },
+
     chart: null,
     options: {
-      width: 800,
+      width: window.innerWidth,
       height: 250,
       scales: {
         x: {

@@ -22,7 +22,7 @@ export default class UPlotMultiLineChartComponent extends React.Component<
   readonly state: IUPlotMultiLineChartState = {
     chart: null,
     options: {
-      width: 800,
+      width: window.innerWidth,
       height: 250,
       scales: {
         x: {
@@ -74,6 +74,15 @@ export default class UPlotMultiLineChartComponent extends React.Component<
   setChartRef = (chart: any) => {
     this.setState((state) => ({ ...state, chart: chart }));
   };
+
+  componentDidMount() {
+    window.addEventListener('resize', function() {
+       this.state.chart.setSize({
+            width: window.innerWidth - 100,
+            height: window.innerHeight - 200,
+       });
+    });
+  }
 
   render() {
     return (
