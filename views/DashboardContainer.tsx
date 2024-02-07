@@ -5,6 +5,7 @@ import { GPS } from '@/stores/GPS/GPSTypes';
 import { Batteries } from '@/stores/Batteries/BatteriesTypes';
 import { WindSensors } from '@/stores/WindSensors/WindSensorsTypes';
 import UPlotMultiLineChartComponent from './components/LineChart/UPlotMultiLineChart';
+import SingleValueChart from './components/SingleValueChart/SingleValueChart';
 
 export interface DashboardContainerProps {
   gps: GPS[];
@@ -41,6 +42,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
 
     return (
       <div>
+        <SingleValueChart title="test" data={123} />
         <UPlotLineChartComponent
           data={gpsChartData}
           label='Boat Speed'
