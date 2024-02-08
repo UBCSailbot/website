@@ -1,0 +1,23 @@
+.header {
+  background-color: #26619c;
+  padding: 5px;
+  margin: -10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to right, #26619c, #3498db)
+}
+
+.title {
+  font-family: Verdana;
+  font-weight: 20px;
+  color: white;
+  margin-left: 20px;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+.logo {
+  width: 30px;
+  margin-left: 50px;
+}

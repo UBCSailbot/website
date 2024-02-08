@@ -180,7 +180,7 @@ export default class Maps extends React.Component<IMapsProps, IMapsState> {
         center={convertToLatLng(this.props.gpsLocation)}
         zoom={13}
         scrollWheelZoom={true}
-        style={{ height: '100vh', width: '100wh'}}
+        style={{ height: 'calc(100vh - 115px)', width: '100wh'}}
         ref={this.setMapRef}
       >
         <TileLayer
