@@ -29,7 +29,7 @@ export default function Home() {
       <div className={styles.maincontainer}>
         <MapsContainer />
         <div className={styles.dashboardcontainer}>
-          <DashboardContainer/>
+          <DashboardContainer />
         </div>
       </div>
     </>

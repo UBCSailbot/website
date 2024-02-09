@@ -67,7 +67,10 @@ export default class UPlotMultiLineChartComponent extends React.Component<
 
   componentDidMount() {
     // Set the chart's width dynamically; the height is set manually above within 'options' in state.
-    this.setState((state) => ({...state, options: {...state.options, width: (this.getWindowSize().width / 2) - 40}}));
+    this.setState((state) => ({
+      ...state,
+      options: { ...state.options, width: this.getWindowSize().width / 2 - 40 },
+    }));
 
     window.addEventListener('resize', this.setChartSize);
   }
@@ -82,18 +85,21 @@ export default class UPlotMultiLineChartComponent extends React.Component<
    * @param e the event called whenever a user resizes their window.
    */
   setChartSize = (e: any) => {
-      this.state.chart.setSize({width: (this.getWindowSize().width / 2) - 40, height: this.state.options.height});
-  }
+    this.state.chart.setSize({
+      width: this.getWindowSize().width / 2 - 40,
+      height: this.state.options.height,
+    });
+  };
 
   /**
    * @returns the current window size (width, height) of the user's device.
    */
   getWindowSize = () => {
     return {
-            width: window.innerWidth,
-            height: window.innerHeight
+      width: window.innerWidth,
+      height: window.innerHeight,
     };
-  }
+  };
 
   /**
    * Sets the chart reference in the component's state.

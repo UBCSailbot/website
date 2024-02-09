@@ -1,15 +1,14 @@
 .header {
-  background-color: #26619c;
   padding: 5px;
   margin: -10px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  background: linear-gradient(to right, #26619c, #3498db)
+  background: linear-gradient(to right, #26619c, #3498db);
 }
 
 .title {
-  font-family: Verdana;
+  font-family: Verdana, Geneva, sans-serif;
   font-weight: 20px;
   color: white;
   margin-left: 20px;
