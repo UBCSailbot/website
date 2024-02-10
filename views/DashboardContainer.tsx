@@ -1,27 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import UPlotLineChartComponent from './components/LineChart/UPlotLineChart';
-import { GPS } from '@/stores/GPS/GPSTypes';
-import { Batteries } from '@/stores/Batteries/BatteriesTypes';
-import { WindSensors } from '@/stores/WindSensors/WindSensorsTypes';
+import { GPSState } from '@/stores/GPS/GPSTypes';
+import { BatteriesState } from '@/stores/Batteries/BatteriesTypes';
+import { WindSensorsState } from '@/stores/WindSensors/WindSensorsTypes';
 import UPlotMultiLineChartComponent from './components/LineChart/UPlotMultiLineChart';
 import SingleValueChart from './components/SingleValueChart/SingleValueChart';
 import { Grid } from '@mui/material';
 
 export interface DashboardContainerProps {
-  gps: GPS[];
-  batteries: Batteries[];
-  windSensors: WindSensors[];
+  gps: GPSState;
+  batteries: BatteriesState;
+  windSensors: WindSensorsState;
 }
-
-/*{
-  to-do:
-  1. react-hyrdation error https://nextjs.org/docs/messages/react-hydration-error
-  2. double check totalTripDistance function and haversineDistance function
-  3. double check haversineDistance calcuation with a source online
-  4. modify heading font to be slightly smaller
-  5. change font to match UPlot font
-}*/
 
 class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
   render() {
@@ -56,7 +47,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
       windSensors.data.map((data) => data.windSensors[1].speed),
     ];
 
-    const totalTripDistance = this.computeTotalTripDistance(gpsDistanceData[0], gpsDistanceData[1]);
+    const totalTripDistance = this.computeTotalTripDistance(gpsDistanceData[0], gpsDistanceData[1])
 
     return (
       <div>
@@ -66,11 +57,17 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
           justifyContent={"center"}
           alignItems={"center"}
           >
-          <Grid container justifyContent="center" item xs={6}>
+          <Grid container justifyContent="center" item xs={3}>
             <SingleValueChart title="Distance" data={totalTripDistance} unit="km" />
           </Grid>
-          <Grid container justifyContent="center" item xs={6}>
-            <SingleValueChart title="Heading" data={gpsDistanceData[2][gpsDistanceData[2].length-1]} unit="°"/>
+          <Grid container justifyContent="center" item xs={3}>
+            <SingleValueChart title="Heading" data={this.props.gps.data.at(-1)?.heading} unit="°"/>
+          </Grid>
+          <Grid container justifyContent="center" item xs={3}>
+            <SingleValueChart title="Latitude" data={this.props.gps.data.at(-1)?.latitude.toFixed(4)} unit="°"/>
+          </Grid>
+          <Grid container justifyContent="center" item xs={3}>
+            <SingleValueChart title="Longitude" data={this.props.gps.data.at(-1)?.longitude.toFixed(4)} unit="°"/>
           </Grid>
         </Grid>
         <UPlotLineChartComponent
@@ -130,16 +127,16 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
 
   computeTotalTripDistance(latitude: number[], longitude: number[]) {
     if(latitude.length != longitude.length){
-      return console.error;
+      return -1;
     }
 
     var totalDistance = 0;
 
-    for(let i = 0; i < --latitude.length; i++){
-        totalDistance += this.haversineDistance(latitude[i], longitude[i], latitude[i++], longitude[i++])
+    for(let i = 1; i < latitude.length; i++){
+        totalDistance += this.haversineDistance(latitude[i-1], longitude[i-1], latitude[i], longitude[i]);
     }
 
-    return totalDistance.toFixed(2);
+    return Number(totalDistance.toFixed(2));
   }
 }
 

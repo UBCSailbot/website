@@ -17,7 +17,7 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
   render() {
     return (
       <Maps
-        gpsLocation={this.props.gps.data.at(-1)}
+        gpsLocation={this.props.gps.data.at(-1)} 
         gpsPath={this.props.gps.data.map((gpsPoint: GPS) =>
           convertToLatLng(gpsPoint),
         )}
