@@ -25,8 +25,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
 
     const gpsDistanceData = [
       gps.data.map((data) => data.latitude),
-      gps.data.map((data) => data.longitude),
-      gps.data.map((data) => data.heading)
+      gps.data.map((data) => data.longitude)
     ];
 
     const batteriesVoltageData = [
@@ -47,7 +46,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
       windSensors.data.map((data) => data.windSensors[1].speed),
     ];
 
-    const totalTripDistance = this.computeTotalTripDistance(gpsDistanceData[0], gpsDistanceData[1])
+    const totalTripDistance = this._computeTotalTripDistance(gpsDistanceData[0], gpsDistanceData[1])
 
     return (
       <div>
@@ -101,7 +100,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
     return Math.floor(Date.parse(s) / 1000); // Converts to seconds
   }
 
-  haversineDistance(lat1: number, long1: number, lat2: number, long2: number) {
+  _haversineDistance(lat1: number, long1: number, lat2: number, long2: number) {
 
     function toRadians(angle: number): number{
       return angle * Math.PI / 180
@@ -125,7 +124,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
     return distance
   }
 
-  computeTotalTripDistance(latitude: number[], longitude: number[]) {
+  _computeTotalTripDistance(latitude: number[], longitude: number[]) {
     if(latitude.length != longitude.length){
       return -1;
     }
@@ -133,7 +132,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
     var totalDistance = 0;
 
     for(let i = 1; i < latitude.length; i++){
-        totalDistance += this.haversineDistance(latitude[i-1], longitude[i-1], latitude[i], longitude[i]);
+        totalDistance += this._haversineDistance(latitude[i-1], longitude[i-1], latitude[i], longitude[i]);
     }
 
     return Number(totalDistance.toFixed(2));
