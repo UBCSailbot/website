@@ -37,9 +37,11 @@ export default class UPlotMultiLineChartComponent extends React.Component<
           show: true,
           spanGaps: false,
           label: this.props.labelOne,
-          value: (self, rawValue) => {
-            if (!rawValue) {
-              return `-- ${this.props.unit}`;
+          value: (self, rawValue, yValuesIndex, currentVal) => {
+            if (currentVal == null) {
+              let yValues = self.data[yValuesIndex]
+              let yValue = (yValues[yValues.length - 1])?.toFixed(2)
+              return `${yValue} ${this.props.unit}`
             }
             return rawValue?.toFixed(2) + ` ${this.props.unit}`;
           },
@@ -51,9 +53,11 @@ export default class UPlotMultiLineChartComponent extends React.Component<
           show: true,
           spanGaps: false,
           label: this.props.labelTwo,
-          value: (self, rawValue) => {
-            if (!rawValue) {
-              return `-- ${this.props.unit}`;
+          value: (self, rawValue, yValuesIndex, currentVal) => {
+            if (currentVal == null) {
+              let yValues = self.data[yValuesIndex]
+              let yValue = (yValues[yValues.length - 1])?.toFixed(2)
+              return `${yValue} ${this.props.unit}`
             }
             return rawValue?.toFixed(2) + ` ${this.props.unit}`;
           },
