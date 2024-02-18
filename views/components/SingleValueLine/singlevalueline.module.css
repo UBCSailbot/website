@@ -1,0 +1,17 @@
+.card{
+    display: block;
+      width: 11.9vw;
+      height: 4vw;
+}
+
+.parent {
+    position: relative;
+}
+
+.topRight {
+    position: absolute;
+    z-index: 10000000000;
+    top: 0vw;
+    right: 0vw;
+
+}

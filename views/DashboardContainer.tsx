@@ -63,10 +63,10 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
             <SingleValueChart title="Heading" data={this.props.gps.data.at(-1)?.heading} unit="°"/>
           </Grid>
           <Grid container justifyContent="center" item xs={3}>
-            <SingleValueChart title="Latitude" data={this.props.gps.data.at(-1)?.latitude.toFixed(4)} unit="°"/>
+            <SingleValueChart title="Latitude" data={this.props.gps.data.at(-1)?.latitude.toFixed(2)} unit="°"/>
           </Grid>
           <Grid container justifyContent="center" item xs={3}>
-            <SingleValueChart title="Longitude" data={this.props.gps.data.at(-1)?.longitude.toFixed(4)} unit="°"/>
+            <SingleValueChart title="Longitude" data={this.props.gps.data.at(-1)?.longitude.toFixed(2)} unit="°"/>
           </Grid>
         </Grid>
         <UPlotLineChartComponent
@@ -106,20 +106,20 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
       return angle * Math.PI / 180
     }
 
-    const earthRadius = 6571 // in km
+    const EARTH_RADIUS = 6571 // in km
 
-    var delta_lat = lat2-lat1
-    var delta_lat_rad = toRadians(delta_lat)
-    var delta_long = long2-long1
-    var delta_long_rad = toRadians(delta_long)
+    let delta_lat = lat2-lat1
+    let delta_lat_rad = toRadians(delta_lat)
+    let delta_long = long2-long1
+    let delta_long_rad = toRadians(delta_long)
 
-    var a = (Math.sin(delta_lat_rad/2) * Math.sin(delta_lat_rad/2))
+    let a = (Math.sin(delta_lat_rad/2) * Math.sin(delta_lat_rad/2))
     + (Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2))
     * Math.sin(delta_long_rad/2)
     * Math.sin(delta_long_rad/2))
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
-    var distance = earthRadius * c;
+    let distance = EARTH_RADIUS * c;
 
     return distance
   }
@@ -129,7 +129,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
       return -1;
     }
 
-    var totalDistance = 0;
+    let totalDistance = 0;
 
     for(let i = 1; i < latitude.length; i++){
         totalDistance += this._haversineDistance(latitude[i-1], longitude[i-1], latitude[i], longitude[i]);
