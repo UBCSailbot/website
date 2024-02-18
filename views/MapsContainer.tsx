@@ -7,6 +7,7 @@ import { WayPoint, LocalPathState } from '@/stores/LocalPath/LocalPathTypes';
 import Maps, { convertToLatLng } from './components/Maps/Maps';
 import SingleValueLine from './components/SingleValueLine/SingleValueLine';
 import styles from './components/SingleValueLine/singlevalueline.module.css'
+import BoatCompass from './components/BoatCompass/BoatCompass';
 
 export interface MapsContainerProps {
   gps: GPSState;
@@ -17,11 +18,12 @@ export interface MapsContainerProps {
 
 class MapsContainer extends React.PureComponent<MapsContainerProps> {
   render() {
-    const { gps, batteries, windSensors } = this.props;
+    const { gps } = this.props;
 
     const gpsDistanceData = [
       gps.data.map((data) => data.latitude),
-      gps.data.map((data) => data.longitude)
+      gps.data.map((data) => data.longitude),
+      gps.data.map((data) => data.heading)
     ];
 
     const totalTripDistance = this._computeTotalTripDistance(gpsDistanceData[0], gpsDistanceData[1])
@@ -30,6 +32,9 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
       <div className={styles.parent}>
         <div className={styles.topRight}>
           <SingleValueLine title="Distance" data={totalTripDistance} unit="km" />
+        </div>
+        <div className={styles.bottomRight}>
+          <BoatCompass angle={this.props.gps.data.at(-1)?.heading} />
         </div>
         <Maps
           gpsLocation={this.props.gps.data.at(-1)}

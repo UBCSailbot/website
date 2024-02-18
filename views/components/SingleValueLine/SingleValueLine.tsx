@@ -1,8 +1,5 @@
 import React from 'react';
-import { Typography } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import styles from './singlevalueline.module.css'
+import { Grid, Paper, Typography } from '@mui/material';
 
 
 interface SingleValueLineProps {
@@ -16,13 +13,20 @@ class SingleValueLine extends React.Component<SingleValueLineProps> {
     const { title, data, unit } = this.props;
 
     return (
-      <Card className={styles.card} variant="outlined">
-        <CardContent>
-          <Typography align="center" variant="subtitle2">
-            {(data) ? `${title}: ${data} ${unit}` : `-- ${unit}`}
-          </Typography>
-        </CardContent>
-      </Card>
+      <Paper elevation={0}>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-around"
+          alignItems="flex-end"
+          >
+          <Grid item m={1}>
+            <Typography align="center" variant="subtitle2">
+              {(data) ? `${title}: ${data} ${unit}` : `-- ${unit}`}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>
     );
   }
 }
