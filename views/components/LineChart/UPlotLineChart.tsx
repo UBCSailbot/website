@@ -18,29 +18,45 @@ export default class UPlotLineChartComponent extends React.Component<
   IUPlotLineChartProps,
   IUPlotLineChartState
 > {
+  fmtDate = uPlot.fmtDate("{YYYY}-{MM}-{DD}-{h}:{mm}:{ss}{aa}");
+  localTz = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+  tzDate = ts => uPlot.tzDate(new Date(ts * 1e3), this.localTz);
   readonly state: IUPlotLineChartState = {
     chart: null,
     options: {
       width: 0,
       height: 250,
       scales: {
-        x: {
-          time: true,
-        },
+        x: {},
         y: {},
       },
       axes: [{}],
       series: [
-        {},
+        {
+          show: true,
+          spanGaps: false,
+          label: "Time",
+          value: (self, rawValue, xValuesIndex, currentVal) => {
+            if (currentVal == null) {
+              let xValues = self.data[xValuesIndex];
+              let xValue = this.fmtDate(this.tzDate(xValues[xValues.length - 1]));
+              return `${xValue}`;
+            }
+            return this.fmtDate(this.tzDate(rawValue));
+          },
+          stroke: 'red',
+          width: 1,
+          band: true,
+        },
         {
           show: true,
           spanGaps: false,
           label: this.props.label,
           value: (self, rawValue, yValuesIndex, currentVal) => {
             if (currentVal == null) {
-              let yValues = self.data[yValuesIndex]
-              let yValue = (yValues[yValues.length - 1])?.toFixed(2)
-              return `${yValue} ${this.props.unit}`
+              let yValues = self.data[yValuesIndex];
+              let yValue = (yValues[yValues.length - 1])?.toFixed(2);
+              return `${yValue} ${this.props.unit}`;
             }
             return rawValue?.toFixed(2) + ` ${this.props.unit}`;
           },

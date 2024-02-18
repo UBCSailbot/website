@@ -19,20 +19,36 @@ export default class UPlotMultiLineChartComponent extends React.Component<
   IUPlotMultiLineChartProps,
   IUPlotMultiLineChartState
 > {
+  fmtDate = uPlot.fmtDate("{YYYY}-{MM}-{DD}-{h}:{mm}:{ss}{aa}");
+  localTz = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+  tzDate = ts => uPlot.tzDate(new Date(ts * 1e3), this.localTz);
   readonly state: IUPlotMultiLineChartState = {
     chart: null,
     options: {
       width: 0,
       height: 250,
       scales: {
-        x: {
-          time: true,
-        },
+        x: {},
         y: {},
       },
       axes: [{}],
       series: [
-        {},
+        {
+          show: true,
+          spanGaps: false,
+          label: "Time",
+          value: (self, rawValue, xValuesIndex, currentVal) => {
+            if (currentVal == null) {
+              let xValues = self.data[xValuesIndex];
+              let xValue = this.fmtDate(this.tzDate(xValues[xValues.length - 1]));
+              return `${xValue}`;
+            }
+            return this.fmtDate(this.tzDate(rawValue));
+          },
+          stroke: 'red',
+          width: 1,
+          band: true,
+        },
         {
           show: true,
           spanGaps: false,
