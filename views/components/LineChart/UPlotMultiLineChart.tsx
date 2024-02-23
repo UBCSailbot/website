@@ -15,13 +15,13 @@ export interface IUPlotMultiLineChartState {
   options: uPlot.Options;
 }
 
+const fmtDate = uPlot.fmtDate("{YYYY}-{MM}-{DD} {h}:{mm}:{ss}{aa}");
+const localTz = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+const tzDate = ts => uPlot.tzDate(new Date(ts * 1e3), localTz);
 export default class UPlotMultiLineChartComponent extends React.Component<
   IUPlotMultiLineChartProps,
   IUPlotMultiLineChartState
 > {
-  fmtDate = uPlot.fmtDate("{YYYY}-{MM}-{DD}-{h}:{mm}:{ss}{aa}");
-  localTz = new Intl.DateTimeFormat().resolvedOptions().timeZone;
-  tzDate = ts => uPlot.tzDate(new Date(ts * 1e3), this.localTz);
   readonly state: IUPlotMultiLineChartState = {
     chart: null,
     options: {
@@ -40,10 +40,10 @@ export default class UPlotMultiLineChartComponent extends React.Component<
           value: (self, rawValue, xValuesIndex, currentVal) => {
             if (currentVal == null) {
               let xValues = self.data[xValuesIndex];
-              let xValue = this.fmtDate(this.tzDate(xValues[xValues.length - 1]));
+              let xValue = fmtDate(tzDate(xValues[xValues.length - 1]));
               return `${xValue}`;
             }
-            return this.fmtDate(this.tzDate(rawValue));
+            return fmtDate(tzDate(rawValue));
           },
           stroke: 'red',
           width: 1,
