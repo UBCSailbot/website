@@ -22,8 +22,7 @@ class MapsContainer extends React.PureComponent<MapsContainerProps> {
 
     const gpsDistanceData = [
       gps.data.map((data) => data.latitude),
-      gps.data.map((data) => data.longitude),
-      gps.data.map((data) => data.heading)
+      gps.data.map((data) => data.longitude)
     ];
 
     const totalTripDistance = this._computeTotalTripDistance(gpsDistanceData[0], gpsDistanceData[1])

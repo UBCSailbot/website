@@ -50,7 +50,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
 
     return (
       <div>
-        <Grid
+        {/* <Grid
           container spacing={0}
           direction={"row"}
           justifyContent={"center"}
@@ -68,7 +68,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
           <Grid container justifyContent="center" item xs={3}>
             <SingleValueChart title="Longitude" data={this.props.gps.data.at(-1)?.longitude.toFixed(2)} unit="°"/>
           </Grid>
-        </Grid>
+        </Grid> */}
         <UPlotLineChartComponent
           data={gpsChartData}
           label='Boat Speed'

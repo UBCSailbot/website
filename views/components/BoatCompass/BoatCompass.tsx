@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Grid, Paper } from "@mui/material";
+import SingleValueLine from "../SingleValueLine/SingleValueLine";
 
 interface BoatCompassProps {
     angle: number;
@@ -17,9 +18,12 @@ class BoatCompass extends React.Component<BoatCompassProps> {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
-                    width={70}
-                    height={70}
+                    width={115}
+                    height={100}
                 >
+                    <Grid>
+                        <SingleValueLine title="Heading" data={angle} unit="°" />
+                    </Grid>
                     <Image
                         src="/boat.png"
                         width={50}
