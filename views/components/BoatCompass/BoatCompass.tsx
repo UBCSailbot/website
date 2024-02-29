@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import SingleValueLine from "../SingleValueLine/SingleValueLine";
+import styles from "./boatcompass.module.css"
 
 interface BoatCompassProps {
     angle: number;
@@ -12,24 +13,40 @@ class BoatCompass extends React.Component<BoatCompassProps> {
         const { angle } = this.props;
 
         return (
-            <Paper elevation={0}>
+            <Grid
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                width={100}
+                height={100}
+            >
                 <Grid
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    width={160}
-                    height={160}
+                    className={styles.top}
                 >
-                    <Image
-                        src="/BoatCompassCircle.png"
-                        width={160}
-                        height={160}
-                        alt="Boat Icon"
-                        style={{ transform: this._rotateBoatString(angle) }}
-                    />
+                    <Typography
+                        align="center"
+                        variant="subtitle2"
+                    >
+                        {angle + 180}
+                    </Typography>
                 </Grid>
-            </Paper>
+                <Image
+                    src="/BoatIconFinal.png"
+                    width={80}
+                    height={80}
+                    alt="Boat Icon"
+                    style={{ transform: this._rotateBoatString(angle) }}
+                    className={styles.middle}
+                />
+                <Image
+                    src="/NSEWCompass.png"
+                    width={110}
+                    height={110}
+                    alt="Compass Background"
+                    className={styles.bottom}
+                />
+            </Grid>
         );
     }
 

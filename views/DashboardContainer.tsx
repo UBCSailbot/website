@@ -60,7 +60,7 @@ class DashboardContainer extends React.PureComponent<DashboardContainerProps> {
             <SingleValueChart title="Distance" data={totalTripDistance} unit="km" />
           </Grid>
           <Grid container justifyContent="center" item xs={3}>
-            <SingleValueChart title="Heading" data={this.props.gps.data.at(-1)?.heading} unit="°"/>
+            <SingleValueChart title="Heading" data={this.props.gps.data.at(-1)?.heading} unit=""/>
           </Grid>
           <Grid container justifyContent="center" item xs={3}>
             <SingleValueChart title="Latitude" data={this.props.gps.data.at(-1)?.latitude.toFixed(2)} unit="°"/>
