@@ -18,16 +18,13 @@ class BoatCompass extends React.Component<BoatCompassProps> {
                     direction="row"
                     justifyContent="center"
                     alignItems="center"
-                    width={115}
-                    height={100}
+                    width={160}
+                    height={160}
                 >
-                    <Grid>
-                        <SingleValueLine title="Heading" data={angle} unit="°" />
-                    </Grid>
                     <Image
-                        src="/boat.png"
-                        width={50}
-                        height={50}
+                        src="/BoatCompassCircle.png"
+                        width={160}
+                        height={160}
                         alt="Boat Icon"
                         style={{ transform: this._rotateBoatString(angle) }}
                     />
