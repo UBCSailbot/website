@@ -18,8 +18,8 @@ class BoatCompass extends React.Component<BoatCompassProps> {
                 direction="row"
                 justifyContent="center"
                 alignItems="center"
-                width={100}
-                height={100}
+                width={80}
+                height={80}
             >
                 <Grid
                     className={styles.top}
@@ -28,21 +28,21 @@ class BoatCompass extends React.Component<BoatCompassProps> {
                         align="center"
                         variant="subtitle2"
                     >
-                        {angle + 180}
+                        {`${this._rotateBoat(angle).toFixed()}°`}
                     </Typography>
                 </Grid>
                 <Image
                     src="/BoatIconFinal.png"
-                    width={80}
-                    height={80}
+                    width={60}
+                    height={60}
                     alt="Boat Icon"
                     style={{ transform: this._rotateBoatString(angle) }}
                     className={styles.middle}
                 />
                 <Image
-                    src="/NSEWCompass.png"
-                    width={110}
-                    height={110}
+                    src="/NSEWCompassBackdrop.png"
+                    width={90}
+                    height={90}
                     alt="Compass Background"
                     className={styles.bottom}
                 />
@@ -50,9 +50,12 @@ class BoatCompass extends React.Component<BoatCompassProps> {
         );
     }
 
+    _rotateBoat(boatAngle: number) {
+        return (boatAngle < 0) ? boatAngle + 360 : boatAngle;
+    }
+
     _rotateBoatString(boatAngle: number) {
-        let modifiedAngle = boatAngle + 180
-        return `rotate(${modifiedAngle}deg)`;
+        return `rotate(${this._rotateBoat(boatAngle)}deg)`;
     }
 }
 

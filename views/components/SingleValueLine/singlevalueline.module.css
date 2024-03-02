@@ -12,6 +12,6 @@
 .bottomRight {
     position: absolute;
     z-index: 10000000000;
-    bottom: 2.7vh;
-    right: 0.43vw;
+    bottom: 3.1vh;
+    right: 0.5vw;
 }
